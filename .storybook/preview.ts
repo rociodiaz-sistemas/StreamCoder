@@ -2,6 +2,7 @@ import type { Preview } from '@storybook/react'
 import theme from '../src/theme'
 import { withThemeFromJSXProvider } from '@storybook/addon-themes'
 import { ChakraProvider } from '@chakra-ui/react'
+import { themes } from '@storybook/theming'
 
 const preview: Preview = {
     parameters: {
@@ -20,11 +21,14 @@ const preview: Preview = {
                 themes: {
                     default: theme,
                 },
-                defaultTheme: 'light',
+                defaultTheme: 'dark',
                 Provider: ChakraProvider,
                 GlobalStyles: theme.colors,
             }),
         ],
+        docs: {
+            theme: themes.light,
+        },
     },
 }
 
