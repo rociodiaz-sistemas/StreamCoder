@@ -1,4 +1,5 @@
-// theme.js
+import { extendTheme } from "@chakra-ui/react"
+
 export default {
     colors: {
         transparent: 'transparent',
@@ -6,9 +7,15 @@ export default {
         white: '#f0f',
         gray: {
             50: '#f00c',
-            // ...
             900: '#171923',
         },
-        // ...
     },
 }
+
+export const candy = extendTheme({  
+    colors:{
+        brand: {
+            100: '#ffb7d5'
+        }
+    }
+})

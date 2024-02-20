@@ -3,6 +3,7 @@ import theme from '../src/theme'
 import { withThemeFromJSXProvider } from '@storybook/addon-themes'
 import { ChakraProvider } from '@chakra-ui/react'
 import { themes } from '@storybook/theming'
+import type { ThemeConfig } from 'storybook-addon-data-theme-switcher'
 
 const preview: Preview = {
     parameters: {
@@ -31,5 +32,22 @@ const preview: Preview = {
         },
     },
 }
+
+export const globalTypes = {
+    dataTheme: {
+        defaultValue: "rainforest",
+    },
+    dataThemes: {
+        defaultValue: {
+            list: [
+                { name: "Rainforest", dataTheme: "rainforest", color: "#00755e" },
+                { name: "Candy", dataTheme: "candy", color: "#ffb7d5" },
+                { name: "Rose", dataTheme: "rose", color: "#ff007f" },
+            ],
+            dataAttribute: "data-theme", // optional (default: "data-theme")
+            clearable: true,             // optional (default: true)
+        }
+    },
+};
 
 export default preview
