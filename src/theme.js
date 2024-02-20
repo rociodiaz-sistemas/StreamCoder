@@ -2,10 +2,10 @@
 export default {
     colors: {
         transparent: 'transparent',
-        black: '#000',
-        white: '#fff',
+        black: '#0f0',
+        white: '#f0f',
         gray: {
-            50: '#f7fafc',
+            50: '#f00c',
             // ...
             900: '#171923',
         },
