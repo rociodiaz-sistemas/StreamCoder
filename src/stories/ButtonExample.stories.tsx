@@ -1,14 +1,18 @@
-import ButtonExample from "../components/ButtonExample"
+// stories/ButtonExample.stories.tsx
+
+import React from 'react';
+import ButtonExample from '../components/ButtonExample';
 
 export default {
   title: 'Components/ButtonExample',
   component: ButtonExample,
   parameters: {
-      dataTheme: 'candy', // Set the theme for this specific story
+    dataTheme: 'rainforest', // Set the default theme for stories
   },
 };
 
 export const Normal = (args: any) => <ButtonExample {...args} />;
 Normal.args = {
-    dataTheme: 'candy', // You can set the theme for the individual story
+  // You can set the theme for the individual story
+  dataTheme: 'rainforest',
 };

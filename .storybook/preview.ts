@@ -35,7 +35,7 @@ const preview: Preview = {
 
 export const globalTypes = {
     dataTheme: {
-        defaultValue: "candy",
+        defaultValue: "rose",
     },
     dataThemes: {
         defaultValue: {
@@ -47,7 +47,7 @@ export const globalTypes = {
             dataAttribute: "data-theme", // optional (default: "data-theme")
             clearable: true,             // optional (default: true)
         }
-    },
+    } as ThemeConfig,
 };
 
 export default preview
