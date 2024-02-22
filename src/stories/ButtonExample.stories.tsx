@@ -1,6 +1,3 @@
-// stories/ButtonExample.stories.tsx
-
-import React from 'react';
 import ButtonExample from '../components/ButtonExample';
 
 export default {
