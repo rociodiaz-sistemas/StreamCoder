@@ -17,6 +17,7 @@
     "@storybook/addon-actions": "^7.6.12",
     "@storybook/addons": "^7.6.12",
     "emoji-picker-react": "^3.6.2",
+    "esbuild": "^0.20.1",
     "framer-motion": "^11.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
