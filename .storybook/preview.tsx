@@ -6,6 +6,8 @@ import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 import morningTheme from '../src/themes/morningTheme'
 import theme from '../src/themes/theme'
 
+// IMPORTANT: If you change the baseTheme.ts file, you need to reload the page.
+
 const preview: Preview = {
     parameters: {
         chakra: {
