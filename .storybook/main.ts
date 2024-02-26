@@ -11,6 +11,7 @@ const config: StorybookConfig = {
         '@storybook/addon-actions',
         '@chakra-ui/storybook-addon',
         '@storybook/addon-themes',
+        '@chakra-ui/storybook-addon',
     ],
     framework: {
         name: '@storybook/react-vite',
