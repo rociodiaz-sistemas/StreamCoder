@@ -5,14 +5,22 @@ import { MessageModel } from '../utils/models'
 import ChatMessage from './ChatMessage'
 import ChatPausedAlert from './ChatPausedAlert'
 import SendMessageForm from './SendMessageForm'
+import { Box } from '@chakra-ui/react'
+import useGradientMapping from '../hooks/useGradientMapping' // Import the hook
 
 const Chat = () => {
     const { messages, send } = useChatMessages()
     const { chatMessagesBoxRef, isLiveModeEnabled, scrollNewMessages } =
         useChatLiveModeScrolling<HTMLDivElement>(messages)
 
+    const { getGradient } = useGradientMapping() // Destructure the hook to get the getGradient function
+
     return (
-        <div className="relative w-full max-w-[550px] px-4 py-3 rounded-lg bg-slate-900 opacity-80">
+        <Box
+            as="div"
+            bgGradient={getGradient()} // Use the dynamically retrieved gradient
+            className="relative w-full max-w-[550px] px-4 py-3 rounded-lg bg-slate-900 opacity-80"
+        >
             <ChatMessagesBox ref={chatMessagesBoxRef} messages={messages} />
             {!isLiveModeEnabled && (
                 <ChatPausedAlert
@@ -21,10 +29,10 @@ const Chat = () => {
                 />
             )}
             <SendMessageForm onSend={send} className="mt-4" />
-        </div>
+        </Box>
     )
 }
-// eslint-disable-next-line react/display-name
+
 const ChatMessagesBox = React.forwardRef<
     HTMLDivElement,
     { messages: MessageModel[] }
