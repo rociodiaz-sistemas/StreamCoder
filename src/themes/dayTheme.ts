@@ -16,6 +16,6 @@ export default {
     },
     gradients: {
         DaySky:
-            'linear-gradient(180deg, #FFC926 0%, #FCE293 45.5%, #EBDDB5 60%, #A9BEDB 100%)'
+            'linear-gradient(180deg, #FFC926 0%, #FCE293 26%, #EBDDB5 44%, #A9BEDB 83.9%)'
     }
 }
