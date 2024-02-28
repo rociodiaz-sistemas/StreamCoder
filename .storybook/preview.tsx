@@ -21,7 +21,7 @@ const preview: Preview = {
             defaultValue: 'default', // Set the default theme option
             toolbar: {
                 title: 'default', // Label for the toolbar item
-                icon: 'circlehollow', // Icon for the toolbar item
+                icon: 'heart', // Icon for the toolbar item
                 items: ['default', 'morning'], // Available theme options
                 dynamicTitle: true, // Update title based on selected value
             },
