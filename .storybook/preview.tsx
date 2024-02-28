@@ -4,14 +4,14 @@ import React from 'react'
 import { Preview } from '@storybook/react'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 import morningTheme from '../src/themes/morningTheme'
-import theme from '../src/themes/theme'
+import nightTheme from '../src/themes/nightTheme'
 
 // IMPORTANT: If you change the baseTheme.ts file, you need to reload the page.
 
 const preview: Preview = {
     parameters: {
         chakra: {
-            theme,
+            nightTheme,
             morningTheme,
         },
     },
@@ -36,7 +36,7 @@ const preview: Preview = {
             const updatedTheme =
                 selectedTheme === 'morning'
                     ? extendTheme(morningTheme)
-                    : extendTheme(theme)
+                    : extendTheme(nightTheme)
 
             return (
                 <ChakraProvider theme={updatedTheme}>
