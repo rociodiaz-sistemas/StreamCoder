@@ -16,6 +16,7 @@ const useGradientMapping = (): GradientInfo => {
         nightTheme: theme.gradients.NightSky,
         morningTheme: theme.gradients.MorningSky,
         dayTheme: theme.gradients.DaySky,
+        // dayTheme: theme.gradients.DaySky,
         // Add mappings for other themes as needed
     }
 
