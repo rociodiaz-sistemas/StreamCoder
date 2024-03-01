@@ -4,17 +4,19 @@ import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 import morningTheme from '../src/themes/morningTheme'
 import theme from '../src/themes/theme'
 import dayTheme from '../src/themes/dayTheme'
+import afternoonTheme from '../src/themes/afternoonTheme'
 
 // IMPORTANT: If you change the baseTheme.ts file, you need to reload the page.
 
-type ThemeType = 'default' | 'morning' | 'day'
+type ThemeType = 'default' | 'morning' | 'day' | 'afternoon'
 
 const preview: Preview = {
     parameters: {
         chakra: {
             theme,
             morningTheme,
-            dayTheme
+            dayTheme,
+            afternoonTheme
         },
     },
     globalTypes: {
@@ -24,7 +26,7 @@ const preview: Preview = {
             toolbar: {
                 title: 'default', // Label for the toolbar item
                 icon: 'heart', // Icon for the toolbar item
-                items: ['default', 'morning', 'day'], // Available theme options
+                items: ['default', 'morning', 'day', 'afternoon'], // Available theme options
                 dynamicTitle: true, // Update title based on selected value
             },
         },
@@ -43,6 +45,9 @@ const preview: Preview = {
                     break;
                 case 'day':
                     updatedTheme = extendTheme(dayTheme);
+                    break;
+                case 'afternoon':
+                    updatedTheme = extendTheme(afternoonTheme);
                     break;
                 default:
                     updatedTheme = extendTheme(theme);
