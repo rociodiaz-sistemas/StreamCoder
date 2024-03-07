@@ -6,14 +6,14 @@ import ChatMessage from './ChatMessage'
 import ChatPausedAlert from './ChatPausedAlert'
 import SendMessageForm from './SendMessageForm'
 import { Box } from '@chakra-ui/react'
-import useGradientMapping from '../hooks/useGradientMapping' // Import the hook
+import useThemeMapping from '../hooks/useThemeMapping'
 
 const Chat = () => {
   const { messages, send } = useChatMessages()
   const { chatMessagesBoxRef, isLiveModeEnabled, scrollNewMessages } =
     useChatLiveModeScrolling<HTMLDivElement>(messages)
 
-  const { getGradient } = useGradientMapping() // Destructure the hook to get the getGradient function
+  const { getGradient } = useThemeMapping() // Destructure the hook to get the getGradient function
 
   return (
     <Box
