@@ -16,6 +16,6 @@ export default {
     },
     gradients: {
         MorningSky:
-            'linear-gradient(180deg, #64509F 2.5%, #CEA9DB 32%, #EBDDB5 100%)',
+            'linear-gradient(180deg, #A9ABDB 5%, #A9BEDB 27.5%, #FCE293 66.5%, #F5F5F5 90%)',
     },
 }
