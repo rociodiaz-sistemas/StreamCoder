@@ -25,7 +25,7 @@ const ChatMessage = ({
     </span>
   )
 
-  const messageBoxStyle = themeInfo.getMessageBoxStyles('common') || {}
+  const messageBoxStyle = themeInfo.getMessageBoxStyles(author.type) || {}
 
   return (
     <Box
