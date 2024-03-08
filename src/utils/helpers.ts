@@ -9,7 +9,7 @@ export const generateFakeMessage = (): MessageModel => {
             rgbColor: faker.internet.color(250, 250, 250),
             username: faker.internet.userName(),
             badges: generateRandomBadges(),
-            type: 'VIP',
+            type: 'common',
         },
         content: faker.lorem.sentence(),
     }
