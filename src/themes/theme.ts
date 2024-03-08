@@ -3,10 +3,6 @@ import baseTheme from './baseTheme'
 export default {
     ...baseTheme,
     themeName: 'nightTheme',
-    colors: {
-        primary: 'green',
-        secondary: 'yellow',
-    },
     components: {
         Chat: {
             baseStyle: {
@@ -15,21 +11,26 @@ export default {
         },
     },
     messageStyles: {
+        // Define message box styles based on user type
         subscriber: {
-            borderColor: 'primary',
-            background: 'secondary',
+            borderColor: 'RosaBarbie',
+            background: 'nightWhite',
         },
         bit: {
-            borderColor: 'primary',
+            borderColor: 'RosaBarbie',
+            background: 'nightWhite',
         },
         highlighted: {
-            borderColor: 'primary',
+            borderColor: 'nightWhite',
+            background: 'cuteCosmico',
         },
         VIP: {
-            borderColor: 'primary',
+            borderColor: 'RosaBarbie',
+            background: 'nightWhite',
         },
         common: {
-            borderColor: 'primary',
+            borderColor: 'RosaBarbie',
+            background: 'rositaBb',
         },
     },
     gradients: {
