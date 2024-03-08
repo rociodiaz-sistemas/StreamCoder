@@ -20,6 +20,8 @@ const useThemeMapping = (): ThemeInfo => {
     const gradientMappings: GradientMappings = {
         nightTheme: theme.gradients.NightSky,
         morningTheme: theme.gradients.MorningSky,
+        dayTheme: theme.gradients.DaySky,
+        afternoonTheme: theme.gradients.AfternoonSky,
         // Add mappings for other themes as needed
     }
 
