@@ -33,6 +33,7 @@ const Chat = () => {
   )
 }
 
+/* eslint-disable */
 const ChatMessagesBox = React.forwardRef<
   HTMLDivElement,
   { messages: MessageModel[] }
@@ -47,5 +48,6 @@ const ChatMessagesBox = React.forwardRef<
     </div>
   )
 })
+/* eslint-enable */
 
 export default Chat
