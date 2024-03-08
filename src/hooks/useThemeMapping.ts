@@ -5,7 +5,8 @@ interface GradientMappings {
 }
 
 interface MessageStyles {
-    [key: string]: string
+    borderColor?: string
+    background?: string
 }
 
 interface ThemeInfo {
@@ -34,7 +35,7 @@ const useThemeMapping = (): ThemeInfo => {
     }
 
     const getMessageBoxStyles = (type: string): MessageStyles | undefined => {
-        const styles = messageStyles[type]
+        const styles = messageStyles && theme.messageStyles[type]
         if (typeof styles === 'object') {
             return styles
         }
