@@ -24,7 +24,7 @@ export default {
             borderColor: 'nightWhite',
             background: 'cuteCosmico',
         },
-        VIP: {
+        vip: {
             borderColor: 'RosaBarbie',
             background: 'nightWhite',
         },

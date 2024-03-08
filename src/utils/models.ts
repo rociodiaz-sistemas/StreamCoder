@@ -8,7 +8,7 @@ export interface Author {
     id: string
     rgbColor: string
     username: string
-    type: 'common' | 'subscriber' | 'bit' | 'highlighted' | 'VIP'
+    type: 'common' | 'subscriber' | 'bit' | 'highlighted' | 'vip'
     badges: Badge[]
 }
 
