@@ -13,11 +13,11 @@ export default {
     messageStyles: {
         // Define message box styles based on user type
         subscriber: {
-            borderColor: 'RosaBarbie',
+            borderColor: 'rosaBarbie',
             background: 'nightWhite',
         },
         bit: {
-            borderColor: 'RosaBarbie',
+            borderColor: 'rosaBarbie',
             background: 'nightWhite',
         },
         highlighted: {
@@ -25,11 +25,11 @@ export default {
             background: 'cuteCosmico',
         },
         vip: {
-            borderColor: 'RosaBarbie',
+            borderColor: 'rosaBarbie',
             background: 'nightWhite',
         },
         common: {
-            borderColor: 'RosaBarbie',
+            borderColor: 'rosaBarbie',
             background: 'rositaBb',
         },
     },

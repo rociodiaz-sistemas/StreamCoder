@@ -12,7 +12,7 @@ const baseTheme = extendTheme({
         },
     },
     colors: {
-        RosaBarbie: '#ED1E81',
+        rosaBarbie: '#ED1E81',
         nightWhite: '#F5F5F5',
         rositaBb: 'rgba(237, 30, 129, 0.35)',
         cuteCosmico:

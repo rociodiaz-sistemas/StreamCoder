@@ -3,10 +3,6 @@ import baseTheme from './baseTheme'
 export default {
     ...baseTheme,
     themeName: 'afternoonTheme',
-    colors: {
-        primary: 'green',
-        secondary: 'yellow',
-    },
     components: {
         Chat: {
             baseStyle: {
