@@ -15,22 +15,27 @@ export default {
         subscriber: {
             borderColor: 'rosaBarbie',
             background: 'nightWhite',
+            gifBackground: '',
         },
         bit: {
             borderColor: 'rosaBarbie',
             background: 'nightWhite',
+            gifBackground: '',
         },
         highlighted: {
             borderColor: 'nightWhite',
             background: 'cuteCosmico',
+            gifBackground: '',
         },
         vip: {
             borderColor: 'rosaBarbie',
             background: 'nightWhite',
+            gifBackground: 'bitGif',
         },
         common: {
             borderColor: 'rosaBarbie',
             background: 'rositaBb',
+            gifBackground: 'bitGif',
         },
     },
     gradients: {
