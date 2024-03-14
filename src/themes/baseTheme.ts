@@ -21,6 +21,7 @@ const baseTheme = extendTheme({
         rosaPalido: 'rgba(245, 214, 211, 0.43)',
         nightSkyAfternoon:
             'linear-gradient(180deg, rgba(20, 19, 17, 0.76) 0%, rgba(45, 46, 56, 0.76) 45.5%, rgba(51, 56, 80, 0.76) 60%, rgba(85, 58, 119, 0.76) 100%);',
+        bitGif: 'url("https://media.tenor.com/yGH5RwRTBwEAAAAj/stars-glitter.gif")',
     },
 })
 
