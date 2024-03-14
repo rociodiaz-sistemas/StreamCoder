@@ -7,6 +7,7 @@ interface GradientMappings {
 interface MessageStyles {
     borderColor?: string
     background?: string
+    gifBackground?: string
 }
 
 interface ThemeInfo {

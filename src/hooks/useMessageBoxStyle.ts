@@ -12,6 +12,7 @@ const useMessageBoxStyle = (author: Author) => {
     return {
         borderColor: getMessageBoxStyle().borderColor,
         background: getMessageBoxStyle().background,
+        gifBackground: getMessageBoxStyle().gifBackground,
     }
 }
 

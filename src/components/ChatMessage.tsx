@@ -36,6 +36,12 @@ const ChatMessage = ({
       padding="11"
       width="fit-content"
       className={`text-[15px] py-1 px-2 rounded hover:bg-gray-500/30 leading-6 ${className}`}
+      style={{
+        backgroundImage: messageBoxStyle.gifBackground,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
     >
       <div className="inline-flex items-baseline">
         {Badges}
