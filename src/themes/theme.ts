@@ -1,4 +1,5 @@
 import baseTheme from './baseTheme'
+import { gifs } from '../assets/assets'
 
 export default {
     ...baseTheme,
@@ -35,7 +36,7 @@ export default {
         common: {
             borderColor: 'rosaBarbie',
             background: 'rositaBb',
-            gifBackground: 'bitGif',
+            gifBackground: gifs.general.bitGif,
         },
     },
     gradients: {
