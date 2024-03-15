@@ -21,7 +21,7 @@ export default {
         bit: {
             borderColor: 'rosaBarbie',
             background: 'nightWhite',
-            gifBackground: '',
+            gifBackground: gifs.general.bitGif,
         },
         highlighted: {
             borderColor: 'nightWhite',
@@ -31,12 +31,12 @@ export default {
         vip: {
             borderColor: 'rosaBarbie',
             background: 'nightWhite',
-            gifBackground: 'bitGif',
+            gifBackground: '',
         },
         common: {
             borderColor: 'rosaBarbie',
             background: 'rositaBb',
-            gifBackground: gifs.general.bitGif,
+            gifBackground: '',
         },
     },
     gradients: {

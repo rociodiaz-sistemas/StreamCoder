@@ -1,4 +1,5 @@
 import baseTheme from './baseTheme'
+import { gifs } from '../assets/assets'
 
 export default {
     ...baseTheme,
@@ -20,7 +21,7 @@ export default {
         bit: {
             borderColor: 'lila',
             background: 'rosaPalido',
-            gifBackground: '',
+            gifBackground: gifs.general.bitGif,
         },
         highlighted: {
             borderColor: 'nightWhite',
