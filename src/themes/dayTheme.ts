@@ -20,26 +20,31 @@ export default {
         subscriber: {
             borderColor: '#00ff00',
             background: '#ff00ff',
+            backgroundGradient: '',
             gifBackground: gifs.general.subscriberGif,
         },
         bit: {
             borderColor: '#0000ff',
             background: '#ff0000',
+            backgroundGradient: '',
             gifBackground: gifs.general.bitGif,
         },
         highlighted: {
             borderColor: '#ffffff',
             background: '#000000',
+            backgroundGradient: '',
             gifBackground: '',
         },
         vip: {
             borderColor: '#f50c',
             background: '#b00',
+            backgroundGradient: '',
             gifBackground: '',
         },
         common: {
             borderColor: '#cc0',
             background: '#0cd',
+            backgroundGradient: '',
             gifBackground: '',
         },
     },

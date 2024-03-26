@@ -1,5 +1,5 @@
 import baseTheme from './baseTheme'
-import { gifs } from '../assets/assets'
+import { gifs, gradients } from '../assets/assets'
 
 export default {
     ...baseTheme,
@@ -16,26 +16,31 @@ export default {
         subscriber: {
             borderColor: 'rosaBarbie',
             background: 'nightWhite',
+            backgroundGradient: '',
             gifBackground: gifs.general.subscriberGif,
         },
         bit: {
             borderColor: 'rosaBarbie',
             background: 'nightWhite',
+            backgroundGradient: '',
             gifBackground: gifs.general.bitGif,
         },
         highlighted: {
             borderColor: 'nightWhite',
             background: 'cuteCosmico',
+            backgroundGradient: gradients.nightTheme.cuteCosmico,
             gifBackground: '',
         },
         vip: {
             borderColor: 'rosaBarbie',
             background: 'nightWhite',
+            backgroundGradient: '',
             gifBackground: '',
         },
         common: {
             borderColor: 'rosaBarbie',
             background: 'rositaBb',
+            backgroundGradient: '',
             gifBackground: '',
         },
     },

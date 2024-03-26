@@ -1,5 +1,5 @@
 import baseTheme from './baseTheme'
-import { gifs } from '../assets/assets'
+import { gifs, gradients } from '../assets/assets'
 
 export default {
     ...baseTheme,
@@ -7,7 +7,7 @@ export default {
     components: {
         Chat: {
             baseStyle: {
-                bg: 'gradients.AfternoonSky',
+                bgGradient: 'gradients.AfternoonSky',
             },
         },
     },
@@ -16,26 +16,31 @@ export default {
         subscriber: {
             borderColor: 'lila',
             background: 'rosaPalido',
+            backgroundGradient: '',
             gifBackground: gifs.general.subscriberGif,
         },
         bit: {
             borderColor: 'lila',
             background: 'rosaPalido',
+            backgroundGradient: '',
             gifBackground: gifs.general.bitGif,
         },
         highlighted: {
             borderColor: 'nightWhite',
-            background: 'nightSkyAfternoon',
+            background: '',
+            backgroundGradient: gradients.afternoonTheme.nightSkyAfternoon,
             gifBackground: '',
         },
         vip: {
             borderColor: 'lila',
             background: 'rosaPalido',
+            backgroundGradient: '',
             gifBackground: '',
         },
         common: {
             borderColor: 'RosaBarbie',
             background: 'rositaBb',
+            backgroundGradient: '',
             gifBackground: '',
         },
     },
