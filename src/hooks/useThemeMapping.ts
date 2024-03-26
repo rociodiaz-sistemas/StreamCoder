@@ -8,6 +8,8 @@ interface MessageStyles {
     borderColor?: string
     background?: string
     gifBackground?: string
+    messageBoxStyle?: string
+    backgroundGradient?: string
 }
 
 interface ThemeInfo {

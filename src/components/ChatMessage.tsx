@@ -30,7 +30,8 @@ const ChatMessage = ({
   return (
     <Box
       borderColor={messageBoxStyle.borderColor}
-      bg={messageBoxStyle.background}
+      bgColor={messageBoxStyle.background}
+      bgGradient={messageBoxStyle.backgroundGradient}
       backgroundImage={messageBoxStyle.gifBackground}
       borderWidth="1px"
       borderRadius="12px"
@@ -48,7 +49,7 @@ const ChatMessage = ({
         {Username}
       </div>
       <span className="ml-3 break-words">{content}</span>
-    </Box>
+    </Box >
   )
 }
 
