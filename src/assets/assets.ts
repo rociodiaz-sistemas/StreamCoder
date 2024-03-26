@@ -8,3 +8,18 @@ export const gifs = {
         bitgif: '',
     },
 }
+
+export const gradients = {
+    afternoonTheme: {
+        nightSkyAfternoon: [
+            'linear(to-b, rgba(20, 19, 17, 0.76) 0%, rgba(45, 46, 56, 0.76) 45.5%)',
+            'linear(to-b, rgba(51, 56, 80, 0.76) 60%, rgba(85, 58, 119, 0.76) 100%)',
+        ],
+    },
+    nightTheme: {
+        cuteCosmico: [
+            'linear(to-b, rgba(237, 30, 129, 0.55) 0%, rgba(237, 30, 129, 0.55) 45.5%)',
+            'linear(to-b,rgba(237, 30, 129, 0.55) 0%, rgba(254, 246, 172, 0.69) 100%)',
+        ],
+    },
+}
