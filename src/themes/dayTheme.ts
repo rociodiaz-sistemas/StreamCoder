@@ -20,7 +20,7 @@ export default {
         subscriber: {
             borderColor: '#00ff00',
             background: '#ff00ff',
-            gifBackground: '',
+            gifBackground: gifs.general.subscriberGif,
         },
         bit: {
             borderColor: '#0000ff',

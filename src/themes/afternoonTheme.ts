@@ -16,7 +16,7 @@ export default {
         subscriber: {
             borderColor: 'lila',
             background: 'rosaPalido',
-            gifBackground: '',
+            gifBackground: gifs.general.subscriberGif,
         },
         bit: {
             borderColor: 'lila',
