@@ -38,8 +38,8 @@ export default {
             gifBackground: '',
         },
         common: {
-            borderColor: 'RosaBarbie',
-            background: 'rositaBb',
+            borderColor: 'lila',
+            background: 'rosaPalido',
             backgroundGradient: '',
             gifBackground: '',
         },
