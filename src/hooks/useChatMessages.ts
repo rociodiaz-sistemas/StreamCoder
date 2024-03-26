@@ -13,7 +13,8 @@ const welcomeMessage: MessageModel = {
         username: 'AntoniaVaquita',
         type: 'common',
     },
-    content: 'Hola hijitos!',
+    content:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
 }
 
 export default function useChatMessages() {
