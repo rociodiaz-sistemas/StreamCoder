@@ -12,11 +12,7 @@ const Chat = () => {
   const { messages, send } = useChatMessages()
   const { chatMessagesBoxRef, isLiveModeEnabled, scrollNewMessages } =
     useChatLiveModeScrolling<HTMLDivElement>(messages)
-  const { messages, send } = useChatMessages()
-  const { chatMessagesBoxRef, isLiveModeEnabled, scrollNewMessages } =
-    useChatLiveModeScrolling<HTMLDivElement>(messages)
 
-  const { getGradient } = useThemeMapping() // Destructure the hook to get the getGradient function
   const { getGradient } = useThemeMapping() // Destructure the hook to get the getGradient function
 
   return (
@@ -44,28 +40,26 @@ const Chat = () => {
 }
 
 /* eslint-disable */
-const ChatMessagesBox = React.forwardRef <
+const ChatMessagesBox = React.forwardRef<
   HTMLDivElement,
   { messages: MessageModel[] }
-HTMLDivElement,
-  { messages: MessageModel[] }
-  > (({ messages }, ref) => {
-    const MessageList = messages.map((message) => (
-      <ChatMessage key={message.id} className="mb-1 mt-4" message={message} />
-    ))
+>(({ messages }, ref) => {
+  const MessageList = messages.map((message) => (
+    <ChatMessage key={message.id} className="mb-1 mt-4" message={message} />
+  ))
 
-    return (
-      <Box
-        as="div"
-        ref={ref}
-        marginTop="4"
-        overflow="auto"
-        maxHeight="70vh"
-      >
-        {MessageList}
-      </Box>
-    )
-  })
+  return (
+    <Box
+      as="div"
+      ref={ref}
+      marginTop="4"
+      overflow="auto"
+      maxHeight="70vh"
+    >
+      {MessageList}
+    </Box>
+  )
+})
 /* eslint-enable */
 
 export default Chat
