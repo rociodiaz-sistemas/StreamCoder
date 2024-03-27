@@ -8,7 +8,7 @@ interface MessageStyles {
     borderColor?: string
     background?: string
     gifBackground?: string
-    messageBoxStyle?: string
+    messageBoxStyle: string
     backgroundGradient?: string
 }
 
