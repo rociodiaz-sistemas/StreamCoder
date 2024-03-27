@@ -24,6 +24,7 @@ const preview: Preview = {
       description: 'Global theme for components',
       defaultValue: 'default' as ThemeType, // Set the default theme option
       toolbar: {
+        title: 'Theme',
         icon: 'heart', // Icon for the toolbar item
         items: [
           { value: 'morning', right: '🌤️', title: 'Morning' },

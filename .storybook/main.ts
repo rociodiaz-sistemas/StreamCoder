@@ -7,8 +7,8 @@ const config: StorybookConfig = {
         '@storybook/addon-essentials',
         '@storybook/addon-onboarding',
         '@storybook/addon-interactions',
-        // '@chakra-ui/storybook-addon', // NOT REQUIRED
-        // '@storybook/addon-themes', // NOT REQUIRED
+        '@chakra-ui/storybook-addon', // This switches light-dark, but doesn't have icon
+        '@storybook/addon-themes',
         '@storybook/addon-actions',
         '@storybook/addon-mdx-gfm',
     ],
