@@ -5,7 +5,11 @@ interface GradientMappings {
 }
 
 interface MessageStyles {
-    [key: string]: string
+    borderColor?: string
+    background?: string
+    gifBackground?: string
+    messageBoxStyle: string
+    backgroundGradient?: string
 }
 
 interface ThemeInfo {
@@ -20,6 +24,8 @@ const useThemeMapping = (): ThemeInfo => {
     const gradientMappings: GradientMappings = {
         nightTheme: theme.gradients.NightSky,
         morningTheme: theme.gradients.MorningSky,
+        dayTheme: theme.gradients.DaySky,
+        afternoonTheme: theme.gradients.AfternoonSky,
         // Add mappings for other themes as needed
     }
 
@@ -32,7 +38,7 @@ const useThemeMapping = (): ThemeInfo => {
     }
 
     const getMessageBoxStyles = (type: string): MessageStyles | undefined => {
-        const styles = messageStyles[type]
+        const styles = messageStyles && theme.messageStyles[type]
         if (typeof styles === 'object') {
             return styles
         }

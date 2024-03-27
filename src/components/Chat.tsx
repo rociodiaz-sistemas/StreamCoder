@@ -19,13 +19,18 @@ const Chat = () => {
     <Box
       as="div"
       bgGradient={getGradient()} // Use the dynamically retrieved gradient
-      className="relative w-full max-w-[550px] px-4 py-3 rounded-lg bg-slate-900 opacity-80"
+      padding="20px"
+      maxWidth="400px"
+      minHeight="500px"
+      display="flex"
+      position="relative"
+      flexDirection={"column"}
+      justifyContent={"space-between"}
     >
       <ChatMessagesBox ref={chatMessagesBoxRef} messages={messages} />
       {!isLiveModeEnabled && (
         <ChatPausedAlert
           onClick={scrollNewMessages}
-          className="absolute inset-x-0 bottom-28 mx-auto"
         />
       )}
       <SendMessageForm onSend={send} className="mt-4" />
@@ -33,19 +38,27 @@ const Chat = () => {
   )
 }
 
+/* eslint-disable */
 const ChatMessagesBox = React.forwardRef<
   HTMLDivElement,
   { messages: MessageModel[] }
 >(({ messages }, ref) => {
   const MessageList = messages.map((message) => (
-    <ChatMessage key={message.id} className="mb-1" message={message} />
+    <ChatMessage key={message.id} message={message} />
   ))
 
   return (
-    <div ref={ref} className="h-[70vh] overflow-auto">
+    <Box
+      as="div"
+      ref={ref}
+      marginTop="4"
+      overflow="auto"
+      maxHeight="70vh"
+    >
       {MessageList}
-    </div>
+    </Box>
   )
 })
+/* eslint-enable */
 
 export default Chat

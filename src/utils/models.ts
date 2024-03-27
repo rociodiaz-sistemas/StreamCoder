@@ -5,8 +5,10 @@ export interface MessageModel {
 }
 
 export interface Author {
+    id: string
     rgbColor: string
     username: string
+    type: 'common' | 'subscriber' | 'bit' | 'highlighted' | 'vip'
     badges: Badge[]
 }
 

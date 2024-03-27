@@ -1,4 +1,5 @@
 import baseTheme from './baseTheme'
+import { gifs } from '../assets/assets'
 
 export default {
     ...baseTheme,
@@ -12,6 +13,39 @@ export default {
             baseStyle: {
                 bg: 'gradients.MorningSky',
             },
+        },
+    },
+    messageStyles: {
+        // Define message box styles based on user type
+        subscriber: {
+            borderColor: '#a0c',
+            background: '#0ca',
+            backgroundGradient: '',
+            gifBackground: gifs.general.subscriberGif,
+        },
+        bit: {
+            borderColor: '#aaa',
+            background: '#de0',
+            backgroundGradient: '',
+            gifBackground: gifs.general.bitGif,
+        },
+        highlighted: {
+            borderColor: '#0de',
+            background: '#eda',
+            backgroundGradient: '',
+            gifBackground: '',
+        },
+        vip: {
+            borderColor: '#afa',
+            background: '#ebe',
+            backgroundGradient: '',
+            gifBackground: '',
+        },
+        common: {
+            borderColor: '#0de',
+            background: '#dca',
+            backgroundGradient: '',
+            gifBackground: '',
         },
     },
     gradients: {

@@ -1,12 +1,9 @@
 import baseTheme from './baseTheme'
+import { gifs, gradients } from '../assets/assets'
 
 export default {
     ...baseTheme,
     themeName: 'nightTheme',
-    colors: {
-        primary: 'green',
-        secondary: 'yellow',
-    },
     components: {
         Chat: {
             baseStyle: {
@@ -15,21 +12,36 @@ export default {
         },
     },
     messageStyles: {
+        // Define message box styles based on user type
         subscriber: {
-            borderColor: 'primary',
-            background: 'secondary',
+            borderColor: 'rosaBarbie',
+            background: 'nightWhite',
+            backgroundGradient: '',
+            gifBackground: gifs.general.subscriberGif,
         },
         bit: {
-            borderColor: 'primary',
+            borderColor: 'rosaBarbie',
+            background: 'nightWhite',
+            backgroundGradient: '',
+            gifBackground: gifs.general.bitGif,
         },
         highlighted: {
-            borderColor: 'primary',
+            borderColor: 'nightWhite',
+            background: 'cuteCosmico',
+            backgroundGradient: gradients.nightTheme.cuteCosmico,
+            gifBackground: '',
         },
-        VIP: {
-            borderColor: 'primary',
+        vip: {
+            borderColor: 'rosaBarbie',
+            background: 'nightWhite',
+            backgroundGradient: '',
+            gifBackground: '',
         },
         common: {
-            borderColor: 'primary',
+            borderColor: 'rosaBarbie',
+            background: 'rositaBb',
+            backgroundGradient: '',
+            gifBackground: '',
         },
     },
     gradients: {

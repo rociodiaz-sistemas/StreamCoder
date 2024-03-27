@@ -7,11 +7,14 @@ const MESSAGE_WINDOW = 30
 const welcomeMessage: MessageModel = {
     id: 'welcome-message',
     author: {
+        id: '1',
         rgbColor: 'darkorchid',
         badges: ['moderator'],
-        username: 'ChatBot',
+        username: 'AntoniaVaquita',
+        type: 'common',
     },
-    content: 'Welcome to Twitch Chat Clone!',
+    content:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
 }
 
 export default function useChatMessages() {

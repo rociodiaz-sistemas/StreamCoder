@@ -11,6 +11,13 @@ const baseTheme = extendTheme({
             },
         },
     },
+    colors: {
+        rosaBarbie: '#ED1E81',
+        nightWhite: '#F5F5F5',
+        rositaBb: 'rgba(237, 30, 129, 0.35)',
+        lila: '#9747FF',
+        rosaPalido: 'rgba(245, 214, 211, 0.43)',
+    },
 })
 
 export default baseTheme
