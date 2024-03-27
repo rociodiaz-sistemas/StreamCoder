@@ -26,9 +26,9 @@ addons.setConfig({
 
         // Toolbar default and active colors
         barBg: '#080404',
-        barTextColor: '#080404', // ?? This doesn't change
-        barSelectedColor: '#080404', // ?? This doesn't change
-        barHoverColor: '#e4bcdc',
+        barTextColor: '#c586c0',
+        barSelectedColor: '#ffffff',
+        barHoverColor: '#ffffff',
 
         // Form colors
         inputBorderRadius: 10,
