@@ -14,7 +14,7 @@ interface MessageBoxStyle {
 }
 
 const MessageBox = ({
-  messageBoxStyle,
+  messageBoxStyle: { borderColor, background, backgroundGradient, gifBackground },
   Badges,
   Username,
   content,
@@ -28,10 +28,10 @@ const MessageBox = ({
 }) => {
   return (
     <Box
-      borderColor={messageBoxStyle.borderColor}
-      bgColor={messageBoxStyle.background}
-      bgGradient={messageBoxStyle.backgroundGradient}
-      backgroundImage={messageBoxStyle.gifBackground}
+      borderColor={borderColor}
+      bgColor={background}
+      bgGradient={backgroundGradient}
+      backgroundImage={gifBackground}
       borderWidth="1px"
       borderRadius="12px"
       padding="11"
