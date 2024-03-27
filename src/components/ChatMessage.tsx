@@ -6,51 +6,81 @@ type MessageProps = {
   message: MessageModel
 } & React.ComponentPropsWithRef<'div'>
 
-const ChatMessage = ({
-  message: { author, content },
-  className,
-}: MessageProps) => {
-  const themeInfo = useThemeMapping() // Use the useThemeMapping hook
-  const Badges = author.badges.map((bg, i) => (
-    <img
-      key={i}
-      src={`/badges/${bg}.png`}
-      className="mr-2 w-4 h-4 self-center"
-    />
-  ))
+interface MessageBoxStyle {
+  borderColor?: string;
+  background?: string;
+  backgroundGradient?: string;
+  gifBackground?: string;
+}
 
-  const Username = (
-    <span className="font-semibold" style={{ color: author.rgbColor }}>
-      {author.username}
-    </span>
-  )
-
-  const messageBoxStyle = themeInfo.getMessageBoxStyles(author.type) || {}
-
+const MessageBox = ({
+  messageBoxStyle: { borderColor, background, backgroundGradient, gifBackground },
+  Badges,
+  Username,
+  content,
+  className = '',
+}: {
+  messageBoxStyle: MessageBoxStyle;
+  Badges: JSX.Element[];
+  Username: JSX.Element;
+  content: string;
+  className?: string;
+}) => {
   return (
     <Box
-      borderColor={messageBoxStyle.borderColor}
-      bgColor={messageBoxStyle.background}
-      bgGradient={messageBoxStyle.backgroundGradient}
-      backgroundImage={messageBoxStyle.gifBackground}
+      borderColor={borderColor}
+      bgColor={background}
+      bgGradient={backgroundGradient}
+      backgroundImage={gifBackground}
       borderWidth="1px"
       borderRadius="12px"
       padding="11"
       width="fit-content"
-      className={`text-[15px] py-1 px-2 rounded hover:bg-gray-500/30 leading-6 ${className}`}
+      className={className}
       style={{
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
       }}
     >
-      <div className="inline-flex items-baseline">
+      <div>
         {Badges}
         {Username}
       </div>
-      <span className="ml-3 break-words">{content}</span>
-    </Box >
-  )
-}
+      <span>{content}</span>
+    </Box>
+  );
+};
 
-export default ChatMessage
+const ChatMessage = ({
+  message: { author, content },
+  className,
+}: MessageProps) => {
+  const themeInfo = useThemeMapping(); // Use the useThemeMapping hook
+  const Badges = author.badges.map((bg, i) => (
+    <img
+      key={i}
+      src={`/badges/${bg}.png`}
+    />
+  ));
+
+  const Username = (
+    <span style={{ color: author.rgbColor }}>
+      {author.username}
+    </span>
+  );
+
+  const messageBoxStyle = themeInfo.getMessageBoxStyles(author.type) || {};
+
+  return (
+    <MessageBox
+      messageBoxStyle={messageBoxStyle}
+      Badges={Badges}
+      Username={Username}
+      content={content}
+      className={className}
+    />
+  );
+};
+
+export default ChatMessage;
