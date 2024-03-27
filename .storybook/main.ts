@@ -7,10 +7,10 @@ const config: StorybookConfig = {
         '@storybook/addon-essentials',
         '@storybook/addon-onboarding',
         '@storybook/addon-interactions',
-        '@storybook/addon-actions',
         // '@chakra-ui/storybook-addon', // NOT REQUIRED
         // '@storybook/addon-themes', // NOT REQUIRED
-        // '@storybook/addon-mdx-gfm' // DEPRECATED
+        '@storybook/addon-actions',
+        '@storybook/addon-mdx-gfm',
     ],
     framework: {
         name: '@storybook/react-vite',
