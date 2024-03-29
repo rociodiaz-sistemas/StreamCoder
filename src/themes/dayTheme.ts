@@ -4,10 +4,6 @@ import { gifs } from '../assets/assets'
 export default {
     ...baseTheme,
     themeName: 'dayTheme',
-    colors: {
-        primary: 'yellow',
-        secondary: 'purple',
-    },
     components: {
         Chat: {
             baseStyle: {
@@ -18,32 +14,32 @@ export default {
     messageStyles: {
         // Define message box styles based on user type
         subscriber: {
-            borderColor: '#00ff00',
-            background: '#ff00ff',
+            borderColor: 'blueDay',
+            background: 'grisPalidoDaySub',
             backgroundGradient: '',
             gifBackground: gifs.general.subscriberGif,
         },
         bit: {
-            borderColor: '#0000ff',
-            background: '#ff0000',
+            borderColor: 'blueDay',
+            background: 'amarilloPalidoDay',
             backgroundGradient: '',
             gifBackground: gifs.general.bitGif,
         },
         highlighted: {
-            borderColor: '#ffffff',
-            background: '#000000',
+            borderColor: 'nightWhite',
+            background: 'nightWhite',
             backgroundGradient: '',
             gifBackground: '',
         },
         vip: {
-            borderColor: '#f50c',
-            background: '#b00',
+            borderColor: 'blueDay',
+            background: 'grisPalidoDay',
             backgroundGradient: '',
             gifBackground: '',
         },
         common: {
-            borderColor: '#cc0',
-            background: '#0cd',
+            borderColor: 'blueDay',
+            background: 'grisPalidoDay',
             backgroundGradient: '',
             gifBackground: '',
         },
