@@ -38,12 +38,10 @@ const MessageBox = ({
       padding="11"
       width="fit-content"
       className={className}
-      style={{
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        boxShadow: boxShadow ? '0px 4px 6px rgba(0, 0, 0, 0.25)' : 'none', // Apply boxShadow if provided
-      }}
+      bgSize="cover"
+      bgPosition="center"
+      bgRepeat="no-repeat"
+      boxShadow={boxShadow ? "0px 4px 6px rgba(0, 0, 0, 0.25)" : "none"}
     >
       <div>
         {Badges}
