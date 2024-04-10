@@ -3,12 +3,11 @@ import EmojiPickerButton from './EmojiPickerButton';
 
 type SendMessageFormProps = {
   onSend: (message: string) => void
-  className?: string
 }
 
 const MAX_MESSAGE_LENGTH = 300;
 
-const SendMessageForm = ({ onSend, className }: SendMessageFormProps) => {
+const SendMessageForm = ({ onSend }: SendMessageFormProps) => {
   const [message, setMessage] = useState('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -24,8 +23,8 @@ const SendMessageForm = ({ onSend, className }: SendMessageFormProps) => {
   };
 
   return (
-    <form className={className} onSubmit={handleSubmit}>
-      <div className="relative">
+    <form onSubmit={handleSubmit}>
+      <div>
         <input
           type="text"
           value={message}

@@ -11,7 +11,7 @@ const EmojiPickerButton = ({
     useEmojiPicker(handleEmojiPick);
 
   return (
-    <div className="relative">
+    <div>
       <button
         type="button"
         onClick={toggleEmojiPicker}

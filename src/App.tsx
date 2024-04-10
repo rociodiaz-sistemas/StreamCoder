@@ -4,7 +4,7 @@ import { ChakraProvider } from '@chakra-ui/react';
 function App() {
   return (
     <ChakraProvider>
-      <main className="grid min-h-screen place-items-center">
+      <main>
         <Chat />
       </main>
     </ChakraProvider>

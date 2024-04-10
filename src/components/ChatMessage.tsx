@@ -24,7 +24,6 @@ const MessageBox = ({
   Badges: JSX.Element[];
   Username: JSX.Element;
   content: string;
-  className?: string;
 }) => {
   console.log(backgroundGradient);
   return (

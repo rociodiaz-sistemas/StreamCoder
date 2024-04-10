@@ -31,7 +31,7 @@ const Chat = () => {
           onClick={scrollNewMessages}
         />
       )}
-      <SendMessageForm onSend={send} className="mt-4" />
+      <SendMessageForm onSend={send} />
     </Flex>
   );
 };

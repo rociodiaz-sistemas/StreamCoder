@@ -4,10 +4,8 @@ import { ImArrowDown2 } from 'react-icons/im';
 
 const ChatPausedAlert = ({
   onClick: handleClick,
-  className,
 }: {
   onClick: () => void
-  className?: string
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -17,7 +15,7 @@ const ChatPausedAlert = ({
       See new messages
     </span>
   ) : (
-    <span className="inline-flex items-center">
+    <span>
       <GiPauseButton />
       Chat paused due to scroll
     </span>
@@ -28,7 +26,6 @@ const ChatPausedAlert = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={handleClick}
-      className={className}
     >
       {label}
     </div>

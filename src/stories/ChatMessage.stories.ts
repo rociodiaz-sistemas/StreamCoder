@@ -19,7 +19,6 @@ export const Common = {
       },
       content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     },
-    className: 'custom-class',
   },
 };
 
