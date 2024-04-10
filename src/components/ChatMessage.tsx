@@ -19,7 +19,6 @@ const MessageBox = ({
   Badges,
   Username,
   content,
-  className = '',
 }: {
   messageBoxStyle: MessageBoxStyle;
   Badges: JSX.Element[];
@@ -27,12 +26,12 @@ const MessageBox = ({
   content: string;
   className?: string;
 }) => {
+  console.log(backgroundGradient);
   return (
     <Box
-      className={className}
       w="fit-content"
       p="11"
-      bgImage={gifBackground}
+      bgImage={backgroundGradient ? undefined : gifBackground}
       bgSize="cover"
       bgPosition="center"
       bgRepeat="no-repeat"
@@ -54,7 +53,6 @@ const MessageBox = ({
 
 const ChatMessage = ({
   message: { author, content },
-  className,
 }: MessageProps) => {
   const themeInfo = useThemeMapping(); // Use the useThemeMapping hook
   const Badges = author.badges.map((bg, i) => (
@@ -81,7 +79,6 @@ const ChatMessage = ({
       Badges={Badges}
       Username={Username}
       content={content}
-      className={className}
     />
   );
 };
