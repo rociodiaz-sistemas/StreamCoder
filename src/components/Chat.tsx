@@ -1,31 +1,29 @@
-import React from 'react'
-import useChatLiveModeScrolling from '../hooks/useChatLiveModeScrolling'
-import useChatMessages from '../hooks/useChatMessages'
-import { MessageModel } from '../utils/models'
-import ChatMessage from './ChatMessage'
-import ChatPausedAlert from './ChatPausedAlert'
-import SendMessageForm from './SendMessageForm'
-import { Box } from '@chakra-ui/react'
-import useThemeMapping from '../hooks/useThemeMapping'
+import React from 'react';
+import useChatLiveModeScrolling from '../hooks/useChatLiveModeScrolling';
+import useChatMessages from '../hooks/useChatMessages';
+import { MessageModel } from '../utils/models';
+import ChatMessage from './ChatMessage';
+import ChatPausedAlert from './ChatPausedAlert';
+import SendMessageForm from './SendMessageForm';
+import { Box, Flex } from '@chakra-ui/react';
+import useThemeMapping from '../hooks/useThemeMapping';
 
 const Chat = () => {
-  const { messages, send } = useChatMessages()
+  const { messages, send } = useChatMessages();
   const { chatMessagesBoxRef, isLiveModeEnabled, scrollNewMessages } =
-    useChatLiveModeScrolling<HTMLDivElement>(messages)
+    useChatLiveModeScrolling<HTMLDivElement>(messages);
 
-  const { getGradient } = useThemeMapping() // Destructure the hook to get the getGradient function
+  const { getGradient } = useThemeMapping(); // Destructure the hook to get the getGradient function
 
   return (
-    <Box
-      as="div"
-      bgGradient={getGradient()} // Use the dynamically retrieved gradient
-      padding="20px"
-      maxWidth="400px"
-      minHeight="500px"
-      display="flex"
-      position="relative"
-      flexDirection={"column"}
-      justifyContent={"space-between"}
+    <Flex
+      pos="relative" // Use the dynamically retrieved gradient
+      justify={'space-between'}
+      direction={'column'}
+      maxW="400px"
+      minH="500px"
+      p="20px"
+      bgGradient={getGradient()}
     >
       <ChatMessagesBox ref={chatMessagesBoxRef} messages={messages} />
       {!isLiveModeEnabled && (
@@ -34,9 +32,9 @@ const Chat = () => {
         />
       )}
       <SendMessageForm onSend={send} className="mt-4" />
-    </Box>
-  )
-}
+    </Flex>
+  );
+};
 
 /* eslint-disable */
 const ChatMessagesBox = React.forwardRef<
@@ -49,18 +47,17 @@ const ChatMessagesBox = React.forwardRef<
 
   return (
     <Box
-      as="div"
       ref={ref}
-      marginTop="4"
       overflow="auto"
-      maxHeight="70vh"
-      pb="10px"
+      mt="4"
       px="10px"
+      pb="10px"
+      maxH="70vh"
     >
       {MessageList}
     </Box>
   )
-})
+});
 /* eslint-enable */
 
-export default Chat
+export default Chat;
