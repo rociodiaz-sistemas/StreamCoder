@@ -19,12 +19,16 @@
   },
   "plugins": [
     "react",
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "chakra-ui"
   ],
   "rules": {
     "comma-dangle": ["error", "always-multiline"],
     "indent": ["error", 2],
     "semi": ["error", "always"],
-    "quotes": ["error", "single"]
+    "quotes": ["error", "single"],
+    "chakra-ui/props-order": "error",
+    "chakra-ui/props-shorthand": "error",
+    "chakra-ui/require-specific-component": "error"
   }
 }
