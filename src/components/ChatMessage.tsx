@@ -11,10 +11,11 @@ interface MessageBoxStyle {
   background?: string;
   backgroundGradient?: string;
   gifBackground?: string;
+  boxShadow?: string;
 }
 
 const MessageBox = ({
-  messageBoxStyle: { borderColor, background, backgroundGradient, gifBackground },
+  messageBoxStyle: { borderColor, background, backgroundGradient, gifBackground, boxShadow },
   Badges,
   Username,
   content,
@@ -37,11 +38,10 @@ const MessageBox = ({
       padding="11"
       width="fit-content"
       className={className}
-      style={{
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-      }}
+      bgSize="cover"
+      bgPosition="center"
+      bgRepeat="no-repeat"
+      boxShadow={boxShadow ? "0px 4px 6px rgba(0, 0, 0, 0.25)" : "none"}
     >
       <div>
         {Badges}
@@ -74,7 +74,10 @@ const ChatMessage = ({
 
   return (
     <MessageBox
-      messageBoxStyle={messageBoxStyle}
+      messageBoxStyle={{
+        ...messageBoxStyle,
+        boxShadow: author.type === 'highlighted' ? 'highlighted-box-shadow' : undefined, // Set boxShadow for highlighted type
+      }}
       Badges={Badges}
       Username={Username}
       content={content}

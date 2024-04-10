@@ -54,6 +54,8 @@ const ChatMessagesBox = React.forwardRef<
       marginTop="4"
       overflow="auto"
       maxHeight="70vh"
+      pb="10px"
+      px="10px"
     >
       {MessageList}
     </Box>

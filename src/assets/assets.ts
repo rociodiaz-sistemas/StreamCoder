@@ -22,4 +22,10 @@ export const gradients = {
             'linear(to-b,rgba(237, 30, 129, 0.55) 0%, rgba(254, 246, 172, 0.69) 100%)',
         ],
     },
+    morningTheme: {
+        blueHighlighted: [
+            'linear(to-b, rgba(158, 142, 255, 0.48) 0%, rgba(158, 142, 255, 0.48) 20%)',
+            'linear(to-b , rgba(158, 142, 255, 0.48) 0%, rgba(245, 245, 245, 0.58) 100%)',
+        ],
+    },
 }

@@ -1,13 +1,9 @@
 import baseTheme from './baseTheme'
-import { gifs } from '../assets/assets'
+import { gifs, gradients } from '../assets/assets'
 
 export default {
     ...baseTheme,
     themeName: 'morningTheme',
-    colors: {
-        primary: 'purple',
-        secondary: 'pink',
-    },
     components: {
         Chat: {
             baseStyle: {
@@ -18,32 +14,32 @@ export default {
     messageStyles: {
         // Define message box styles based on user type
         subscriber: {
-            borderColor: '#a0c',
-            background: '#0ca',
+            borderColor: 'amarilloMorning',
+            background: 'grisMorningSub',
             backgroundGradient: '',
             gifBackground: gifs.general.subscriberGif,
         },
         bit: {
-            borderColor: '#aaa',
-            background: '#de0',
+            borderColor: 'amarilloMorningBit',
+            background: 'grisPalidoMorningBit',
             backgroundGradient: '',
             gifBackground: gifs.general.bitGif,
         },
         highlighted: {
-            borderColor: '#0de',
-            background: '#eda',
-            backgroundGradient: '',
+            borderColor: 'azulMorado',
+            background: '',
+            backgroundGradient: gradients.morningTheme.blueHighlighted,
             gifBackground: '',
         },
         vip: {
-            borderColor: '#afa',
-            background: '#ebe',
+            borderColor: 'amarilloMorning',
+            background: 'grisPalidoMorning',
             backgroundGradient: '',
             gifBackground: '',
         },
         common: {
-            borderColor: '#0de',
-            background: '#dca',
+            borderColor: 'amarilloMorning',
+            background: 'grisPalidoMorning',
             backgroundGradient: '',
             gifBackground: '',
         },
