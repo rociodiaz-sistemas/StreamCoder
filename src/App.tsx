@@ -1,5 +1,5 @@
-import Chat from './components/Chat'
-import { ChakraProvider } from '@chakra-ui/react'
+import Chat from './components/Chat';
+import { ChakraProvider } from '@chakra-ui/react';
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
         <Chat />
       </main>
     </ChakraProvider>
-  )
+  );
 }
 
-export default App
+export default App;
