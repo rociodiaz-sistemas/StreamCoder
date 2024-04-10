@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { GiPauseButton } from 'react-icons/gi'
-import { ImArrowDown2 } from 'react-icons/im'
+import { useState } from 'react';
+import { GiPauseButton } from 'react-icons/gi';
+import { ImArrowDown2 } from 'react-icons/im';
 
 const ChatPausedAlert = ({
   onClick: handleClick,
@@ -9,7 +9,7 @@ const ChatPausedAlert = ({
   onClick: () => void
   className?: string
 }) => {
-  const [isHovered, setIsHovered] = useState(false)
+  const [isHovered, setIsHovered] = useState(false);
 
   const label = isHovered ? (
     <span >
@@ -21,7 +21,7 @@ const ChatPausedAlert = ({
       <GiPauseButton />
       Chat paused due to scroll
     </span>
-  )
+  );
 
   return (
     <div
@@ -32,7 +32,7 @@ const ChatPausedAlert = ({
     >
       {label}
     </div>
-  )
-}
+  );
+};
 
-export default ChatPausedAlert
+export default ChatPausedAlert;

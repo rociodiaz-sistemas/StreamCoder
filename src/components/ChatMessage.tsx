@@ -1,6 +1,6 @@
-import { Box } from '@chakra-ui/react'
-import useThemeMapping from '../hooks/useThemeMapping'
-import { MessageModel } from '../utils/models'
+import { Box } from '@chakra-ui/react';
+import useThemeMapping from '../hooks/useThemeMapping';
+import { MessageModel } from '../utils/models';
 
 type MessageProps = {
   message: MessageModel
@@ -29,19 +29,19 @@ const MessageBox = ({
 }) => {
   return (
     <Box
-      borderColor={borderColor}
-      bgColor={background}
-      bgGradient={backgroundGradient}
-      backgroundImage={gifBackground}
-      borderWidth="1px"
-      borderRadius="12px"
-      padding="11"
-      width="fit-content"
       className={className}
+      w="fit-content"
+      p="11"
+      bgImage={gifBackground}
       bgSize="cover"
       bgPosition="center"
       bgRepeat="no-repeat"
-      boxShadow={boxShadow ? "0px 4px 6px rgba(0, 0, 0, 0.25)" : "none"}
+      bgGradient={backgroundGradient}
+      borderWidth="1px"
+      borderColor={borderColor}
+      borderRadius="12px"
+      shadow={boxShadow ? '0px 4px 6px rgba(0, 0, 0, 0.25)' : 'none'}
+      bgColor={background}
     >
       <div>
         {Badges}

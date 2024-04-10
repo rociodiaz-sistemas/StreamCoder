@@ -1,27 +1,27 @@
-import { useState } from 'react'
-import EmojiPickerButton from './EmojiPickerButton'
+import { useState } from 'react';
+import EmojiPickerButton from './EmojiPickerButton';
 
 type SendMessageFormProps = {
   onSend: (message: string) => void
   className?: string
 }
 
-const MAX_MESSAGE_LENGTH = 300
+const MAX_MESSAGE_LENGTH = 300;
 
 const SendMessageForm = ({ onSend, className }: SendMessageFormProps) => {
-  const [message, setMessage] = useState('')
+  const [message, setMessage] = useState('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const filteredMessage = message.trim().slice(0, MAX_MESSAGE_LENGTH)
+    const filteredMessage = message.trim().slice(0, MAX_MESSAGE_LENGTH);
 
     if (filteredMessage) {
-      onSend(filteredMessage)
+      onSend(filteredMessage);
     }
 
-    setMessage('')
-  }
+    setMessage('');
+  };
 
   return (
     <form className={className} onSubmit={handleSubmit}>
@@ -47,7 +47,7 @@ const SendMessageForm = ({ onSend, className }: SendMessageFormProps) => {
         Chat
       </button>
     </form>
-  )
-}
+  );
+};
 
-export default SendMessageForm
+export default SendMessageForm;
