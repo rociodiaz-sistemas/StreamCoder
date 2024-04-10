@@ -1,14 +1,14 @@
-import React from 'react'
-import { Preview } from '@storybook/react'
-import { ChakraProvider, extendTheme } from '@chakra-ui/react'
-import morningTheme from '../src/themes/morningTheme'
-import theme from '../src/themes/theme'
-import dayTheme from '../src/themes/dayTheme'
-import afternoonTheme from '../src/themes/afternoonTheme'
+import React from 'react';
+import { Preview } from '@storybook/react';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import morningTheme from '../src/themes/morningTheme';
+import theme from '../src/themes/theme';
+import dayTheme from '../src/themes/dayTheme';
+import afternoonTheme from '../src/themes/afternoonTheme';
 
 // IMPORTANT: If you change the baseTheme.ts file, you need to reload the page.
 
-type ThemeType = 'default' | 'morning' | 'day' | 'afternoon'
+type ThemeType = 'default' | 'morning' | 'day' | 'afternoon';
 
 const preview: Preview = {
   parameters: {
@@ -39,7 +39,7 @@ const preview: Preview = {
   decorators: [
     (Story, context) => {
       // Get the selected theme from the context
-      const selectedTheme = context.globals.theme as ThemeType
+      const selectedTheme = context.globals.theme as ThemeType;
 
       // Update the Chakra UI theme based on the selected theme
       let updatedTheme: any;
@@ -66,6 +66,6 @@ const preview: Preview = {
       )
     },
   ],
-}
+};
 
-export default preview
+export default preview;
