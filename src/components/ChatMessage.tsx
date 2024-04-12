@@ -1,4 +1,5 @@
 import { Box } from '@chakra-ui/react';
+
 import useThemeMapping from '../hooks/useThemeMapping';
 import { MessageModel } from '../utils/models';
 

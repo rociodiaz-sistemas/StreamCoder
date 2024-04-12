@@ -1,12 +1,14 @@
 import React from 'react';
+import { Box, Flex } from '@chakra-ui/react';
+
 import useChatLiveModeScrolling from '../hooks/useChatLiveModeScrolling';
+import useThemeMapping from '../hooks/useThemeMapping';
 import useChatMessages from '../hooks/useChatMessages';
 import { MessageModel } from '../utils/models';
+
 import ChatMessage from './ChatMessage';
 import ChatPausedAlert from './ChatPausedAlert';
 import SendMessageForm from './SendMessageForm';
-import { Box, Flex } from '@chakra-ui/react';
-import useThemeMapping from '../hooks/useThemeMapping';
 
 const Chat = () => {
   const { messages, send } = useChatMessages();
