@@ -1,28 +1,28 @@
-import { faker } from '@faker-js/faker'
-import { Badge, MessageModel } from './models'
+import { faker } from '@faker-js/faker';
+import { Badge, MessageModel } from './models';
 
 export const generateFakeMessage = (): MessageModel => {
-    return {
-        id: faker.datatype.uuid(),
-        author: {
-            id: '1',
-            rgbColor: faker.internet.color(250, 250, 250),
-            username: faker.internet.userName(),
-            badges: generateRandomBadges(),
-            type: 'common',
-        },
-        content: faker.lorem.sentence(),
-    }
-}
+  return {
+    id: faker.datatype.uuid(),
+    author: {
+      id: '1',
+      rgbColor: faker.internet.color(250, 250, 250),
+      username: faker.internet.userName(),
+      badges: generateRandomBadges(),
+      type: 'common',
+    },
+    content: faker.lorem.sentence(),
+  };
+};
 
 const generateRandomBadges = (): Badge[] => {
-    const badge = (badge: Badge, prob: number) =>
-        faker.helpers.maybe(() => badge, { probability: prob })
+  const badge = (badge: Badge, prob: number) =>
+    faker.helpers.maybe(() => badge, { probability: prob });
 
-    return [
-        badge('vip', 0.1),
-        badge('moderator', 0.1),
-        badge('prime', 0.2),
-        badge('turbo', 0.1),
-    ].filter((x) => x !== undefined) as Badge[]
-}
+  return [
+    badge('vip', 0.1),
+    badge('moderator', 0.1),
+    badge('prime', 0.2),
+    badge('turbo', 0.1),
+  ].filter((x) => x !== undefined) as Badge[];
+};

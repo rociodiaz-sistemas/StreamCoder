@@ -1,6 +1,6 @@
-import Picker from 'emoji-picker-react'
-import { HiOutlineEmojiHappy } from 'react-icons/hi'
-import useEmojiPicker from '../hooks/useEmojiPicker'
+import Picker from 'emoji-picker-react';
+import { HiOutlineEmojiHappy } from 'react-icons/hi';
+import useEmojiPicker from '../hooks/useEmojiPicker';
 
 const EmojiPickerButton = ({
   onEmojiPick: handleEmojiPick,
@@ -8,10 +8,10 @@ const EmojiPickerButton = ({
   onEmojiPick: (emoji: string) => void
 }) => {
   const { pickerRef, toggleEmojiPicker, isOpen, handleEmojiClick } =
-    useEmojiPicker(handleEmojiPick)
+    useEmojiPicker(handleEmojiPick);
 
   return (
-    <div className="relative">
+    <div>
       <button
         type="button"
         onClick={toggleEmojiPicker}
@@ -27,7 +27,7 @@ const EmojiPickerButton = ({
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default EmojiPickerButton
+export default EmojiPickerButton;
