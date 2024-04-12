@@ -35,7 +35,9 @@ export default function useChatMessages() {
 
   const send = useCallback(
     (message: string) => {
+      /* eslint-disable */
       console.log(`Sending message: ${message}`);
+      /* eslint-enable */
       socket?.emit('message', message);
     },
     [socket],

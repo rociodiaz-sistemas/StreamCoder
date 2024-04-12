@@ -13,12 +13,16 @@ export default function useChatConnection() {
   const [socket, setSocket] = useState<Socket>();
 
   useEffect(() => {
+    /* eslint-disable */
     console.log('Connecting...');
+    /* eslint-enable */
     const socket = connect();
     setSocket(socket);
 
     return () => {
+      /* eslint-disable */
       console.log('Disconnecting...');
+      /* eslint-enable */
       socket.close();
     };
   }, []);

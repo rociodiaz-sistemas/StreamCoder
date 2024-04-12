@@ -26,7 +26,7 @@ const MessageBox = ({
   Username: JSX.Element;
   content: string;
 }) => {
-  console.log(backgroundGradient);
+
   return (
     <Box
       w="fit-content"
