@@ -3,5 +3,7 @@
   "tabWidth": 2,
   "semi": true,
   "singleQuote": true,
-  "eol-last": "always"
+  "eol-last": "always",
+  "react-hooks/rules-of-hooks": true,
+  "react-hooks/exhaustive-deps": "warn"
 }
