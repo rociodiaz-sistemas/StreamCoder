@@ -10,10 +10,17 @@ const baseTheme = extendTheme({
         width: 200,
       },
     },
+    Header: {
+      baseStyle: {
+        border: '3px solid',
+        borderColor: 'brown',
+      },
+    },
   },
   colors: {
     rosaBarbie: '#ED1E81',
     nightWhite: '#F5F5F5',
+    white: '#FFFFFF',
     rositaBb: 'rgba(237, 30, 129, 0.35)',
     lila: '#9747FF',
     rosaPalido: 'rgba(245, 214, 211, 0.43)',
@@ -27,6 +34,9 @@ const baseTheme = extendTheme({
     grisMorningSub: 'rgba(244, 235, 255, 0.64)',
     amarilloPalidoDay: 'rgba(254, 246, 172, 0.69)',
     grisPalidoDaySub: 'rgba(255, 251, 230, 0.4)',
+    brown: '#3A332D',
+    rosa: '#F5D6D3',
+    amarillo: '#FCE293',
   },
 });
 

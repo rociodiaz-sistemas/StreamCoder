@@ -10,6 +10,12 @@ export default {
         bg: 'gradients.DaySky',
       },
     },
+    Header: {
+      baseStyle: {
+        backgroundColor: 'nightWhite',
+        color: 'blueDay',
+      },
+    },
   },
   messageStyles: {
     // Define message box styles based on user type
