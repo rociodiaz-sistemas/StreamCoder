@@ -1,6 +1,5 @@
 import baseTheme from './baseTheme';
 import { gifs, gradients } from '../assets/assets';
-import { background } from '@chakra-ui/react';
 
 export default {
   ...baseTheme,
