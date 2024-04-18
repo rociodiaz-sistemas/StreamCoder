@@ -5,6 +5,7 @@ import useChatLiveModeScrolling from '../hooks/useChatLiveModeScrolling';
 import useThemeMapping from '../hooks/useThemeMapping';
 import useChatMessages from '../hooks/useChatMessages';
 import { MessageModel } from '../utils/models';
+import baseTheme from '../themes/baseTheme';
 
 import ChatMessage from './ChatMessage';
 import { ChatHeader } from './ChatHeader';
@@ -29,6 +30,9 @@ const Chat = () => {
         minH="500px"
         p="20px"
         bgGradient={getGradient()}
+        border={'3px solid'}
+        borderColor={baseTheme.colors.brown}
+        borderTop={'none'}
       >
         <ChatMessagesBox ref={chatMessagesBoxRef} messages={messages} />
         {!isLiveModeEnabled && (
