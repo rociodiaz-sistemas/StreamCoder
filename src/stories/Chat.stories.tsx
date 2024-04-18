@@ -1,7 +1,7 @@
 import Chat from '../components/Chat';
 
 export default {
-  title: 'Components/Chat',
+  title: 'Widgets/Chat',
   component: Chat,
   tags: ['autodocs'],
 };
