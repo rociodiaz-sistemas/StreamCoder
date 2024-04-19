@@ -12,7 +12,11 @@ import { ChatHeader } from './ChatHeader';
 import ChatPausedAlert from './ChatPausedAlert';
 import SendMessageForm from './SendMessageForm';
 
-const Chat = () => {
+type ChatProps = {
+  fontSize: string;
+}
+
+const Chat = ({ fontSize }: ChatProps) => {
   const { messages, send } = useChatMessages();
   const { chatMessagesBoxRef, isLiveModeEnabled, scrollNewMessages } =
     useChatLiveModeScrolling<HTMLDivElement>(messages);
@@ -38,7 +42,7 @@ const Chat = () => {
         borderColor={baseTheme.colors.brown}
         borderTop={'none'}
       >
-        <ChatMessagesBox ref={chatMessagesBoxRef} messages={messages} />
+        <ChatMessagesBox ref={chatMessagesBoxRef} messages={messages} fontSize={fontSize} />
         {!isLiveModeEnabled && (
           <ChatPausedAlert
             onClick={scrollNewMessages}
@@ -53,10 +57,10 @@ const Chat = () => {
 /* eslint-disable */
 const ChatMessagesBox = React.forwardRef<
   HTMLDivElement,
-  { messages: MessageModel[] }
->(({ messages }, ref) => {
+  { messages: MessageModel[]; fontSize: string }
+>(({ messages, fontSize }, ref) => {
   const MessageList = messages.map((message) => (
-    <ChatMessage key={message.id} message={message} />
+    <ChatMessage key={message.id} message={message} fontSize={fontSize} />
   ))
 
   return (

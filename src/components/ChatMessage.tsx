@@ -5,6 +5,7 @@ import { MessageModel } from '../utils/models';
 
 type MessageProps = {
   message: MessageModel;
+  fontSize: string;
 } & React.ComponentPropsWithRef<'div'>;
 
 interface MessageBoxStyle {
@@ -26,16 +27,19 @@ const MessageBox = ({
   Badges,
   Username,
   content,
+  fontSize,
 }: {
   messageBoxStyle: MessageBoxStyle;
   Badges: JSX.Element[];
   Username: JSX.Element;
   content: string;
+  fontSize: string; // Define the fontSize prop
 }) => {
   return (
     <Box
-      w="fit-content"
-      p="11"
+      w="90%"
+      p="1em"
+      fontSize={fontSize}
       bgImage={backgroundGradient ? undefined : gifBackground}
       bgSize="cover"
       bgPosition="center"
@@ -47,7 +51,7 @@ const MessageBox = ({
       shadow={boxShadow ? '0px 4px 6px rgba(0, 0, 0, 0.25)' : 'none'}
       bgColor={background}
     >
-      <Flex direction={'row'}>
+      <Flex align="center" direction={'row'}>
         <Flex justify={'center'} w={'fit-content'} h={'fit-content'} pr={1}>
           {Badges}
         </Flex>
@@ -58,7 +62,7 @@ const MessageBox = ({
   );
 };
 
-const ChatMessage = ({ message: { author, content } }: MessageProps) => {
+const ChatMessage = ({ message: { author, content }, fontSize }: MessageProps) => {
   const themeInfo = useThemeMapping(); // Use the useThemeMapping hook
   const Badges = author.badges.map((bg, i) => (
     <img key={i} src={`/badges/${bg}.png`} />
@@ -80,6 +84,7 @@ const ChatMessage = ({ message: { author, content } }: MessageProps) => {
       Badges={Badges}
       Username={Username}
       content={content}
+      fontSize={fontSize}
     />
   );
 };
