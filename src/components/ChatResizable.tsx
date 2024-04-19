@@ -7,8 +7,8 @@ export const ChatResizable = () => {
       minHeight={400}
       minWidth={300}
       defaultSize={{
-        width: 400,
-        height: 'inherit',
+        width: '400',
+        height: '450',
       }}
       style={{
         display: 'flex',

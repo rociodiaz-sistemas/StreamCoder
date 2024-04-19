@@ -23,7 +23,7 @@ const Chat = () => {
     <Flex
       direction={'column'}
       w={'inherit'}
-      h={'max-content'}
+      h={'inherit'}
     >
       <ChatHeader />
       <Flex
@@ -31,7 +31,7 @@ const Chat = () => {
         justify={'space-between'}
         direction={'column'}
         w={'inherit'}
-        h={'inherit'}
+        h={'100%'}
         p="20px"
         bgGradient={getGradient()}
         border={'3px solid'}
