@@ -14,7 +14,7 @@ export const ChatHeader = () => {
     <Flex
       justify={'space-between'}
       direction={'row'}
-      maxW="400px"
+      w={'inherit'}
       h={'fit-content'}
       px={1}
       textColor={color}
