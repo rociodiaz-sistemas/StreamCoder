@@ -28,7 +28,7 @@ const Chat = () => {
       <ChatHeader />
       <Flex
         pos="relative" // Use the dynamically retrieved gradient
-        justify={'space-between'}
+        justify={'flex-end'}
         direction={'column'}
         w={'inherit'}
         h={'100%'}

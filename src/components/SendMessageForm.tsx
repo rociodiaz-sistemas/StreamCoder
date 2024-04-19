@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import EmojiPickerButton from './EmojiPickerButton';
+import { Flex, Box } from '@chakra-ui/react';
+import baseTheme from '../themes/baseTheme';
 
 type SendMessageFormProps = {
-  onSend: (message: string) => void
-}
+  onSend: (message: string) => void;
+};
 
 const MAX_MESSAGE_LENGTH = 300;
 
@@ -24,27 +26,42 @@ const SendMessageForm = ({ onSend }: SendMessageFormProps) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
+      <Flex justify={'space-between'} direction={'row'}>
         <input
           type="text"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Send a chat message"
+          style={{ width: '100%', padding: '7px', borderRadius: '5px' }}
         />
-        <div>
+        <Flex
+          pos={'absolute'}
+          justify={'flex-end'}
+          alignSelf={'flex-end'}
+          w={'-webkit-fill-available'}
+          h={'fit-content'}
+          mr={6}
+          p={1}
+        >
           <EmojiPickerButton
-            onEmojiPick={(emoji) =>
-              setMessage((msg) => msg.concat(emoji))
-            }
+            onEmojiPick={(emoji) => setMessage((msg) => msg.concat(emoji))}
           />
-        </div>
-      </div>
+        </Flex>
+      </Flex>
 
-      <button
-        type="submit"
-      >
-        Chat
-      </button>
+      <Flex justify={'flex-end'} py={1}>
+        <button
+          type="submit"
+          style={{
+            backgroundColor: `${baseTheme.colors.rosa}`,
+            paddingBlock: '7px',
+            paddingInline: '8px',
+            borderRadius: '5px',
+          }}
+        >
+          Chat
+        </button>
+      </Flex>
     </form>
   );
 };
