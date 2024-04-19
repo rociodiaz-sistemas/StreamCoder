@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import EmojiPickerButton from './EmojiPickerButton';
-import { Flex, Box } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import baseTheme from '../themes/baseTheme';
 
 type SendMessageFormProps = {
