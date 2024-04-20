@@ -8,15 +8,20 @@ export const ChatResizable = () => {
 
   // Callback function to update the font size based on the resizable component size
   const handleResize = (_event: unknown, _direction: unknown, refToElement: { style: { width: string; }; }) => {
-    // Calculate the font size based on the resizable component's width
-    const newFontSize = `${parseInt(refToElement.style.width) / 400}em`;
+    // Assuming a base font size of 1em when width is 400 pixels
+    const baseWidth = 400;
+    const baseFontSize = 1; // 1em
+    const currentWidth = parseInt(refToElement.style.width);
+    const newFontSize = `${baseFontSize * (currentWidth / baseWidth)}em`;
     setFontSize(newFontSize);
   };
 
   return (
     <Resizable
       minHeight={400}
+      maxHeight={600}
       minWidth={300}
+      maxWidth={600}
       defaultSize={{
         width: '400',
         height: '450',

@@ -48,7 +48,7 @@ const Chat = ({ fontSize }: ChatProps) => {
             onClick={scrollNewMessages}
           />
         )}
-        <SendMessageForm onSend={send} />
+        <SendMessageForm onSend={send} fontSize={fontSize} />
       </Flex>
     </Flex>
   );

@@ -5,11 +5,12 @@ import baseTheme from '../themes/baseTheme';
 
 type SendMessageFormProps = {
   onSend: (message: string) => void;
+  fontSize: string;
 };
 
 const MAX_MESSAGE_LENGTH = 300;
 
-const SendMessageForm = ({ onSend }: SendMessageFormProps) => {
+const SendMessageForm = ({ onSend, fontSize }: SendMessageFormProps) => {
   const [message, setMessage] = useState('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -25,7 +26,7 @@ const SendMessageForm = ({ onSend }: SendMessageFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} style={{ fontSize: fontSize }}>
       <Flex justify={'space-between'} direction={'row'}>
         <input
           type="text"
