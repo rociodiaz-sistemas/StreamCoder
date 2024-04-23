@@ -45,6 +45,10 @@ export const ChatHeader = ({
       >
         <IconButton
           color={color}
+          _hover={{
+            background: 'white',
+            color: baseTheme.colors.rosaBarbie,
+          }}
           aria-label="Resize"
           colorScheme=""
           icon={<ArrowRightIcon />}
@@ -65,6 +69,10 @@ export const ChatHeader = ({
       <Box>
         <IconButton
           color={color}
+          _hover={{
+            background: 'white',
+            color: baseTheme.colors.rosaBarbie,
+          }}
           aria-label="Close window"
           colorScheme=""
           icon={<CloseIcon />}
