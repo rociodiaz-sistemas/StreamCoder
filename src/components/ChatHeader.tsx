@@ -24,6 +24,11 @@ export const ChatHeader = ({
   const { backgroundColor, color } = themeInfo.getHeaderStyle(); // Destructure backgroundColor and color
   const { border, borderColor } = baseTheme.components.Header.baseStyle;
 
+  const hover = {
+    background: baseTheme.colors.lila,
+    color: 'black',
+  };
+
   return (
     <Flex
       align={'center'}
@@ -45,10 +50,7 @@ export const ChatHeader = ({
       >
         <IconButton
           color={color}
-          _hover={{
-            background: 'white',
-            color: baseTheme.colors.rosaBarbie,
-          }}
+          _hover={hover}
           aria-label="Resize"
           colorScheme=""
           icon={<ArrowRightIcon />}
@@ -69,10 +71,7 @@ export const ChatHeader = ({
       <Box>
         <IconButton
           color={color}
-          _hover={{
-            background: 'white',
-            color: baseTheme.colors.rosaBarbie,
-          }}
+          _hover={hover}
           aria-label="Close window"
           colorScheme=""
           icon={<CloseIcon />}
