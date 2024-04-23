@@ -7,7 +7,7 @@ export const ChatResizable = () => {
   const [fontSize, setFontSize] = useState('1em');
 
   const defaultWidth = 400;
-  const defaultHeight = 500;
+  const defaultHeight = 450;
 
   const [windowSize, setWindowSize] = useState({
     width: defaultWidth,
@@ -18,20 +18,39 @@ export const ChatResizable = () => {
   const handleResize = (
     _event: unknown,
     _direction: unknown,
-    refToElement: { style: { width: string } },
+    refToElement: { style: { width: string; height: string } },
   ) => {
-    // Assuming a base font size of 1em when width is 400 pixels
     const baseWidth = defaultWidth;
+    const baseHeight = defaultHeight;
     const baseFontSize = 1; // 1em
+
     const currentWidth = parseInt(refToElement.style.width);
-    const newFontSize = `${baseFontSize * (currentWidth / baseWidth)}em`;
+    console.log(currentWidth);
+    const currentHeight = parseInt(refToElement.style.height);
+
+    // Calculate aspect ratios
+    const widthRatio = currentWidth / baseWidth;
+    const heightRatio = currentHeight / baseHeight;
+
+    // Take the average aspect ratio
+    const aspectRatio = (widthRatio + heightRatio) / 2;
+
+    const newFontSize = `${baseFontSize * aspectRatio}em`;
     setFontSize(newFontSize);
   };
 
   const handleButtonClick = () => {
+    const newWidth = defaultWidth;
+    const newHeight = defaultHeight;
     setWindowSize({
       width: defaultWidth,
       height: defaultHeight,
+    });
+    handleResize(null, null, {
+      style: {
+        width: `${newWidth}px`,
+        height: `${newHeight}px`,
+      },
     });
   };
 
