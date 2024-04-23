@@ -5,13 +5,28 @@ import baseTheme from '../themes/baseTheme';
 
 import useThemeMapping from '../hooks/useThemeMapping';
 
-export const ChatHeader = () => {
+type HeaderProps = {
+  onClick: () => void;
+  height: number;
+  defaultHeight: number;
+  width: number;
+  defaultWidth: number;
+};
+
+export const ChatHeader = ({
+  onClick,
+  height,
+  defaultHeight,
+  width,
+  defaultWidth,
+}: HeaderProps) => {
   const themeInfo = useThemeMapping(); // Use the useThemeMapping hook
   const { backgroundColor, color } = themeInfo.getHeaderStyle(); // Destructure backgroundColor and color
   const { border, borderColor } = baseTheme.components.Header.baseStyle;
 
   return (
     <Flex
+      align={'center'}
       justify={'space-between'}
       direction={'row'}
       w={'inherit'}
@@ -33,6 +48,13 @@ export const ChatHeader = () => {
           aria-label="Resize"
           colorScheme=""
           icon={<ArrowRightIcon />}
+          onClick={onClick}
+          style={{
+            display:
+              height !== defaultHeight || width !== defaultWidth
+                ? 'block'
+                : 'none',
+          }}
         />
         <Box pl={2}>
           <Text as="b" fontSize="20px">
