@@ -25,7 +25,6 @@ export const ChatResizable = () => {
     const baseFontSize = 1; // 1em
 
     const currentWidth = parseInt(refToElement.style.width);
-    console.log(currentWidth);
     const currentHeight = parseInt(refToElement.style.height);
 
     // Calculate aspect ratios
