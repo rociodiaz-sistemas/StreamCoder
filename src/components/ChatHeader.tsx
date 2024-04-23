@@ -25,8 +25,8 @@ export const ChatHeader = ({
   const { border, borderColor } = baseTheme.components.Header.baseStyle;
 
   const hover = {
-    background: baseTheme.colors.lila,
-    color: 'black',
+    background: color,
+    color: backgroundColor,
   };
 
   return (
