@@ -15,6 +15,7 @@ interface MessageStyles {
 interface ThemeInfo {
   themeName: string;
   getGradient: () => string;
+  getHeaderStyle: () => string;
   getMessageBoxStyles: (type: string) => MessageStyles | undefined;
 }
 
@@ -29,12 +30,24 @@ const useThemeMapping = (): ThemeInfo => {
     // Add mappings for other themes as needed
   };
 
+  const getHeaderMappings: GradientMappings = {
+    nightTheme: theme.components.Header.baseStyle,
+    morningTheme: theme.components.Header.baseStyle,
+    dayTheme: theme.components.Header.baseStyle,
+    afternoonTheme: theme.components.Header.baseStyle,
+    // Add mappings for other themes as needed
+  };
+
   const messageStyles: MessageStyles = theme.messageStyles || {};
 
   const themeName = theme.themeName || 'nightTheme'; // Default to 'nightTheme' if theme name is not found
 
   const getGradient = (): string => {
     return gradientMappings[themeName] || ''; // Retrieve the gradient based on the current theme
+  };
+
+  const getHeaderStyle = (): string => {
+    return getHeaderMappings[themeName] || '';
   };
 
   const getMessageBoxStyles = (type: string): MessageStyles | undefined => {
@@ -44,7 +57,8 @@ const useThemeMapping = (): ThemeInfo => {
     }
     return undefined;
   };
-  return { themeName, getGradient, getMessageBoxStyles };
+
+  return { themeName, getGradient, getHeaderStyle, getMessageBoxStyles };
 };
 
 export default useThemeMapping;
