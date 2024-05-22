@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Resizable } from 're-resizable';
 import Chat from './Chat';
+import { handleResize } from '../utils/handleResize';
 
 export const ChatResizable = () => {
   // State to store the font size of the chat component
@@ -15,27 +16,12 @@ export const ChatResizable = () => {
   });
 
   // Callback function to update the font size based on the resizable component size
-  const handleResize = (
-    _event: unknown,
-    _direction: unknown,
+  const handleResizeCallback = (
+    event: unknown,
+    direction: unknown,
     refToElement: { style: { width: string; height: string } },
   ) => {
-    const baseWidth = defaultWidth;
-    const baseHeight = defaultHeight;
-    const baseFontSize = 1; // 1em
-
-    const currentWidth = parseInt(refToElement.style.width);
-    const currentHeight = parseInt(refToElement.style.height);
-
-    // Calculate aspect ratios
-    const widthRatio = currentWidth / baseWidth;
-    const heightRatio = currentHeight / baseHeight;
-
-    // Take the average aspect ratio
-    const aspectRatio = (widthRatio + heightRatio) / 2;
-
-    const newFontSize = `${baseFontSize * aspectRatio}em`;
-    setFontSize(newFontSize);
+    handleResize(event, direction, refToElement, setFontSize);
   };
 
   const handleButtonClick = () => {
@@ -45,7 +31,7 @@ export const ChatResizable = () => {
       width: defaultWidth,
       height: defaultHeight,
     });
-    handleResize(null, null, {
+    handleResizeCallback(null, null, {
       style: {
         width: `${newWidth}px`,
         height: `${newHeight}px`,
@@ -83,7 +69,7 @@ export const ChatResizable = () => {
         justifyContent: 'center',
         backgroundColor: 'red',
       }}
-      onResize={handleResize} // Pass the resize callback
+      onResize={handleResizeCallback} // Pass the resize callback
       enable={{
         top: true,
         right: true,
