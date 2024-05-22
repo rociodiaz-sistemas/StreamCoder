@@ -36,7 +36,7 @@ const Chat = ({
   const { getGradient } = useThemeMapping(); // Destructure the hook to get the getGradient function
 
   return (
-    <Flex direction={'column'} w={'inherit'} h={'inherit'}>
+    <Flex direction="column" w="inherit" h="inherit">
       <ChatHeader
         onClick={onClick}
         height={height}
@@ -46,15 +46,15 @@ const Chat = ({
       />
       <Flex
         pos="relative" // Use the dynamically retrieved gradient
-        justify={'flex-end'}
-        direction={'column'}
-        w={'inherit'}
-        h={'100%'}
+        justify="flex-end"
+        direction="column"
+        w="inherit"
+        h="100%"
         p="20px"
         bgGradient={getGradient()}
-        border={'3px solid'}
+        border="3px solid"
         borderColor={baseTheme.colors.brown}
-        borderTop={'none'}
+        borderTop="none"
       >
         <ChatMessagesBox
           ref={chatMessagesBoxRef}

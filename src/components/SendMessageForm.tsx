@@ -36,11 +36,11 @@ const SendMessageForm = ({ onSend, fontSize }: SendMessageFormProps) => {
           style={{ width: '100%', padding: '7px', borderRadius: '5px' }}
         />
         <Flex
-          pos={'absolute'}
-          justify={'flex-end'}
-          alignSelf={'flex-end'}
-          w={'-webkit-fill-available'}
-          h={'fit-content'}
+          pos="absolute"
+          justify="flex-end"
+          alignSelf="flex-end"
+          w="-webkit-fill-available"
+          h="fit-content"
           mr={6}
           p={1}
         >
@@ -50,7 +50,7 @@ const SendMessageForm = ({ onSend, fontSize }: SendMessageFormProps) => {
         </Flex>
       </Flex>
 
-      <Flex justify={'flex-end'} py={1}>
+      <Flex justify="flex-end" py={1}>
         <button
           type="submit"
           style={{

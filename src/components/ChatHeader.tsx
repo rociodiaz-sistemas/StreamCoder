@@ -31,23 +31,18 @@ export const ChatHeader = ({
 
   return (
     <Flex
-      align={'center'}
-      justify={'space-between'}
-      direction={'row'}
-      w={'inherit'}
-      h={'fit-content'}
+      align="center"
+      justify="space-between"
+      direction="row"
+      w="inherit"
+      h="fit-content"
       px={1}
       textColor={color}
       bg={backgroundColor}
       border={border}
       borderColor={borderColor}
     >
-      <Flex
-        align={'center'}
-        direction={'row'}
-        w={'fit-content'}
-        h={'fit-content'}
-      >
+      <Flex align="center" direction="row" w="fit-content" h="fit-content">
         <IconButton
           color={color}
           _hover={hover}

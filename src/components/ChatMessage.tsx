@@ -51,8 +51,8 @@ const MessageBox = ({
       shadow={boxShadow ? '0px 4px 6px rgba(0, 0, 0, 0.25)' : 'none'}
       bgColor={background}
     >
-      <Flex align="center" direction={'row'}>
-        <Flex justify={'center'} w={'fit-content'} h={'fit-content'} pr={1}>
+      <Flex align="center" direction="row">
+        <Flex justify="center" w="fit-content" h="fit-content" pr={1}>
           {Badges}
         </Flex>
         {Username}
@@ -62,7 +62,10 @@ const MessageBox = ({
   );
 };
 
-const ChatMessage = ({ message: { author, content }, fontSize }: MessageProps) => {
+const ChatMessage = ({
+  message: { author, content },
+  fontSize,
+}: MessageProps) => {
   const themeInfo = useThemeMapping(); // Use the useThemeMapping hook
   const Badges = author.badges.map((bg, i) => (
     <img key={i} src={`/badges/${bg}.png`} />
