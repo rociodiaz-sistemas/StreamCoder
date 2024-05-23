@@ -1,11 +1,25 @@
-import Chat from './components/Chat';
 import { ChakraProvider } from '@chakra-ui/react';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { connectWebSocket } from './store/actions/websocketActions';
 
 function App() {
+  const dispatch = useDispatch();
+  let isWebSocketConnected = false;
+
+  useEffect(() => {
+    // Check if WebSocket is not yet connected before dispatching the action
+    if (!isWebSocketConnected) {
+      console.log("Testing how many times the useEffect runs");
+      dispatch(connectWebSocket());
+      isWebSocketConnected = true; // Update the local variable to indicate connection
+    }
+  }, [dispatch]);
+
   return (
     <ChakraProvider>
       <main>
-        <Chat />
+        <h1>hello</h1>
       </main>
     </ChakraProvider>
   );
