@@ -10,7 +10,6 @@ function App() {
   useEffect(() => {
     // Check if WebSocket is not yet connected before dispatching the action
     if (!isWebSocketConnected) {
-      console.log("Testing how many times the useEffect runs");
       dispatch(connectWebSocket());
       isWebSocketConnected = true; // Update the local variable to indicate connection
     }
