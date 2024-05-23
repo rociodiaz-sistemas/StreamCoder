@@ -1,15 +1,39 @@
 export interface MessageModel {
-  id: string;
+  msgId: string;
   author: Author;
-  content: string;
+  message: string;
+  firstMessage: boolean;
+  isHighlighted: boolean;
+  isReply: boolean;
+  hasBits: boolean;
+  bits: number;
+  emotes: Emote[];
+  type: 'common' | 'subscriber' | 'bit' | 'highlighted' | 'vip';
 }
 
 export interface Author {
   id: string;
-  rgbColor: string;
+  color: string;
+  displayName: string;
   username: string;
-  type: 'common' | 'subscriber' | 'bit' | 'highlighted' | 'vip';
+  role: number;
   badges: Badge[];
+  monthsSuscribed: number;
 }
 
-export type Badge = 'moderator' | 'vip' | 'prime' | 'turbo';
+export interface Emote {
+  endIndex: number;
+  id: string;
+  imageUrl: string;
+  name: string;
+  startIndex: number;
+  type: string;
+}
+
+export interface Badge {
+  imageUrl: string;
+  name: string;
+  version: number;
+}
+
+//TBD: CHEER EMOTES
