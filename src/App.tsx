@@ -2,6 +2,10 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { connectWebSocket } from './store/actions/websocketActions';
+import Chat from './components/Chat';
+import morningTheme from './themes/morningTheme';
+import { useSelector } from 'react-redux';
+import { RootState } from './store';
 
 function App() {
   const dispatch = useDispatch();
@@ -16,9 +20,9 @@ function App() {
   }, [dispatch]);
 
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={morningTheme}>
       <main>
-        <h1>hello</h1>
+        <Chat />
       </main>
     </ChakraProvider>
   );
