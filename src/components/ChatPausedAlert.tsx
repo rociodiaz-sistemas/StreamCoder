@@ -6,7 +6,9 @@ const ChatPausedAlert = ({ onClick: handleClick }: { onClick: () => void }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const label = isHovered ? (
-    <span>
+    <span style={{
+      cursor: 'pointer',
+    }}>
       <ImArrowDown2 />
       See new messages
     </span>
