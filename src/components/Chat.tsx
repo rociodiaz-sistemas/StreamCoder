@@ -3,15 +3,14 @@ import { Box, Flex } from '@chakra-ui/react';
 
 import useChatLiveModeScrolling from '../hooks/useChatLiveModeScrolling';
 import useThemeMapping from '../hooks/useThemeMapping';
-import useChatMessages from '../hooks/useChatMessages';
 import { MessageModel } from '../utils/models';
 import baseTheme from '../themes/baseTheme';
 
 import ChatMessage from './ChatMessage';
 import { ChatHeader } from './ChatHeader';
 import ChatPausedAlert from './ChatPausedAlert';
-import SendMessageForm from './SendMessageForm';
-
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 type ChatProps = {
   fontSize: string;
   onClick: () => void;
@@ -29,7 +28,7 @@ const Chat = ({
   width,
   defaultWidth,
 }: ChatProps) => {
-  const { messages, send } = useChatMessages();
+  const messages = useSelector((state: RootState) => state.messages);
   const { chatMessagesBoxRef, isLiveModeEnabled, scrollNewMessages } =
     useChatLiveModeScrolling<HTMLDivElement>(messages);
 
@@ -56,13 +55,13 @@ const Chat = ({
         borderColor={baseTheme.colors.brown}
         borderTop="none"
       >
-        <ChatMessagesBox
-          ref={chatMessagesBoxRef}
-          messages={messages}
-          fontSize={fontSize}
-        />
-        {!isLiveModeEnabled && <ChatPausedAlert onClick={scrollNewMessages} />}
-        <SendMessageForm onSend={send} fontSize={fontSize} />
+        <ChatMessagesBox ref={chatMessagesBoxRef} messages={messages} fontSize={fontSize} />
+        {!isLiveModeEnabled && (
+          <ChatPausedAlert
+            onClick={scrollNewMessages}
+          />
+        )}
+        {/* <SendMessageForm onSend={send} /> */}
       </Flex>
     </Flex>
   );
@@ -74,8 +73,8 @@ const ChatMessagesBox = React.forwardRef<
   { messages: MessageModel[]; fontSize: string }
 >(({ messages, fontSize }, ref) => {
   const MessageList = messages.map((message) => (
-    <ChatMessage key={message.id} message={message} fontSize={fontSize} />
-  ));
+    <ChatMessage key={message.msgId} message={message} fontSize={fontSize} />
+  ))
 
   return (
     <Box ref={ref} overflow="auto" mt="4" px="10px" pb="10px" maxH="70vh">
