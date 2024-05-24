@@ -6,6 +6,7 @@ import Chat from './components/Chat';
 import morningTheme from './themes/morningTheme';
 import { useSelector } from 'react-redux';
 import { RootState } from './store';
+import { ChatResizable } from './components/ChatResizable';
 
 function App() {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ function App() {
   return (
     <ChakraProvider theme={morningTheme}>
       <main>
-        <Chat />
+        <ChatResizable />
       </main>
     </ChakraProvider>
   );
