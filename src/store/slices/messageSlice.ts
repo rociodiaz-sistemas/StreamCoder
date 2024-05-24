@@ -8,8 +8,8 @@ const messagesSlice = createSlice({
   initialState,
   reducers: {
     receiveMessage(state, action: PayloadAction<MessageModel>) {
-        state.push(action.payload);
-      },
+      state.push(action.payload);
+    },
   },
 });
 
