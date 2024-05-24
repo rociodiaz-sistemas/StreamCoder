@@ -7,6 +7,7 @@ export interface MessageModel {
   isReply: boolean;
   hasBits: boolean;
   bits: number;
+  hasEmotes: boolean;
   emotes: Emote[];
   type: 'common' | 'subscriber' | 'bit' | 'highlighted' | 'vip';
 }

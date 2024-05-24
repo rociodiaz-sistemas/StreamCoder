@@ -57,7 +57,7 @@ const MessageBox = ({
         </Flex>
         {Username}
       </Flex>
-      <span>{content}</span>
+      <span dangerouslySetInnerHTML={{ __html: content }}></span>
     </Box>
   );
 };
