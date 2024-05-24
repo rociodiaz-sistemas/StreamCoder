@@ -3,17 +3,18 @@ import { Box, Flex } from '@chakra-ui/react';
 
 import useChatLiveModeScrolling from '../hooks/useChatLiveModeScrolling';
 import useThemeMapping from '../hooks/useThemeMapping';
-import useChatMessages from '../hooks/useChatMessages';
 import { MessageModel } from '../utils/models';
 import baseTheme from '../themes/baseTheme';
 
 import ChatMessage from './ChatMessage';
 import { ChatHeader } from './ChatHeader';
 import ChatPausedAlert from './ChatPausedAlert';
-import SendMessageForm from './SendMessageForm';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 
 const Chat = () => {
-  const { messages, send } = useChatMessages();
+  // const { messages, send } = useChatMessages();
+  const messages = useSelector((state: RootState) => state.messages);
   const { chatMessagesBoxRef, isLiveModeEnabled, scrollNewMessages } =
     useChatLiveModeScrolling<HTMLDivElement>(messages);
 
@@ -40,7 +41,7 @@ const Chat = () => {
             onClick={scrollNewMessages}
           />
         )}
-        <SendMessageForm onSend={send} />
+        {/* <SendMessageForm onSend={send} /> */}
       </Flex>
     </>
   );
@@ -52,7 +53,7 @@ const ChatMessagesBox = React.forwardRef<
   { messages: MessageModel[] }
 >(({ messages }, ref) => {
   const MessageList = messages.map((message) => (
-    <ChatMessage key={message.id} message={message} />
+    <ChatMessage key={message.msgId} message={message} />
   ))
 
   return (
