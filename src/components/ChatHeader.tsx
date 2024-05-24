@@ -5,34 +5,57 @@ import baseTheme from '../themes/baseTheme';
 
 import useThemeMapping from '../hooks/useThemeMapping';
 
-export const ChatHeader = () => {
+type HeaderProps = {
+  onClick: () => void;
+  height: number;
+  defaultHeight: number;
+  width: number;
+  defaultWidth: number;
+};
+
+export const ChatHeader = ({
+  onClick,
+  height,
+  defaultHeight,
+  width,
+  defaultWidth,
+}: HeaderProps) => {
   const themeInfo = useThemeMapping(); // Use the useThemeMapping hook
   const { backgroundColor, color } = themeInfo.getHeaderStyle(); // Destructure backgroundColor and color
   const { border, borderColor } = baseTheme.components.Header.baseStyle;
 
+  const hover = {
+    background: color,
+    color: backgroundColor,
+  };
+
   return (
     <Flex
-      justify={'space-between'}
-      direction={'row'}
-      maxW="400px"
-      h={'fit-content'}
+      align="center"
+      justify="space-between"
+      direction="row"
+      w="inherit"
+      h="fit-content"
       px={1}
       textColor={color}
       bg={backgroundColor}
       border={border}
       borderColor={borderColor}
     >
-      <Flex
-        align={'center'}
-        direction={'row'}
-        w={'fit-content'}
-        h={'fit-content'}
-      >
+      <Flex align="center" direction="row" w="fit-content" h="fit-content">
         <IconButton
           color={color}
+          _hover={hover}
           aria-label="Resize"
           colorScheme=""
           icon={<ArrowRightIcon />}
+          onClick={onClick}
+          style={{
+            display:
+              height !== defaultHeight || width !== defaultWidth
+                ? 'block'
+                : 'none',
+          }}
         />
         <Box pl={2}>
           <Text as="b" fontSize="20px">
@@ -43,6 +66,7 @@ export const ChatHeader = () => {
       <Box>
         <IconButton
           color={color}
+          _hover={hover}
           aria-label="Close window"
           colorScheme=""
           icon={<CloseIcon />}

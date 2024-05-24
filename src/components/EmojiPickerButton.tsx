@@ -5,17 +5,14 @@ import useEmojiPicker from '../hooks/useEmojiPicker';
 const EmojiPickerButton = ({
   onEmojiPick: handleEmojiPick,
 }: {
-  onEmojiPick: (emoji: string) => void
+  onEmojiPick: (emoji: string) => void;
 }) => {
   const { pickerRef, toggleEmojiPicker, isOpen, handleEmojiClick } =
     useEmojiPicker(handleEmojiPick);
 
   return (
     <div>
-      <button
-        type="button"
-        onClick={toggleEmojiPicker}
-      >
+      <button type="button" onClick={toggleEmojiPicker}>
         <HiOutlineEmojiHappy />
       </button>
       {isOpen && (
