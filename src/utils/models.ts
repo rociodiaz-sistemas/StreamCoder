@@ -1,7 +1,7 @@
 export interface MessageModel {
   msgId: string;
   author: Author;
-  message: string;
+  content: string;
   firstMessage: boolean;
   isHighlighted: boolean;
   isReply: boolean;
@@ -12,7 +12,7 @@ export interface MessageModel {
 }
 
 export interface Author {
-  id: string;
+  userId: string;
   color: string;
   displayName: string;
   username: string;
