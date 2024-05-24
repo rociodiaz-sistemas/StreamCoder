@@ -3,10 +3,11 @@ import { call, put, takeEvery, take, select } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
 import {
     CONNECT_WEBSOCKET,
-    receiveWebSocketData,
     websocketConnected,
 } from '../actions/websocketActions'; // Import your action types and action creators
 import { StreamerbotClient } from '@streamerbot/client'; // Import your WebSocket client
+import { formatTwitchChatMessage } from '../dataProcessors';
+import { receiveMessage } from '../slices/messageSlice';
 
 // Variable to track WebSocket connection status
 let isWebSocketConnected = false;
@@ -37,11 +38,21 @@ function createWebSocketConnection() {
 }
 
 function* handleWebSocketData(data: any) {
-    // Log the received data
-    console.log('Received data from WebSocket:', data);
-
-    // Dispatch action to handle received message
-    yield put(receiveWebSocketData(data));
+    const { event, data: eventData } = data;
+    if (event) {
+        const { source, type } = event;
+        switch (source) {
+            case 'Twitch':
+                switch (type) {
+                    case 'ChatMessage':
+                        // Format the chat message data
+                        const formattedMessage = formatTwitchChatMessage(eventData.message);
+                        yield put(receiveMessage(formattedMessage));
+                        break;
+                }
+                break;
+        }
+    }
 }
 
 function* watchWebSocketConnection() {
