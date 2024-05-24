@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Flex } from '@chakra-ui/react';
+import { FixedSizeList as List } from 'react-window';
 
 import useChatLiveModeScrolling from '../hooks/useChatLiveModeScrolling';
 import useThemeMapping from '../hooks/useThemeMapping';
@@ -19,6 +20,12 @@ type ChatProps = {
   defaultHeight: number;
   width: number;
   defaultWidth: number;
+};
+
+type RenderMessageProps = {
+  index: number;
+  style: React.CSSProperties;
+  data: { messages: MessageModel[]; fontSize: string };
 };
 
 const Chat = ({
@@ -73,13 +80,26 @@ const ChatMessagesBox = React.forwardRef<
   HTMLDivElement,
   { messages: MessageModel[]; fontSize: string }
 >(({ messages, fontSize }, ref) => {
-  const MessageList = messages.map((message) => (
-    <ChatMessage key={message.id} message={message} fontSize={fontSize} />
-  ));
+  const renderMessage = ({ index, style, data }: RenderMessageProps) => {
+    const message = messages[index];
+    return (
+      <div style={style}>
+        <ChatMessage key={message.id} message={message} fontSize={fontSize} />
+      </div>
+    );
+  };
 
   return (
     <Box ref={ref} overflow="auto" mt="4" px="10px" pb="10px" maxH="70vh">
-      {MessageList}
+      <List
+        className="List"
+        height={700}
+        itemCount={messages.length}
+        itemSize={35}
+        width={300}
+      >
+        {renderMessage}
+      </List>
     </Box>
   );
 });
