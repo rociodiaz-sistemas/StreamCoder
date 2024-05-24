@@ -1,6 +1,6 @@
 import { Box, Flex } from '@chakra-ui/react';
 import { motion } from "framer-motion";
-
+import { useStyleConfig } from "@chakra-ui/react";
 import useThemeMapping from '../hooks/useThemeMapping';
 import { MessageModel } from '../utils/models';
 
@@ -82,9 +82,23 @@ const ChatMessage = ({
   ));
 
   const Username = (
-    <span style={{ color: message.author.color }}>
+    <motion.span
+      style={{
+        color: message.author.color,
+        display: "inline-block",
+        overflow: "hidden",
+        position: "relative",
+        backgroundImage: "linear-gradient(to right, transparent 50%, yellow 50%)",
+        backgroundSize: "200% 100%",
+        backgroundPosition: "0% 0%", // Start with transparent background
+      }}
+      animate={{
+        backgroundPosition: "-100% 0", // Animate to fully colored background from left to right
+      }}
+      transition={{ duration: 0.75, delay: 0.6, type: "tween" }} // Duration of the animation with a delay
+    >
       {message.author.displayName}
-    </span>
+    </motion.span>
   );
 
   const messageBoxStyle = themeInfo.getMessageBoxStyles(message.type) || {};
