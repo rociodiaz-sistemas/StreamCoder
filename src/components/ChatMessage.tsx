@@ -1,8 +1,8 @@
 import { Box, Flex } from '@chakra-ui/react';
 import { motion } from "framer-motion";
-import { useStyleConfig } from "@chakra-ui/react";
 import useThemeMapping from '../hooks/useThemeMapping';
 import { MessageModel } from '../utils/models';
+import Highlighter from '../assets/highlighter.svg';
 
 type MessageProps = {
   message: MessageModel;
@@ -82,23 +82,43 @@ const ChatMessage = ({
   ));
 
   const Username = (
-    <motion.span
-      style={{
-        color: message.author.color,
-        display: "inline-block",
-        overflow: "hidden",
-        position: "relative",
-        backgroundImage: "linear-gradient(to right, transparent 50%, yellow 50%)",
-        backgroundSize: "200% 100%",
-        backgroundPosition: "0% 0%", // Start with transparent background
-      }}
-      animate={{
-        backgroundPosition: "-100% 0", // Animate to fully colored background from left to right
-      }}
-      transition={{ duration: 0.75, delay: 0.6, type: "tween" }} // Duration of the animation with a delay
-    >
-      {message.author.displayName}
-    </motion.span>
+    <div style={{ position: "relative", display: "inline-block", overflow: "visible" }}>
+      {/* Background Highlighting */}
+      <motion.span
+        style={{
+          color: message.author.color,
+          display: "inline-block",
+          overflow: "hidden",
+          position: "relative",
+          backgroundImage: "linear-gradient(to right, transparent 50%, yellow 50%)",
+          backgroundSize: "200% 100%",
+          backgroundPosition: "0% 0%", // Start with transparent background
+        }}
+        animate={{
+          backgroundPosition: "-100% 0", // Animate to fully colored background from left to right
+        }}
+        transition={{ duration: 0.75, delay: 0.6, type: "tween" }} // Duration of the background coloring animation with a delay
+      >
+        {message.author.displayName}
+      </motion.span>
+
+      {/* SVG Highlighter */}
+      <motion.img
+        src={Highlighter} // Replace with the path to your SVG
+        alt="Highlighter"
+        style={{
+          height: "2em", // Adjust as needed
+          width: "auto",
+          position: "absolute",
+          left: -10,
+          top: -10, // Position the SVG correctly relative to the text
+          zIndex: 1,
+        }}
+        initial={{ x: 0 }} // Initial position of the highlighter
+        animate={{ x: '400%' }} // Animate highlighter to the right edge of the span
+        transition={{ duration: 0.75, delay: 0.6, type: "tween" }} // Duration of the highlighter animation with a delay
+      />
+    </div>
   );
 
   const messageBoxStyle = themeInfo.getMessageBoxStyles(message.type) || {};
