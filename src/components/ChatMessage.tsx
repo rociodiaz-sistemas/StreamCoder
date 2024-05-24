@@ -52,33 +52,34 @@ const MessageBox = ({
 };
 
 const ChatMessage = ({
-  message: { author, content },
+  message
 }: MessageProps) => {
   const themeInfo = useThemeMapping(); // Use the useThemeMapping hook
-  const Badges = author.badges.map((bg, i) => (
+  const Badges = message.author.badges.map((badge, i) => (
     <img
-      key={i}
-      src={`/badges/${bg}.png`}
+      key={badge.name + i}
+      src={`${badge.imageUrl}`}
+      alt={`${badge.name} ${badge.version} badge`}
     />
   ));
 
   const Username = (
-    <span style={{ color: author.rgbColor }}>
-      {author.username}
+    <span style={{ color: message.author.color }}>
+      {message.author.displayName}
     </span>
   );
 
-  const messageBoxStyle = themeInfo.getMessageBoxStyles(author.type) || {};
+  const messageBoxStyle = themeInfo.getMessageBoxStyles(message.type) || {};
 
   return (
     <MessageBox
       messageBoxStyle={{
         ...messageBoxStyle,
-        boxShadow: author.type === 'highlighted' ? 'highlighted-box-shadow' : undefined, // Set boxShadow for highlighted type
+        boxShadow: message.type === 'highlighted' ? 'highlighted-box-shadow' : undefined, // Set boxShadow for highlighted type
       }}
       Badges={Badges}
       Username={Username}
-      content={content}
+      content={message.content}
     />
   );
 };
