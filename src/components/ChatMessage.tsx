@@ -74,7 +74,6 @@ const ChatMessage = ({
   message, fontSize,
 }: MessageProps) => {
   const [fadeOut, setFadeOut] = useState(false);
-  const controls = useAnimation();
   const themeInfo = useThemeMapping(); // Use the useThemeMapping hook
   const Badges = message.author.badges.map((badge, i) => (
     <img
