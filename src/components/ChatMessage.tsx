@@ -118,7 +118,7 @@ const ChatMessage = ({
             src={Highlighter} // Replace with the path to your SVG
             alt="Highlighter"
             style={{
-              height: '2em', // Adjust as needed
+              height: '2.1em', // Adjust as needed
               width: 'auto',
               position: 'absolute',
               left: -10,
