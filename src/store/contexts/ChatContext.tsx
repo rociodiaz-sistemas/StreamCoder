@@ -1,25 +1,26 @@
-import React, { createContext, useContext, ReactNode } from 'react';
+import React, { createContext, useContext, ReactNode, useState } from 'react';
 
 type ChatContextType = {
   fontSize: string;
-  defaultHeight: string;
-  // Add other dynamic variables here (e.g., height)
+  windowSize: { width: number; height: number }; // Include window size in context type
+  setFontSize: (fontSize: string) => void;
+  setWindowSize: (windowSize: { width: number; height: number }) => void;
 };
 
-const initialChatContext: ChatContextType = {
-  fontSize: '16px',
-  // Add initial values for other dynamic variables here
-};
+const ChatContext = createContext<ChatContextType | undefined>(undefined);
 
-const ChatContext = createContext<ChatContextType>(initialChatContext); // Set default value here
+export const ChatContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [fontSize, setFontSize] = useState('1em');
+  const [windowSize, setWindowSize] = useState({ width: 400, height: 450 });
 
-type ChatContextProviderProps = {
-  children: ReactNode;
-};
+  const value: ChatContextType = {
+    fontSize,
+    windowSize,
+    setFontSize,
+    setWindowSize,
+  };
 
-export const ChatContextProvider: React.FC<ChatContextProviderProps> = ({ children }) => {
-  // No need to accept a value prop since the initial value is set in the context
-  return <ChatContext.Provider value={initialChatContext}>{children}</ChatContext.Provider>;
+  return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;
 };
 
 export const useChatContext = () => {

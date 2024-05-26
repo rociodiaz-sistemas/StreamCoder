@@ -9,8 +9,10 @@ export interface MessageModel {
   bits: number;
   hasEmotes: boolean;
   emotes: Emote[];
-  type: 'common' | 'subscriber' | 'bit' | 'highlighted' | 'vip';
+  type: MessageType;
 }
+
+export type MessageType = 'common' | 'subscriber' | 'bit' | 'highlighted' | 'vip';
 
 export interface Author {
   userId: string;
@@ -35,6 +37,14 @@ export interface Badge {
   imageUrl: string;
   name: string;
   version: number;
+}
+
+export interface MessageBoxStyle {
+  borderColor?: string;
+  background?: string;
+  backgroundGradient?: string;
+  gifBackground?: string;
+  boxShadow?: string;
 }
 
 //TBD: CHEER EMOTES
