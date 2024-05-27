@@ -1,16 +1,17 @@
+import { MessageType } from './../utils/models';
 import { Author, Badge, Emote, MessageModel } from "../utils/models"
 
 export function formatTwitchChatMessage(rawData: any): MessageModel {
-    const formattedType: MessageModel['type'] = rawData.type === 'subscriber' ? 'subscriber' : rawData.type === 'bit' ? 'bit' : rawData.type === 'highlighted' ? 'highlighted' : rawData.type === 'vip' ? 'vip' : 'common';
+    const messageType: MessageType = rawData.isHighlighted ? "highlighted" : rawData.hasBits ? "bits" : "common"; // Determine message type
     const hasEmotes: boolean = Array.isArray(rawData.emotes) && rawData.emotes.length > 0; // Check if emotes array exists and is not empty
     let contentWithEmotes: string = rawData.message;
 
     if (hasEmotes) {
         contentWithEmotes = insertEmotes(rawData.message, rawData.emotes || []); // Insert emotes into the content
     }
-
     return {
         msgId: rawData.id,
+        type: messageType as MessageType,
         author: {
             userId: rawData.userId,
             color: rawData.color,
@@ -18,7 +19,8 @@ export function formatTwitchChatMessage(rawData: any): MessageModel {
             username: rawData.username,
             role: rawData.role,
             badges: rawData.badges as Badge[],
-            monthsSuscribed: rawData.monthsSuscribed
+            monthsSuscribed: rawData.monthsSuscribed,
+
         } as Author,
         content: `<p style="display:flex; word-break:break-all; ">${contentWithEmotes}</p>`,
         firstMessage: rawData.firstMessage,
@@ -28,7 +30,7 @@ export function formatTwitchChatMessage(rawData: any): MessageModel {
         bits: rawData.bits,
         hasEmotes: hasEmotes,
         emotes: rawData.emotes as Emote[],
-        type: formattedType,
+        suscriber: rawData.suscriber,
     };
 }
 

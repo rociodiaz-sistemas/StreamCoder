@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import Highlighter from '../../assets/highlighter.svg';
+import Highlighter from '../../../../assets/highlighter.svg';
 
 const HighlightedUsername = ({ displayName, color }: { displayName: string; color: string }) => {
     const [fadeOut, setFadeOut] = useState(false);

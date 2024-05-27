@@ -4,6 +4,7 @@ export interface MessageModel {
   content: string;
   firstMessage: boolean;
   isHighlighted: boolean;
+  suscriber: boolean;
   isReply: boolean;
   hasBits: boolean;
   bits: number;
@@ -12,14 +13,15 @@ export interface MessageModel {
   type: MessageType;
 }
 
-export type MessageType = 'common' | 'subscriber' | 'bit' | 'highlighted' | 'vip';
+export type Role = { 1: "Viewer", 2: "Vip", 3: "Moderator", 4: "Broadcaster" };
+export type MessageType = "common" | "highlighted" | "bits";
 
 export interface Author {
   userId: string;
   color: string;
   displayName: string;
   username: string;
-  role: number;
+  role: string;
   badges: Badge[];
   monthsSuscribed: number;
 }
