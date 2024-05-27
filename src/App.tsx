@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { connectWebSocket } from './store/actions/websocketActions';
 import morningTheme from './themes/morningTheme';
 import { ChatContextProvider } from './store/contexts/ChatContext';
-import ResizableChat from './components/ResizableChat';
+import ResizableChat from './components/chat-widget/ResizableChat';
 
 function App() {
   const dispatch = useDispatch();

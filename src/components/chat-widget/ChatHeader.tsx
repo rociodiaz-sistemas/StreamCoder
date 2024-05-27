@@ -1,9 +1,8 @@
 import { Flex, Box, Text } from '@chakra-ui/react';
 import { IconButton } from '@chakra-ui/react';
 import { ArrowRightIcon, CloseIcon } from '@chakra-ui/icons';
-import baseTheme from '../themes/baseTheme';
-
-import useThemeMapping from '../hooks/useThemeMapping';
+import useThemeMapping from '../../hooks/useThemeMapping';
+import baseTheme from '../../themes/baseTheme';
 
 type HeaderProps = {
   onClick: () => void;

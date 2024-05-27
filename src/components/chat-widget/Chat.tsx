@@ -5,10 +5,10 @@ import useThemeMapping from '../../hooks/useThemeMapping';
 import { MessageModel } from '../../utils/models';
 import baseTheme from '../../themes/baseTheme';
 import ChatMessage from './chat-message/ChatMessage';
-import { ChatHeader } from './ChatHeader';
 import ChatPausedAlert from './ChatPausedAlert';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
+import { ChatHeader } from './ChatHeader';
 type ChatProps = {
   onClick: () => void;
   height: number;
@@ -32,13 +32,13 @@ const Chat = ({
 
   return (
     <Flex direction="column" w="inherit" h="inherit">
-      <ChatHeader
+      {/* <ChatHeader
         onClick={onClick}
         height={height}
         width={width}
         defaultHeight={defaultHeight}
         defaultWidth={defaultWidth}
-      />
+      /> */}
       <Flex
         pos="relative" // Use the dynamically retrieved gradient
         justify="flex-end"
