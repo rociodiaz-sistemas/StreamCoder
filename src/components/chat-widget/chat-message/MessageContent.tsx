@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { MessageModel } from '../../../utils/models';
 
 import { Flex } from '@chakra-ui/react';
-import Username from './UserName';
+import Username from './usernames/UserName';
 
 export const MessageContent = ({ message }: { message: MessageModel }) => {
     const Badges = message.author.badges.map((badge, i) => (
@@ -16,7 +16,7 @@ export const MessageContent = ({ message }: { message: MessageModel }) => {
     return (
         <div>
             <Flex align="center" direction="row">
-                <Username displayName={message.author.displayName} color={message.author.color} />
+                <Username displayName={message.author.displayName} color={message.author.color} type={message.type} />
             </Flex>
             <span dangerouslySetInnerHTML={{ __html: message.content }}></span>
         </div>
