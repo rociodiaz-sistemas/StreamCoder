@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Resizable } from 're-resizable';
 import Chat from './Chat';
-import { handleResize } from '../utils/handleResize'; // Import the context and hooks
-import { useChatContext } from '../store/contexts/ChatContext';
+import { handleResize } from '../../utils/handleResize'; // Import the context and hooks
+import { useChatContext } from '../../store/contexts/ChatContext';
 
 export const ResizableChat = () => {
   const { setFontSize } = useChatContext();
