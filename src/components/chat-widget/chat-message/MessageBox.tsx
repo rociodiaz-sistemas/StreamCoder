@@ -25,24 +25,26 @@ export default function MessageBox({ children, messageType }: MessageBoxProps) {
     } = messageBoxStyle as MessageBoxStyle;
 
     return (
-        <motion.div {...itemSpringAnimation} layout className="mx-auto w-full">
-            <Box
-                w="90%"
-                p="1em"
-                fontSize={fontSize}
-                bgImage={backgroundGradient ? undefined : gifBackground}
-                bgSize="cover"
-                bgPosition="center"
-                bgRepeat="no-repeat"
-                bgGradient={backgroundGradient}
-                borderWidth="1px"
-                borderColor={borderColor}
-                borderRadius="12px"
-                shadow={boxShadow ? '0px 4px 6px rgba(0, 0, 0, 0.25)' : 'none'}
-                bgColor={background}
-            >
-                {children}
-            </Box>
-        </motion.div>
+        <Box paddingTop="0.5em">
+            <motion.div {...itemSpringAnimation} layout className="mx-auto w-full">
+                <Box
+                    w="90%"
+                    p="1em"
+                    fontSize={fontSize}
+                    bgImage={backgroundGradient ? undefined : gifBackground}
+                    bgSize="cover"
+                    bgPosition="center"
+                    bgRepeat="no-repeat"
+                    bgGradient={backgroundGradient}
+                    borderWidth="1px"
+                    borderColor={borderColor}
+                    borderRadius="12px"
+                    shadow={boxShadow ? '0px 4px 6px rgba(0, 0, 0, 0.25)' : 'none'}
+                    bgColor={background}
+                >
+                    {children}
+                </Box>
+            </motion.div>
+        </Box>
     )
 }
