@@ -1,10 +1,10 @@
 import React from 'react';
-import useThemeMapping from '../../hooks/useThemeMapping';
+import useThemeMapping from '../../../hooks/useThemeMapping';
 import { Box } from '@chakra-ui/react';
-import { useChatContext } from '../../store/contexts/ChatContext';
-import { MessageBoxStyle } from '../../utils/models';
+import { useChatContext } from '../../../store/contexts/ChatContext';
+import { MessageBoxStyle } from '../../../utils/models';
 import { motion } from "framer-motion";
-import { itemSpringAnimation } from '../../animations';
+import { itemSpringAnimation } from '../../../animations';
 
 type MessageBoxProps = {
     children: React.ReactNode;

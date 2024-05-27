@@ -1,4 +1,4 @@
-import Chat from '../components/Chat';
+import Chat from '../components/chat-widget/Chat';
 
 export default {
   title: 'Widgets/Chat',

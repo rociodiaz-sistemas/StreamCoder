@@ -1,14 +1,14 @@
 import React from 'react';
 import { Box, Flex } from '@chakra-ui/react';
-import useChatLiveModeScrolling from '../hooks/useChatLiveModeScrolling';
-import useThemeMapping from '../hooks/useThemeMapping';
-import { MessageModel } from '../utils/models';
-import baseTheme from '../themes/baseTheme';
-import ChatMessage from './ChatMessage';
+import useChatLiveModeScrolling from '../../hooks/useChatLiveModeScrolling';
+import useThemeMapping from '../../hooks/useThemeMapping';
+import { MessageModel } from '../../utils/models';
+import baseTheme from '../../themes/baseTheme';
+import ChatMessage from './chat-message/ChatMessage';
 import { ChatHeader } from './ChatHeader';
 import ChatPausedAlert from './ChatPausedAlert';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store';
+import { RootState } from '../../store';
 type ChatProps = {
   onClick: () => void;
   height: number;

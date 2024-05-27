@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MessageModel } from '../../utils/models';
+import { MessageModel } from '../../../utils/models';
 import { AnimatePresence, motion } from "framer-motion";
 import Highlighter from '../../assets/highlighter.svg';
 import { Flex } from '@chakra-ui/react';

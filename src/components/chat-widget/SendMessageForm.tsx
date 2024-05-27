@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import EmojiPickerButton from './EmojiPickerButton';
 import { Flex } from '@chakra-ui/react';
-import baseTheme from '../themes/baseTheme';
+import baseTheme from '../../themes/baseTheme';
 
 type SendMessageFormProps = {
   onSend: (message: string) => void;

@@ -1,4 +1,4 @@
-import ChatMessage from '../components/ChatMessage';
+import ChatMessage from '../components/chat-widget/chat-message/ChatMessage';
 
 export default {
   title: 'Components/ChatMessage',
