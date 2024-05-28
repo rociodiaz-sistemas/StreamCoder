@@ -8,6 +8,7 @@ import ResizableChat from './components/chat-widget/ResizableChat';
 import dayTheme from './themes/dayTheme';
 import afternoonTheme from './themes/afternoonTheme';
 import theme from './themes/theme';
+import { MORNING_START, MORNING_END, DAY_START, DAY_END, AFTERNOON_START, AFTERNOON_END } from './utils/helpers';
 
 // Define a union type for all possible theme objects
 type ThemeType = typeof morningTheme | typeof dayTheme | typeof afternoonTheme | typeof theme;
@@ -24,11 +25,11 @@ function App() {
       const currentHour = new Date().getHours(); // Get the current hour
 
       // Determine which theme to use based on the current hour
-      if (currentHour >= 5 && currentHour < 12) {
+      if (currentHour >= MORNING_START && currentHour < MORNING_END) {
         setSelectedTheme(morningTheme);
-      } else if (currentHour >= 12 && currentHour < 18) {
+      } else if (currentHour >= DAY_START && currentHour < DAY_END) {
         setSelectedTheme(dayTheme);
-      } else if (currentHour >= 18 && currentHour < 20) {
+      } else if (currentHour >= AFTERNOON_START && currentHour < AFTERNOON_END) {
         setSelectedTheme(afternoonTheme);
       } else {
         setSelectedTheme(theme);
