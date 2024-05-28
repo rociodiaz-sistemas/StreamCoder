@@ -4,10 +4,12 @@ import { MessageType } from '../../../../utils/models';
 // Lazy load components
 const CommonUserName = lazy(() => import('./CommonUserName'));
 const HighlightedUserName = lazy(() => import('./HighlightedUserName'));
+const BitsUserName = lazy(() => import('./BitsUserName'));
 
 const animationComponents: { [key: string]: React.LazyExoticComponent<React.FC<{ displayName: string; color: string, }>> } = {
     common: CommonUserName,
     highlighted: HighlightedUserName,
+    bits: BitsUserName
 };
 
 interface UsernameProps {
@@ -17,7 +19,6 @@ interface UsernameProps {
 }
 
 const Username: React.FC<UsernameProps> = ({ displayName, color, type }) => {
-    console.log(type);
     const UserNameAnimation = animationComponents[type] || CommonUserName;
 
     return (

@@ -2,13 +2,21 @@ import React from 'react';
 import useThemeMapping from '../../../hooks/useThemeMapping';
 import { Box } from '@chakra-ui/react';
 import { useChatContext } from '../../../store/contexts/ChatContext';
-import { MessageBoxStyle } from '../../../utils/models';
-import { motion } from "framer-motion";
-import { itemSpringAnimation } from '../../../animations';
+import { MessageBoxStyle, MessageType } from '../../../utils/models';
+import { AnimationProps } from "framer-motion";
+import { itemSpringAnimationProps } from '../../../animations';
+import Animation from '../Animation';
 
 type MessageBoxProps = {
     children: React.ReactNode;
-    messageType: string;
+    messageType: MessageType;
+};
+
+const animationPropsMap: { [key in MessageType]: AnimationProps } = {
+    common: itemSpringAnimationProps,
+    highlighted: itemSpringAnimationProps,
+    bits: itemSpringAnimationProps
+    // Add more message types as needed
 };
 
 export default function MessageBox({ children, messageType }: MessageBoxProps) {
@@ -24,9 +32,12 @@ export default function MessageBox({ children, messageType }: MessageBoxProps) {
         boxShadow,
     } = messageBoxStyle as MessageBoxStyle;
 
+    // Get animation props based on message type from the mapping
+    const animationProps = animationPropsMap[messageType] || itemSpringAnimationProps;
+
     return (
         <Box paddingTop="0.5em">
-            <motion.div {...itemSpringAnimation} layout className="mx-auto w-full">
+            <Animation animationProps={animationProps}>
                 <Box
                     w="90%"
                     p="1em"
@@ -44,7 +55,7 @@ export default function MessageBox({ children, messageType }: MessageBoxProps) {
                 >
                     {children}
                 </Box>
-            </motion.div>
+            </Animation>
         </Box>
     )
 }
