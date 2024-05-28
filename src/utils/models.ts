@@ -21,7 +21,7 @@ export interface Author {
   color: string;
   displayName: string;
   username: string;
-  role: string;
+  role: Role;
   badges: Badge[];
   monthsSuscribed: number;
 }
