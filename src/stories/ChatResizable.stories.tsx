@@ -1,4 +1,4 @@
-import { ChatResizable } from '../components/ChatResizable';
+import { ChatResizable } from '../components/ResizableChat';
 
 export default {
   title: 'Widgets/ChatResizable',

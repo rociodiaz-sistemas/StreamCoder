@@ -1,18 +1,15 @@
 import React from 'react';
 import { Box, Flex } from '@chakra-ui/react';
-
-import useChatLiveModeScrolling from '../hooks/useChatLiveModeScrolling';
-import useThemeMapping from '../hooks/useThemeMapping';
-import { MessageModel } from '../utils/models';
-import baseTheme from '../themes/baseTheme';
-
-import ChatMessage from './ChatMessage';
-import { ChatHeader } from './ChatHeader';
+import useChatLiveModeScrolling from '../../hooks/useChatLiveModeScrolling';
+import useThemeMapping from '../../hooks/useThemeMapping';
+import { MessageModel } from '../../utils/models';
+import baseTheme from '../../themes/baseTheme';
+import ChatMessage from './chat-message/ChatMessage';
 import ChatPausedAlert from './ChatPausedAlert';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store';
+import { RootState } from '../../store';
+import { ChatHeader } from './ChatHeader';
 type ChatProps = {
-  fontSize: string;
   onClick: () => void;
   height: number;
   defaultHeight: number;
@@ -21,13 +18,12 @@ type ChatProps = {
 };
 
 const Chat = ({
-  fontSize,
   onClick,
   height,
   defaultHeight,
   width,
   defaultWidth,
-}: ChatProps) => {
+}: ChatProps) => { // Use the useChatContext hook to access context values
   const messages = useSelector((state: RootState) => state.messages);
   const { chatMessagesBoxRef, isLiveModeEnabled, scrollNewMessages } =
     useChatLiveModeScrolling<HTMLDivElement>(messages);
@@ -36,13 +32,13 @@ const Chat = ({
 
   return (
     <Flex direction="column" w="inherit" h="inherit">
-      <ChatHeader
+      {/* <ChatHeader
         onClick={onClick}
         height={height}
         width={width}
         defaultHeight={defaultHeight}
         defaultWidth={defaultWidth}
-      />
+      /> */}
       <Flex
         pos="relative" // Use the dynamically retrieved gradient
         justify="flex-end"
@@ -55,7 +51,7 @@ const Chat = ({
         borderColor={baseTheme.colors.brown}
         borderTop="none"
       >
-        <ChatMessagesBox ref={chatMessagesBoxRef} messages={messages} fontSize={fontSize} />
+        <ChatMessagesBox ref={chatMessagesBoxRef} messages={messages} />
         {!isLiveModeEnabled && (
           <ChatPausedAlert
             onClick={scrollNewMessages}
@@ -70,10 +66,10 @@ const Chat = ({
 /* eslint-disable */
 const ChatMessagesBox = React.forwardRef<
   HTMLDivElement,
-  { messages: MessageModel[]; fontSize: string }
->(({ messages, fontSize }, ref) => {
+  { messages: MessageModel[]; }
+>(({ messages }, ref) => {
   const MessageList = messages.map((message) => (
-    <ChatMessage key={message.msgId} message={message} fontSize={fontSize} />
+    <ChatMessage key={message.msgId} message={message} />
   ))
 
   return (

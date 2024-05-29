@@ -4,20 +4,24 @@ export interface MessageModel {
   content: string;
   firstMessage: boolean;
   isHighlighted: boolean;
+  suscriber: boolean;
   isReply: boolean;
   hasBits: boolean;
   bits: number;
   hasEmotes: boolean;
   emotes: Emote[];
-  type: 'common' | 'subscriber' | 'bit' | 'highlighted' | 'vip';
+  type: MessageType;
 }
+
+export type Role = { 1: "Viewer", 2: "Vip", 3: "Moderator", 4: "Broadcaster" };
+export type MessageType = "common" | "highlighted" | "bits";
 
 export interface Author {
   userId: string;
   color: string;
   displayName: string;
   username: string;
-  role: number;
+  role: Role;
   badges: Badge[];
   monthsSuscribed: number;
 }
@@ -35,6 +39,14 @@ export interface Badge {
   imageUrl: string;
   name: string;
   version: number;
+}
+
+export interface MessageBoxStyle {
+  borderColor?: string;
+  background?: string;
+  backgroundGradient?: string;
+  gifBackground?: string;
+  boxShadow?: string;
 }
 
 //TBD: CHEER EMOTES
