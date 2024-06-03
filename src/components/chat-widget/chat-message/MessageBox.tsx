@@ -4,7 +4,7 @@ import { Box } from '@chakra-ui/react';
 import { useChatContext } from '../../../store/contexts/ChatContext';
 import { MessageBoxStyle, MessageType } from '../../../utils/models';
 import { AnimationProps } from "framer-motion";
-import { itemSpringAnimationProps } from '../../../animations';
+import { itemCelebrateAnimationProps, itemSpringAnimationProps } from '../../../animations';
 import Animation from '../Animation';
 
 type MessageBoxProps = {
@@ -15,7 +15,7 @@ type MessageBoxProps = {
 const animationPropsMap: { [key in MessageType]: AnimationProps } = {
     common: itemSpringAnimationProps,
     highlighted: itemSpringAnimationProps,
-    bits: itemSpringAnimationProps
+    bits: itemCelebrateAnimationProps
     // Add more message types as needed
 };
 

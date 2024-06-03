@@ -73,7 +73,7 @@ const ChatMessagesBox = React.forwardRef<
   ))
 
   return (
-    <Box ref={ref} overflow="auto" mt="4" px="10px" pb="10px" maxH="70vh">
+    <Box ref={ref} overflow="hidden" mt="4" px="10px" pb="10px" maxH="70vh" _hover={{ overflowY: 'auto' }}>
       {MessageList}
     </Box>
   );

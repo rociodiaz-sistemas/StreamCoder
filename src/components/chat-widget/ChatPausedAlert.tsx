@@ -1,3 +1,4 @@
+import { Box, Flex } from '@chakra-ui/react';
 import { useState } from 'react';
 import { GiPauseButton } from 'react-icons/gi';
 import { ImArrowDown2 } from 'react-icons/im';
@@ -6,25 +7,25 @@ const ChatPausedAlert = ({ onClick: handleClick }: { onClick: () => void }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const label = isHovered ? (
-    <span>
+    <Flex align='center' gap='10px'>
       <ImArrowDown2 />
       See new messages
-    </span>
+    </Flex>
   ) : (
-    <span>
+    <Flex align='center' gap='10px'>
       <GiPauseButton />
       Chat paused due to scroll
-    </span>
+    </Flex>
   );
 
   return (
-    <div
+    <Box
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={handleClick}
     >
       {label}
-    </div>
+    </Box>
   );
 };
 
