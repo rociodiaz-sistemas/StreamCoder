@@ -51,7 +51,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <ChakraProvider theme={selectedTheme}>
+    <ChakraProvider theme={theme}>
       <main>
         <ChatContextProvider>
           <ResizableChat />
