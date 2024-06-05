@@ -3,6 +3,9 @@ import { Resizable } from 're-resizable';
 import Chat from './Chat';
 import { handleResize } from '../../utils/handleResize'; // Import the context and hooks
 import { useChatContext } from '../../store/contexts/ChatContext';
+import { Box } from '@chakra-ui/react';
+import StarField from './chat-animations/StarField';
+import UFOComponent from './chat-animations/UFO';
 
 export const ResizableChat = () => {
   const { setFontSize } = useChatContext();
@@ -50,7 +53,7 @@ export const ResizableChat = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'transparent'
+        backgroundColor: 'transparent',
       }}
       onResize={handleResizeCallback}
       enable={{

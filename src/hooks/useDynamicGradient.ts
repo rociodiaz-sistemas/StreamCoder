@@ -23,9 +23,17 @@ const useDynamicGradientColor = (): string => {
         startColor: '#64509F',
         endColor: '#EBDDB5',
       },
+      EveningSky: {
+        startColor: '#373A47',
+        endColor: '#1E2025',
+      },
       NightSky: {
         startColor: '#141311',
         endColor: '#553A77',
+      },
+      MidnightSky: {
+        startColor: '#000033',
+        endColor: '#000044',
       },
     };
 
@@ -39,10 +47,14 @@ const useDynamicGradientColor = (): string => {
         currentGradient = gradients.MorningSky;
       } else if (currentHour >= 10 && currentHour < 16) {
         currentGradient = gradients.DaySky;
-      } else if (currentHour >= 16 && currentHour < 20) {
+      } else if (currentHour >= 16 && currentHour < 18) {
         currentGradient = gradients.AfternoonSky;
-      } else {
+      } else if (currentHour >= 18 && currentHour < 20) {
+        currentGradient = gradients.EveningSky;
+      } else if (currentHour >= 20 && currentHour < 24) {
         currentGradient = gradients.NightSky;
+      } else {
+        currentGradient = gradients.MidnightSky;
       }
 
       if (currentGradient) {

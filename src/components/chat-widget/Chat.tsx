@@ -1,7 +1,6 @@
 import React, { useRef } from 'react';
 import { Box, Flex } from '@chakra-ui/react';
 import useChatLiveModeScrolling from '../../hooks/useChatLiveModeScrolling';
-import useThemeMapping from '../../hooks/useThemeMapping';
 import { MessageModel } from '../../utils/models';
 import baseTheme from '../../themes/baseTheme';
 import ChatMessage from './chat-message/ChatMessage';
@@ -10,8 +9,10 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { ChatHeader } from './ChatHeader';
 import StarField from './chat-animations/StarField';
-import UFO from './chat-animations/UFO';
 import useDynamicGradientColor from '../../hooks/useDynamicGradient';
+import UFOComponent from './chat-animations/UFO';
+
+
 type ChatProps = {
   onClick: () => void;
   height: number;
@@ -19,6 +20,9 @@ type ChatProps = {
   width: number;
   defaultWidth: number;
 };
+
+
+const MemoizedStarField = React.memo(StarField);
 
 const Chat = ({
   onClick,
@@ -30,12 +34,9 @@ const Chat = ({
   const messages = useSelector((state: RootState) => state.messages);
   const { chatMessagesBoxRef, isLiveModeEnabled, scrollNewMessages } =
     useChatLiveModeScrolling<HTMLDivElement>(messages);
-
-  const { getGradient } = useThemeMapping(); // Destructure the hook to get the getGradient function
   const currentGradient = useDynamicGradientColor();
-  const flexRef = useRef<HTMLDivElement>(null);
   return (
-    <Flex direction="column" w="inherit" h="inherit">
+    <Flex pos="relative" direction="column" w="inherit" h="inherit">
       {/* <ChatHeader
         onClick={onClick}
         height={height}
@@ -43,31 +44,31 @@ const Chat = ({
         defaultHeight={defaultHeight}
         defaultWidth={defaultWidth}
       /> */}
+
+      <Box
+        position="absolute"
+        width="100%"
+        height="100%"
+        zIndex="0" // Ensure the chat effects container is on top
+        overflow="hidden" // Hide any overflow from chat effects
+        bgGradient={currentGradient}
+      >
+        <MemoizedStarField numStars={100} />
+        <UFOComponent />
+      </Box>
+
       <Flex
-        ref={flexRef}
-        pos="relative" // Use the dynamically retrieved gradient
         justify="flex-end"
         direction="column"
         w="inherit"
         h="100%"
         p="20px"
-        bgGradient={currentGradient}
+        position="absolute"
+        zIndex={1}
         border="3px solid"
         borderColor={baseTheme.colors.brown}
         borderTop="none"
       >
-        <Box
-          position="absolute"
-          top="0"
-          left="0"
-          width="100%"
-          height="100%"
-          zIndex="1" // Ensure the chat effects container is on top
-          overflow="hidden" // Hide any overflow from chat effects
-        >
-          <StarField numStars={100} />
-          <UFO />
-        </Box>
         <ChatMessagesBox ref={chatMessagesBoxRef} messages={messages} />
         {!isLiveModeEnabled && (
           <ChatPausedAlert
