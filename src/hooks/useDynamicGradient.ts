@@ -9,6 +9,15 @@ type Gradient = {
 const useDynamicGradientColor = (): string => {
   const [gradientColor, setGradientColor] = useState<string>('');
 
+  const timeRanges: { [key: string]: { start: number; end: number } } = {
+    MorningSky: { start: 5, end: 10 },
+    DaySky: { start: 10, end: 16 },
+    AfternoonSky: { start: 16, end: 18 },
+    EveningSky: { start: 18, end: 20 },
+    NightSky: { start: 20, end: 24 },
+    MidnightSky: { start: 0, end: 5 },
+  };
+
   useEffect(() => {
     const gradients: { [key: string]: Gradient } = {
       MorningSky: {
@@ -32,7 +41,7 @@ const useDynamicGradientColor = (): string => {
         endColor: '#553A77',
       },
       MidnightSky: {
-        startColor: '#000033',
+        startColor: '#141311',
         endColor: '#000044',
       },
     };
@@ -43,18 +52,13 @@ const useDynamicGradientColor = (): string => {
 
       // Find the current gradient based on the current hour
       let currentGradient: Gradient | null = null;
-      if (currentHour >= 5 && currentHour < 10) {
-        currentGradient = gradients.MorningSky;
-      } else if (currentHour >= 10 && currentHour < 16) {
-        currentGradient = gradients.DaySky;
-      } else if (currentHour >= 16 && currentHour < 18) {
-        currentGradient = gradients.AfternoonSky;
-      } else if (currentHour >= 18 && currentHour < 20) {
-        currentGradient = gradients.EveningSky;
-      } else if (currentHour >= 20 && currentHour < 24) {
-        currentGradient = gradients.NightSky;
-      } else {
-        currentGradient = gradients.MidnightSky;
+
+      for (const key in timeRanges) {
+        const range = timeRanges[key];
+        if (currentHour >= range.start && currentHour < range.end) {
+          currentGradient = gradients[key];
+          break;
+        }
       }
 
       if (currentGradient) {
