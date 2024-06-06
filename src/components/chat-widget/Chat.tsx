@@ -9,7 +9,8 @@ import ChatPausedAlert from './ChatPausedAlert';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { ChatHeader } from './ChatHeader';
-type ChatProps = {
+
+export type ChatProps = {
   onClick: () => void;
   height: number;
   defaultHeight: number;
