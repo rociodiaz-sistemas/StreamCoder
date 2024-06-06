@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Flex } from '@chakra-ui/react';
+import { Box, Flex, background } from '@chakra-ui/react';
+import { FixedSizeList as List } from 'react-window';
 import useChatLiveModeScrolling from '../../hooks/useChatLiveModeScrolling';
 import useThemeMapping from '../../hooks/useThemeMapping';
 import { MessageModel } from '../../utils/models';
@@ -9,12 +10,17 @@ import ChatPausedAlert from './ChatPausedAlert';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { ChatHeader } from './ChatHeader';
+
 type ChatProps = {
   onClick: () => void;
   height: number;
   defaultHeight: number;
   width: number;
   defaultWidth: number;
+};
+
+type RenderMessageProps = {
+  index: number;
 };
 
 const Chat = ({
@@ -68,14 +74,27 @@ const ChatMessagesBox = React.forwardRef<
   HTMLDivElement,
   { messages: MessageModel[]; }
 >(({ messages }, ref) => {
-  const MessageList = messages.map((message) => (
-    <ChatMessage key={message.msgId} message={message} />
-  ))
+  const renderMessage = ({ index }: RenderMessageProps) => {
+    const message = messages[index];
+    return (
+      <ChatMessage key={message.msgId} message={message} />
+    );
+  };
 
   return (
-    <Box ref={ref} overflow="auto" mt="4" px="10px" pb="10px" maxH="70vh">
-      {MessageList}
-    </Box>
+    // <Box ref={ref} maxH="70vh">
+    <List
+      className="List"
+      height={400}
+      itemCount={messages.length}
+      itemSize={100}
+      maxWidth={700}
+      style={{ backgroundColor: 'red' }}
+      outerRef={ref}
+    >
+      {renderMessage}
+    </List>
+    // </Box>
   );
 });
 /* eslint-enable */
