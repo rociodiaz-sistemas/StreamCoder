@@ -1,62 +1,50 @@
-import ChatMessage from '../components/chat-widget/chat-message/ChatMessage';
+import React from 'react';
+import { Meta } from '@storybook/react';
+import ChatMessage, {
+  MessageProps,
+} from '../components/chat-widget/chat-message/ChatMessage';
+import { ChatContextProvider } from '../store/contexts/ChatContext';
 
-export default {
+const meta: Meta<MessageProps> = {
   title: 'Components/ChatMessage',
   component: ChatMessage,
+  parameters: {
+    layout: 'centered', // Center the component in the Canvas
+  },
   tags: ['autodocs'],
 };
 
-export const Common = {
-  args: {
-    message: {
-      id: '1',
-      author: {
-        id: '123',
-        rgbColor: '#000',
-        username: 'Antonia Vaquita',
-        type: 'common',
-        badges: ['prime'],
-      },
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    },
-  },
+export default meta;
+
+type Story = (args: MessageProps) => JSX.Element;
+
+export const Normal: Story<MessageProps> = (args: MessageProps) => {
+  return (
+    <ChatContextProvider>
+      <ChatMessage {...args} />
+    </ChatContextProvider>
+  );
 };
 
-export const Highlighted = {
-  args: {
-    ...Common.args, // Spread the args from the Common story
-    message: {
-      ...Common.args.message, // Spread the message from the Common story
-      author: {
-        ...Common.args.message.author, // Spread the author from the Common story
-        type: 'highlighted', // Override the type for the highlighted message
-      },
-    },
+Normal.args = {
+  msgId: '1',
+  author: {
+    userId: '01',
+    color: 'pink',
+    displayName: 'AntoniaVaquita',
+    username: 'AntoniaVaquita',
+    role: { 1: 'Viewer' },
+    badges: [],
+    monthsSuscribed: 1,
   },
-};
-
-export const Bit = {
-  args: {
-    ...Common.args, // Spread the args from the Common story
-    message: {
-      ...Common.args.message, // Spread the message from the Common story
-      author: {
-        ...Common.args.message.author, // Spread the author from the Common story
-        type: 'bit', // Override the type for the highlighted message
-      },
-    },
-  },
-};
-
-export const Subscriber = {
-  args: {
-    ...Common.args, // Spread the args from the Common story
-    message: {
-      ...Common.args.message, // Spread the message from the Common story
-      author: {
-        ...Common.args.message.author, // Spread the author from the Common story
-        type: 'subscriber', // Override the type for the highlighted message
-      },
-    },
-  },
+  content: '¡Amamos y odiamos programar!',
+  firstMessage: false,
+  isHighlighted: false,
+  suscriber: false,
+  isReply: false,
+  hasBits: false,
+  bits: 0,
+  hasEmotes: false,
+  emotes: [],
+  type: 'common', // Make sure the message type is correct
 };
