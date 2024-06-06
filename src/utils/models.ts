@@ -13,8 +13,8 @@ export interface MessageModel {
   type: MessageType;
 }
 
-export type Role = { 1: "Viewer", 2: "Vip", 3: "Moderator", 4: "Broadcaster" };
-export type MessageType = "common" | "highlighted" | "bits";
+export type Role = { 1: 'Viewer'; 2: 'Vip'; 3: 'Moderator'; 4: 'Broadcaster' };
+export type MessageType = 'common' | 'highlighted' | 'bits';
 
 export interface Author {
   userId: string;
