@@ -1,3 +1,8 @@
+import afternoonTheme from "../themes/afternoonTheme";
+import dayTheme from "../themes/dayTheme";
+import morningTheme from "../themes/morningTheme";
+import theme from "../themes/theme";
+
 export interface MessageModel {
   msgId: string;
   author: Author;
@@ -50,3 +55,5 @@ export interface MessageBoxStyle {
 }
 
 //TBD: CHEER EMOTES
+// Define a union type for all possible theme objects
+export type ThemeType = typeof morningTheme | typeof dayTheme | typeof afternoonTheme | typeof theme;

@@ -7,11 +7,8 @@ import ChatMessage from './chat-message/ChatMessage';
 import ChatPausedAlert from './ChatPausedAlert';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { ChatHeader } from './ChatHeader';
-import StarField from './chat-animations/StarField';
-import useDynamicGradientColor from '../../hooks/useDynamicGradient';
-import UFOComponent from './chat-animations/UFO';
-
+// import { ChatHeader } from './ChatHeader';
+import AnimatedBackground from './chat-animations/AnimatedBackground';
 
 type ChatProps = {
   onClick: () => void;
@@ -21,20 +18,16 @@ type ChatProps = {
   defaultWidth: number;
 };
 
-
-const MemoizedStarField = React.memo(StarField);
-
 const Chat = ({
-  onClick,
-  height,
-  defaultHeight,
-  width,
-  defaultWidth,
+  // onClick,
+  // height,
+  // defaultHeight,
+  // width,
+  // defaultWidth,
 }: ChatProps) => { // Use the useChatContext hook to access context values
   const messages = useSelector((state: RootState) => state.messages);
   const { chatMessagesBoxRef, isLiveModeEnabled, scrollNewMessages } =
     useChatLiveModeScrolling<HTMLDivElement>(messages);
-  const currentGradient = useDynamicGradientColor();
   return (
     <Flex pos="relative" direction="column" w="inherit" h="inherit">
       {/* <ChatHeader
@@ -45,17 +38,7 @@ const Chat = ({
         defaultWidth={defaultWidth}
       /> */}
 
-      <Box
-        position="absolute"
-        width="100%"
-        height="100%"
-        zIndex="0" // Ensure the chat effects container is on top
-        overflow="hidden" // Hide any overflow from chat effects
-        bgGradient={currentGradient}
-      >
-        <MemoizedStarField numStars={100} />
-        <UFOComponent />
-      </Box>
+      <AnimatedBackground />
 
       <Flex
         justify="flex-end"

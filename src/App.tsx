@@ -9,10 +9,7 @@ import dayTheme from './themes/dayTheme';
 import afternoonTheme from './themes/afternoonTheme';
 import theme from './themes/theme';
 import { timeRanges } from './utils/helpers';
-
-// Define a union type for all possible theme objects
-type ThemeType = typeof morningTheme | typeof dayTheme | typeof afternoonTheme | typeof theme;
-
+import { ThemeType } from './utils/models';
 
 function App() {
   const dispatch = useDispatch();
@@ -64,7 +61,7 @@ function App() {
   return (
     <ChakraProvider theme={selectedTheme}>
       <main>
-        <ChatContextProvider>
+        <ChatContextProvider theme={selectedTheme}>
           <ResizableChat />
         </ChatContextProvider>
       </main>
