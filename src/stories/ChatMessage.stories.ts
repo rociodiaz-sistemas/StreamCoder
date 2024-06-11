@@ -1,6 +1,3 @@
-// stories/ChatMessage.stories.tsx
-
-import React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 import ChatMessage from '../components/chat-widget/chat-message/ChatMessage';
 import { MessageModel, Role } from '../utils/models';
