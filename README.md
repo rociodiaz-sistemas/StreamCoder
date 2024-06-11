@@ -46,7 +46,7 @@ npm run dev
 npm run storybook
 
 ### Highlights
-Prototype design
+Prototype design. This is a chat widget meant for streaming purposes, the design I chose in the CRM is cartoony. There are other themes able to be personalized for other flavors. The prototype is bound to change. 
 ![image](https://github.com/rociodiaz-sistemas/StreamCoder/assets/68517616/6f74e494-24fb-4f99-955c-9495743d17a0)
 
 Features: 
