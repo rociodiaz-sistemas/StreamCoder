@@ -13,15 +13,28 @@ export interface MessageModel {
   type: MessageType;
 }
 
-export type Role = { 1: 'Viewer'; 2: 'Vip'; 3: 'Moderator'; 4: 'Broadcaster' };
 export type MessageType = 'common' | 'highlighted' | 'bits';
+
+export enum Role {
+  Viewer = 1,
+  Vip = 2,
+  Moderator = 3,
+  Broadcaster = 4,
+}
+
+export type RoleObject = {
+  id: Role;
+  name: 'Viewer' | 'Vip' | 'Moderator' | 'Broadcaster';
+};
+
+export type Roles = RoleObject[];
 
 export interface Author {
   userId: string;
   color: string;
   displayName: string;
   username: string;
-  role: Role;
+  roles: Roles;
   badges: Badge[];
   monthsSuscribed: number;
 }

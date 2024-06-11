@@ -6,6 +6,6 @@ export default {
   tags: ['autodocs'],
 };
 
-export const Rosa = {
+export const Normal = {
   args: {},
 };

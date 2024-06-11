@@ -1,11 +1,11 @@
-import React from 'react';
-import { Meta } from '@storybook/react';
-import ChatMessage, {
-  MessageProps,
-} from '../components/chat-widget/chat-message/ChatMessage';
-import { ChatContextProvider } from '../store/contexts/ChatContext';
+// stories/ChatMessage.stories.tsx
 
-const meta: Meta<MessageProps> = {
+import React from 'react';
+import { Meta, StoryObj } from '@storybook/react';
+import ChatMessage from '../components/chat-widget/chat-message/ChatMessage';
+import { MessageModel, Role } from '../utils/models';
+
+const meta: Meta<typeof ChatMessage> = {
   title: 'Components/ChatMessage',
   component: ChatMessage,
   parameters: {
@@ -16,24 +16,16 @@ const meta: Meta<MessageProps> = {
 
 export default meta;
 
-type Story = (args: MessageProps) => JSX.Element;
+type Story = StoryObj<typeof ChatMessage>;
 
-export const Normal: Story<MessageProps> = (args: MessageProps) => {
-  return (
-    <ChatContextProvider>
-      <ChatMessage {...args} />
-    </ChatContextProvider>
-  );
-};
-
-Normal.args = {
+const baseMessage: MessageModel = {
   msgId: '1',
   author: {
     userId: '01',
     color: 'pink',
     displayName: 'AntoniaVaquita',
     username: 'AntoniaVaquita',
-    role: { 1: 'Viewer' },
+    roles: [{ id: Role.Viewer, name: 'Viewer' }],
     badges: [],
     monthsSuscribed: 1,
   },
@@ -46,5 +38,32 @@ Normal.args = {
   bits: 0,
   hasEmotes: false,
   emotes: [],
-  type: 'common', // Make sure the message type is correct
+  type: 'common',
+};
+
+export const Common: Story = {
+  args: {
+    message: {
+      ...baseMessage,
+      type: 'common',
+    },
+  },
+};
+
+export const Highlighted: Story = {
+  args: {
+    message: {
+      ...baseMessage,
+      type: 'highlighted',
+    },
+  },
+};
+
+export const Bits: Story = {
+  args: {
+    message: {
+      ...baseMessage,
+      type: 'bits',
+    },
+  },
 };
