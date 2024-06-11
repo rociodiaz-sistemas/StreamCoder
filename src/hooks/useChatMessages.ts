@@ -1,55 +1,60 @@
-import { useCallback, useEffect, useState } from 'react'
-import { MessageModel } from '../utils/models'
-import useChatConnection from './useChatConnection'
+import { useCallback, useEffect, useState } from 'react';
+import { MessageModel } from '../utils/models';
+import useChatConnection from './useChatConnection';
 
-const MESSAGE_WINDOW = 30
+const MESSAGE_WINDOW = 30;
 
 const welcomeMessage: MessageModel = {
-    id: 'welcome-message',
-    author: {
-        rgbColor: 'darkorchid',
-        badges: ['moderator'],
-        username: 'ChatBot',
-    },
-    content: 'Welcome to Twitch Chat Clone!',
-}
+  id: 'welcome-message',
+  author: {
+    id: '1',
+    rgbColor: 'darkorchid',
+    badges: ['moderator'],
+    username: 'AntoniaVaquita',
+    type: 'common',
+  },
+  content:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam',
+};
 
 export default function useChatMessages() {
-    const [messages, setMessages] = useState<MessageModel[]>([welcomeMessage])
+  const [messages, setMessages] = useState<MessageModel[]>([welcomeMessage]);
 
-    const socket = useChatConnection()
+  const socket = useChatConnection();
 
-    const appendNewMessage = useCallback(
-        (newMessage: MessageModel) => {
-            const nextMessages: MessageModel[] = [
-                ...messages.slice(-MESSAGE_WINDOW),
-                newMessage,
-            ]
-            setMessages(nextMessages)
-        },
-        [messages]
-    )
+  const appendNewMessage = useCallback(
+    (newMessage: MessageModel) => {
+      const nextMessages: MessageModel[] = [
+        ...messages.slice(-MESSAGE_WINDOW),
+        newMessage,
+      ];
+      setMessages(nextMessages);
+    },
+    [messages],
+  );
 
-    const send = useCallback(
-        (message: string) => {
-            console.log(`Sending message: ${message}`)
-            socket?.emit('message', message)
-        },
-        [socket]
-    )
+  const send = useCallback(
+    (message: string) => {
+      /* eslint-disable */
+      console.log(`Sending message: ${message}`);
+      /* eslint-enable */
+      socket?.emit('message', message);
+    },
+    [socket],
+  );
 
-    useEffect(() => {
-        socket?.on('new-message', (msg: MessageModel) => {
-            appendNewMessage(msg)
-        })
+  useEffect(() => {
+    socket?.on('new-message', (msg: MessageModel) => {
+      appendNewMessage(msg);
+    });
 
-        return () => {
-            socket?.off('new-message')
-        }
-    }, [appendNewMessage, socket])
+    return () => {
+      socket?.off('new-message');
+    };
+  }, [appendNewMessage, socket]);
 
-    return {
-        messages,
-        send,
-    }
+  return {
+    messages,
+    send,
+  };
 }

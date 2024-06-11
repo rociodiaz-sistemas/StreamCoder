@@ -1,26 +1,12 @@
-import { faker } from '@faker-js/faker'
-import { Badge, MessageModel } from './models'
+export const randomNumberBetween = (min: number, max: number) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
 
-export const generateFakeMessage = (): MessageModel => {
-    return {
-        id: faker.datatype.uuid(),
-        author: {
-            rgbColor: faker.internet.color(250, 250, 250),
-            username: faker.internet.userName(),
-            badges: generateRandomBadges(),
-        },
-        content: faker.lorem.sentence(),
-    }
-}
-
-const generateRandomBadges = (): Badge[] => {
-    const badge = (badge: Badge, prob: number) =>
-        faker.helpers.maybe(() => badge, { probability: prob })
-
-    return [
-        badge('vip', 0.1),
-        badge('moderator', 0.1),
-        badge('prime', 0.2),
-        badge('turbo', 0.1),
-    ].filter((x) => x !== undefined) as Badge[]
-}
+export const timeRanges: { [key: string]: { start: number; end: number } } = {
+  MorningSky: { start: 5, end: 10 },
+  DaySky: { start: 10, end: 16 },
+  AfternoonSky: { start: 16, end: 18 },
+  EveningSky: { start: 18, end: 20 },
+  NightSky: { start: 20, end: 24 },
+  MidnightSky: { start: 0, end: 5 },
+};
