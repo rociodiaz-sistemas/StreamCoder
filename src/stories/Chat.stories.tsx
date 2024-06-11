@@ -1,4 +1,3 @@
-import React from 'react';
 import { Meta } from '@storybook/react';
 import { Provider } from 'react-redux';
 import { ChatProps } from '../components/chat-widget/Chat';
