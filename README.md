@@ -17,7 +17,8 @@ Our working chat widget is highly advanced, featuring custom animations and inte
 - **Redux Toolkit & Saga**: For managing complex state logic and handling asynchronous operations efficiently.
 - **Chakra UI**: A modular and accessible component library for building interfaces quickly.
 - **Framer Motion**: Adds delightful animations and interactions to enhance user experience.
-- **Storybook**: Testing animations and components. 
+- **Storybook**: Testing animations and components.
+- **Tailwind**: Works very well with Framer Motion.
 
 ## Getting Started
 ### Prerequisites
