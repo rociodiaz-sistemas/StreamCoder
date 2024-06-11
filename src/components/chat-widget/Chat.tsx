@@ -7,10 +7,10 @@ import ChatMessage from './chat-message/ChatMessage';
 import ChatPausedAlert from './ChatPausedAlert';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
-// import { ChatHeader } from './ChatHeader';
+import { ChatHeader } from './ChatHeader';
 import AnimatedBackground from './chat-animations/AnimatedBackground';
 
-type ChatProps = {
+export type ChatProps = {
   onClick: () => void;
   height: number;
   defaultHeight: number;
@@ -19,24 +19,24 @@ type ChatProps = {
 };
 
 const Chat = ({
-  // onClick,
-  // height,
-  // defaultHeight,
-  // width,
-  // defaultWidth,
+  onClick,
+  height,
+  defaultHeight,
+  width,
+  defaultWidth,
 }: ChatProps) => { // Use the useChatContext hook to access context values
   const messages = useSelector((state: RootState) => state.messages);
   const { chatMessagesBoxRef, isLiveModeEnabled, scrollNewMessages } =
     useChatLiveModeScrolling<HTMLDivElement>(messages);
   return (
     <Flex pos="relative" direction="column" w="inherit" h="inherit">
-      {/* <ChatHeader
+      <ChatHeader
         onClick={onClick}
         height={height}
         width={width}
         defaultHeight={defaultHeight}
         defaultWidth={defaultWidth}
-      /> */}
+      />
 
       <AnimatedBackground />
 

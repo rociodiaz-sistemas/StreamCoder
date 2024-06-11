@@ -30,6 +30,7 @@ export const ChatHeader = ({
 
   return (
     <Flex
+      zIndex={999}
       align="center"
       justify="space-between"
       direction="row"
