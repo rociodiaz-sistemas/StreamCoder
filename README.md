@@ -43,3 +43,29 @@ npmrun dev
 ```
 ### Running Storybook
 npm run storybook
+
+### Highlights
+Prototype design
+![image](https://github.com/rociodiaz-sistemas/StreamCoder/assets/68517616/6f74e494-24fb-4f99-955c-9495743d17a0)
+
+Features: 
+- Background overlays with real-time gradient changes with Chroma.js
+- Animations with Framer Motion such as a highlighter animation for highlighted messages from Twitch
+
+https://github.com/rociodiaz-sistemas/StreamCoder/assets/68517616/3a631049-84da-40b8-998c-203443500ad7
+
+- UFO animation 
+
+https://github.com/rociodiaz-sistemas/StreamCoder/assets/68517616/e150664a-a726-4fc0-a97a-3b5fbf57e2a4
+
+- Shifting Gradient Background using Chroma.JS and Framer Motion
+- Moon and Sun Animation shifting every minute in real time in an elipsis.
+- Four selectable Themes using Chakra UI. Aditionally, a project-scoped Chakra UI and Storybook Plugin for handling multiple themes.
+- Storybook aligned with brand.
+
+https://github.com/rociodiaz-sistemas/StreamCoder/assets/68517616/5f8405c3-3d7a-4d68-bc38-2b1c3ec8783b
+
+- Using Notion for extensive documentation, with over 20 pages of code related documentation, tutorials and project architecture.
+
+
+
