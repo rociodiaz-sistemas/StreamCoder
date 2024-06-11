@@ -2,7 +2,7 @@
 ![White Minimalist Elegant Handwritten LinkedIn Banner (1128 x 191 px)](https://github.com/rociodiaz-sistemas/StreamCoder/assets/68517616/757b232d-c32b-4996-ac00-ee4afdda3421)
 
 ## Overview
-Streamcoder is a Widget Library and CRM project built using React and TypeScript. It is designed to seamlessly integrate with OBS (Open Broadcaster Software) and connect to Twitch as well as various other streaming platforms. The project aims to provide a highly customizable chat widget experience and will soon expand to include other customizable widgets.
+Streamcoder is a Widget Library and CMS project built using React and TypeScript. It is designed to seamlessly integrate with OBS (Open Broadcaster Software) and connect to Twitch as well as various other streaming platforms. The project aims to provide a highly customizable chat widget experience and will soon expand to include other customizable widgets.
 Our working chat widget is highly advanced, featuring custom animations and interactive elements designed to engage viewers in real-time. It includes special animations for Bits messages, dynamic gradients, and animated backgrounds. Additionally, there are unique animations to celebrate new followers, creating a lively and engaging stream experience.
 
 ## Key Features
@@ -47,7 +47,7 @@ npm run dev
 npm run storybook
 
 ### Highlights
-Prototype design. This is a chat widget meant for streaming purposes, the design I chose in the CRM is cartoony. There are other themes able to be personalized for other flavors. The prototype is bound to change. 
+Prototype design. This is a chat widget meant for streaming purposes, the design I chose in the CMS is cartoony. There are other themes able to be personalized for other flavors. The prototype is bound to change. 
 ![image](https://github.com/rociodiaz-sistemas/StreamCoder/assets/68517616/6f74e494-24fb-4f99-955c-9495743d17a0)
 
 Features: 
