@@ -7,25 +7,25 @@ const HighlightedUserName = lazy(() => import('./HighlightedUserName'));
 const BitsUserName = lazy(() => import('./BitsUserName'));
 
 const animationComponents: { [key: string]: React.LazyExoticComponent<React.FC<{ displayName: string; color: string, }>> } = {
-    common: CommonUserName,
-    highlighted: HighlightedUserName,
-    bits: BitsUserName
+  common: CommonUserName,
+  highlighted: HighlightedUserName,
+  bits: BitsUserName,
 };
 
 interface UsernameProps {
-    displayName: string;
-    color: string;
-    type: MessageType;
+  displayName: string;
+  color: string;
+  type: MessageType;
 }
 
 const Username: React.FC<UsernameProps> = ({ displayName, color, type }) => {
-    const UserNameAnimation = animationComponents[type] || CommonUserName;
+  const UserNameAnimation = animationComponents[type] || CommonUserName;
 
-    return (
-        <Suspense fallback={<span>{displayName}</span>}>
-            <UserNameAnimation displayName={displayName} color={color} />
-        </Suspense>
-    );
+  return (
+    <Suspense fallback={<span>{displayName}</span>}>
+      <UserNameAnimation displayName={displayName} color={color} />
+    </Suspense>
+  );
 };
 
 export default Username;

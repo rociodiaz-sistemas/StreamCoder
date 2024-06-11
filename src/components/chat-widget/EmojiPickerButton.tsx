@@ -1,6 +1,6 @@
 import Picker from 'emoji-picker-react';
 import { HiOutlineEmojiHappy } from 'react-icons/hi';
-import useEmojiPicker from '../hooks/useEmojiPicker';
+import useEmojiPicker from '../../hooks/useEmojiPicker';
 
 const EmojiPickerButton = ({
   onEmojiPick: handleEmojiPick,
