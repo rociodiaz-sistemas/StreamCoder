@@ -52,7 +52,7 @@ Features:
 - Background overlays with real-time gradient changes with Chroma.js
 - Animations with Framer Motion such as a highlighter animation for highlighted messages from Twitch
 
-https://github.com/rociodiaz-sistemas/StreamCoder/assets/68517616/3a631049-84da-40b8-998c-203443500ad7
+https://github.com/rociodiaz-sistemas/StreamCoder/assets/68517616/21674c16-9379-4151-8863-00c0d234f15a
 
 - UFO animation 
 
@@ -66,6 +66,9 @@ https://github.com/rociodiaz-sistemas/StreamCoder/assets/68517616/e150664a-a726-
 https://github.com/rociodiaz-sistemas/StreamCoder/assets/68517616/5f8405c3-3d7a-4d68-bc38-2b1c3ec8783b
 
 - Using Notion for extensive documentation, with over 20 pages of code related documentation, tutorials and project architecture.
+- Responsive and resizable from within OBS, using react-resizable
+
+https://github.com/rociodiaz-sistemas/StreamCoder/assets/68517616/2b4b2ddc-5dd1-475d-a275-97e45caaac31
 
 
 
