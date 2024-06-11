@@ -1,4 +1,4 @@
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, Slider } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { connectWebSocket } from './store/actions/websocketActions';
@@ -59,7 +59,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <ChakraProvider theme={selectedTheme}>
+    <ChakraProvider theme={theme}>
       <main>
         <ChatContextProvider theme={selectedTheme}>
           <ResizableChat />

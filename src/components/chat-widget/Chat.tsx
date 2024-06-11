@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import { Box, Flex } from '@chakra-ui/react';
 import useChatLiveModeScrolling from '../../hooks/useChatLiveModeScrolling';
 import { MessageModel } from '../../utils/models';
@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 // import { ChatHeader } from './ChatHeader';
 import AnimatedBackground from './chat-animations/AnimatedBackground';
+import SliderTest from '../../test-components/SliderTest';
 
 type ChatProps = {
   onClick: () => void;
@@ -26,6 +27,7 @@ const Chat = ({
   // defaultWidth,
 }: ChatProps) => { // Use the useChatContext hook to access context values
   const messages = useSelector((state: RootState) => state.messages);
+  const [currentTime, setCurrentTime] = useState<number>(12); // Initial time
   const { chatMessagesBoxRef, isLiveModeEnabled, scrollNewMessages } =
     useChatLiveModeScrolling<HTMLDivElement>(messages);
   return (
@@ -41,13 +43,13 @@ const Chat = ({
       <AnimatedBackground />
 
       <Flex
+        pos="absolute"
+        zIndex={1}
         justify="flex-end"
         direction="column"
         w="inherit"
         h="100%"
         p="20px"
-        position="absolute"
-        zIndex={1}
         border="3px solid"
         borderColor={baseTheme.colors.brown}
         borderTop="none"
@@ -59,7 +61,9 @@ const Chat = ({
           />
         )}
         {/* <SendMessageForm onSend={send} /> */}
+        <SliderTest currentTime={currentTime} setCurrentTime={setCurrentTime} />
       </Flex>
+
     </Flex>
   );
 };
