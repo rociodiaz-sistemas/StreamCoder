@@ -39,7 +39,7 @@ Ensure you have the following installed on your development machine:
 ### Running the Project
 To start the development server, run:
 ```bash
-npmrun dev
+npm run dev
 ```
 ### Running Storybook
 npm run storybook
