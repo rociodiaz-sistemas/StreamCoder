@@ -6,6 +6,8 @@ import theme from '../src/themes/theme';
 import dayTheme from '../src/themes/dayTheme';
 import afternoonTheme from '../src/themes/afternoonTheme';
 import { ChatContextProvider } from '../src/store/contexts/ChatContext';
+import { Provider } from 'react-redux';
+import mockStore from '../src/stories/store.mock';
 
 // IMPORTANT: If you change the baseTheme.ts file, you need to reload the page.
 
@@ -62,9 +64,11 @@ const preview: Preview = {
 
       return (
         <ChakraProvider theme={updatedTheme}>
-          <ChatContextProvider>
-            <Story {...context} />
-          </ChatContextProvider>
+          <Provider store={mockStore}>
+            <ChatContextProvider>
+              <Story {...context} />
+            </ChatContextProvider>
+          </Provider>
         </ChakraProvider>
       )
     },

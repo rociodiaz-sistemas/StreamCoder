@@ -1,8 +1,6 @@
-import { Meta } from '@storybook/react';
-import { Provider } from 'react-redux';
+import { Meta, StoryObj } from '@storybook/react';
 import { ChatProps } from '../components/chat-widget/Chat';
 import Chat from '../components/chat-widget/Chat';
-import mockStore from './store.mock';
 
 const meta: Meta<ChatProps> = {
   title: 'Widgets/Chat',
@@ -12,12 +10,9 @@ const meta: Meta<ChatProps> = {
 
 export default meta;
 
-type Story = (args: ChatProps) => JSX.Element;
+// type Story = (args: ChatProps) => JSX.Element;
+type Story = StoryObj<typeof Chat>;
 
-export const Normal: Story = () => {
-  return (
-    <Provider store={mockStore}>
-      <Chat />
-    </Provider>
-  );
+export const Normal: Story = {
+  args: {},
 };
