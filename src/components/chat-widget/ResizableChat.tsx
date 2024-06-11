@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Resizable } from 're-resizable';
 import Chat from './Chat';
 import { handleResize } from '../../utils/handleResize'; // Import the context and hooks
@@ -11,7 +11,7 @@ export const ResizableChat = () => {
   const handleResizeCallback = (
     event: unknown,
     direction: unknown,
-    refToElement: { style: { width: string; height: string } }
+    refToElement: { style: { width: string; height: string } },
   ) => {
     handleResize(event, direction, refToElement, setFontSize);
   };
@@ -21,7 +21,7 @@ export const ResizableChat = () => {
     const defaultHeight = 450;
     setWindowSize({ width: defaultWidth, height: defaultHeight });
     handleResizeCallback(null, null, {
-      style: { width: `${defaultWidth}px`, height: `${defaultHeight}px` }
+      style: { width: `${defaultWidth}px`, height: `${defaultHeight}px` },
     });
   };
 
@@ -29,11 +29,11 @@ export const ResizableChat = () => {
     _event: unknown,
     _direction: unknown,
     _ref: unknown,
-    delta: { width: number; height: number }
+    delta: { width: number; height: number },
   ) => {
     setWindowSize((prevSize) => ({
       width: prevSize.width + delta.width,
-      height: prevSize.height + delta.height
+      height: prevSize.height + delta.height,
     }));
   };
 
@@ -61,7 +61,7 @@ export const ResizableChat = () => {
         topRight: true,
         bottomRight: true,
         bottomLeft: true,
-        topLeft: true
+        topLeft: true,
       }}
     >
       <Chat

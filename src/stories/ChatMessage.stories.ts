@@ -1,62 +1,66 @@
+import { Meta, StoryObj } from '@storybook/react';
 import ChatMessage from '../components/chat-widget/chat-message/ChatMessage';
+import { MessageModel, Role } from '../utils/models';
 
-export default {
+const meta: Meta<typeof ChatMessage> = {
   title: 'Components/ChatMessage',
   component: ChatMessage,
+  parameters: {
+    layout: 'centered', // Center the component in the Canvas
+  },
   tags: ['autodocs'],
 };
 
-export const Common = {
+export default meta;
+
+type Story = StoryObj<typeof ChatMessage>;
+
+const baseMessage: MessageModel = {
+  msgId: '1',
+  author: {
+    userId: '01',
+    color: 'pink',
+    displayName: 'AntoniaVaquita',
+    username: 'AntoniaVaquita',
+    roles: [{ id: Role.Viewer, name: 'Viewer' }],
+    badges: [],
+    monthsSuscribed: 1,
+  },
+  content: '¡Amamos y odiamos programar!',
+  firstMessage: false,
+  isHighlighted: false,
+  suscriber: false,
+  isReply: false,
+  hasBits: false,
+  bits: 0,
+  hasEmotes: false,
+  emotes: [],
+  type: 'common',
+};
+
+export const Common: Story = {
   args: {
     message: {
-      id: '1',
-      author: {
-        id: '123',
-        rgbColor: '#000',
-        username: 'Antonia Vaquita',
-        type: 'common',
-        badges: ['prime'],
-      },
-      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      ...baseMessage,
+      type: 'common',
     },
   },
 };
 
-export const Highlighted = {
+export const Highlighted: Story = {
   args: {
-    ...Common.args, // Spread the args from the Common story
     message: {
-      ...Common.args.message, // Spread the message from the Common story
-      author: {
-        ...Common.args.message.author, // Spread the author from the Common story
-        type: 'highlighted', // Override the type for the highlighted message
-      },
+      ...baseMessage,
+      type: 'highlighted',
     },
   },
 };
 
-export const Bit = {
+export const Bits: Story = {
   args: {
-    ...Common.args, // Spread the args from the Common story
     message: {
-      ...Common.args.message, // Spread the message from the Common story
-      author: {
-        ...Common.args.message.author, // Spread the author from the Common story
-        type: 'bit', // Override the type for the highlighted message
-      },
-    },
-  },
-};
-
-export const Subscriber = {
-  args: {
-    ...Common.args, // Spread the args from the Common story
-    message: {
-      ...Common.args.message, // Spread the message from the Common story
-      author: {
-        ...Common.args.message.author, // Spread the author from the Common story
-        type: 'subscriber', // Override the type for the highlighted message
-      },
+      ...baseMessage,
+      type: 'bits',
     },
   },
 };

@@ -1,4 +1,4 @@
-import { ChatHeader } from '../components/ChatHeader';
+import { ChatHeader } from '../components/chat-widget/ChatHeader';
 
 export default {
   title: 'Components/ChatHeader',
@@ -6,6 +6,6 @@ export default {
   tags: ['autodocs'],
 };
 
-export const Rosa = {
+export const Normal = {
   args: {},
 };

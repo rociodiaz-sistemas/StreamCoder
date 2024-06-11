@@ -1,7 +1,7 @@
-import afternoonTheme from "../themes/afternoonTheme";
-import dayTheme from "../themes/dayTheme";
-import morningTheme from "../themes/morningTheme";
-import theme from "../themes/theme";
+import afternoonTheme from '../themes/afternoonTheme';
+import dayTheme from '../themes/dayTheme';
+import morningTheme from '../themes/morningTheme';
+import theme from '../themes/theme';
 
 export interface MessageModel {
   msgId: string;
@@ -18,15 +18,28 @@ export interface MessageModel {
   type: MessageType;
 }
 
-export type Role = { 1: "Viewer", 2: "Vip", 3: "Moderator", 4: "Broadcaster" };
-export type MessageType = "common" | "highlighted" | "bits";
+export type MessageType = 'common' | 'highlighted' | 'bits';
+
+export enum Role {
+  Viewer = 1,
+  Vip = 2,
+  Moderator = 3,
+  Broadcaster = 4,
+}
+
+export type RoleObject = {
+  id: Role;
+  name: 'Viewer' | 'Vip' | 'Moderator' | 'Broadcaster';
+};
+
+export type Roles = RoleObject[];
 
 export interface Author {
   userId: string;
   color: string;
   displayName: string;
   username: string;
-  role: Role;
+  roles: Roles;
   badges: Badge[];
   monthsSuscribed: number;
 }
@@ -56,4 +69,8 @@ export interface MessageBoxStyle {
 
 //TBD: CHEER EMOTES
 // Define a union type for all possible theme objects
-export type ThemeType = typeof morningTheme | typeof dayTheme | typeof afternoonTheme | typeof theme;
+export type ThemeType =
+  | typeof morningTheme
+  | typeof dayTheme
+  | typeof afternoonTheme
+  | typeof theme;
