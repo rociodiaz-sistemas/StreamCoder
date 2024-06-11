@@ -1,8 +1,10 @@
 import { Box, useTheme } from "@chakra-ui/react";
 import React, { ReactNode } from "react";
 import useDynamicGradientColor from "../../../hooks/useDynamicGradient";
-import StarField from "./StarField";
 import UFOComponent from "./UFO";
+
+// lazy load starfield component
+const StarField = React.lazy(() => import('./StarField'));
 
 interface AnimationBoxProps {
     children: ReactNode;
