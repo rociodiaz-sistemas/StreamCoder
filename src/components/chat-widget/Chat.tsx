@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { Box, Flex } from '@chakra-ui/react';
 import useChatLiveModeScrolling from '../../hooks/useChatLiveModeScrolling';
 import { MessageModel } from '../../utils/models';
