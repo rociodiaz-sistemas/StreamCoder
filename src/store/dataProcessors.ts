@@ -2,8 +2,11 @@ import { MessageType } from './../utils/models';
 import { Author, Badge, Emote, MessageModel } from '../utils/models';
 
 export function formatTwitchChatMessage(rawData: any): MessageModel {
-  // const messageType: MessageType = rawData.isHighlighted ? "highlighted" : rawData.hasBits ? "bits" : "common";
-  const messageType: MessageType = 'bits'; // Determine message type
+  const messageType: MessageType = rawData.isHighlighted
+    ? 'highlighted'
+    : rawData.hasBits
+    ? 'bits'
+    : 'common';
   const hasEmotes: boolean =
     Array.isArray(rawData.emotes) && rawData.emotes.length > 0; // Check if emotes array exists and is not empty
   let contentWithEmotes: string = rawData.message;
