@@ -65,7 +65,7 @@ const preview: Preview = {
       return (
         <ChakraProvider theme={updatedTheme}>
           <Provider store={mockStore}>
-            <ChatContextProvider>
+            <ChatContextProvider theme={updatedTheme}>
               <Story {...context} />
             </ChatContextProvider>
           </Provider>
