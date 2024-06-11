@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Resizable } from 're-resizable';
 import Chat from './Chat';
 import { handleResize } from '../../utils/handleResize'; // Import the context and hooks
