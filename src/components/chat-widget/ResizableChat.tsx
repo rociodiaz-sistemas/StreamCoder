@@ -50,7 +50,7 @@ export const ResizableChat = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'red'
+        backgroundColor: 'transparent',
       }}
       onResize={handleResizeCallback}
       enable={{

@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Box, Flex } from '@chakra-ui/react';
 import useChatLiveModeScrolling from '../../hooks/useChatLiveModeScrolling';
-import useThemeMapping from '../../hooks/useThemeMapping';
 import { MessageModel } from '../../utils/models';
 import baseTheme from '../../themes/baseTheme';
 import ChatMessage from './chat-message/ChatMessage';
 import ChatPausedAlert from './ChatPausedAlert';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
-import { ChatHeader } from './ChatHeader';
+// import { ChatHeader } from './ChatHeader';
+import AnimatedBackground from './chat-animations/AnimatedBackground';
+
 type ChatProps = {
   onClick: () => void;
   height: number;
@@ -18,20 +19,17 @@ type ChatProps = {
 };
 
 const Chat = ({
-  onClick,
-  height,
-  defaultHeight,
-  width,
-  defaultWidth,
+  // onClick,
+  // height,
+  // defaultHeight,
+  // width,
+  // defaultWidth,
 }: ChatProps) => { // Use the useChatContext hook to access context values
   const messages = useSelector((state: RootState) => state.messages);
   const { chatMessagesBoxRef, isLiveModeEnabled, scrollNewMessages } =
     useChatLiveModeScrolling<HTMLDivElement>(messages);
-
-  const { getGradient } = useThemeMapping(); // Destructure the hook to get the getGradient function
-
   return (
-    <Flex direction="column" w="inherit" h="inherit">
+    <Flex pos="relative" direction="column" w="inherit" h="inherit">
       {/* <ChatHeader
         onClick={onClick}
         height={height}
@@ -39,14 +37,17 @@ const Chat = ({
         defaultHeight={defaultHeight}
         defaultWidth={defaultWidth}
       /> */}
+
+      <AnimatedBackground />
+
       <Flex
-        pos="relative" // Use the dynamically retrieved gradient
         justify="flex-end"
         direction="column"
         w="inherit"
         h="100%"
         p="20px"
-        bgGradient={getGradient()}
+        position="absolute"
+        zIndex={1}
         border="3px solid"
         borderColor={baseTheme.colors.brown}
         borderTop="none"

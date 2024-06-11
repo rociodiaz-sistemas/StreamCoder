@@ -2,9 +2,11 @@ export const randomNumberBetween = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-export const MORNING_START = 5;
-export const MORNING_END = 12;
-export const DAY_START = 12;
-export const DAY_END = 18;
-export const AFTERNOON_START = 18;
-export const AFTERNOON_END = 20;
+export const timeRanges: { [key: string]: { start: number; end: number } } = {
+  MorningSky: { start: 5, end: 10 },
+  DaySky: { start: 10, end: 16 },
+  AfternoonSky: { start: 16, end: 18 },
+  EveningSky: { start: 18, end: 20 },
+  NightSky: { start: 20, end: 24 },
+  MidnightSky: { start: 0, end: 5 },
+};

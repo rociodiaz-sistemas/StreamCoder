@@ -8,11 +8,8 @@ import ResizableChat from './components/chat-widget/ResizableChat';
 import dayTheme from './themes/dayTheme';
 import afternoonTheme from './themes/afternoonTheme';
 import theme from './themes/theme';
-import { MORNING_START, MORNING_END, DAY_START, DAY_END, AFTERNOON_START, AFTERNOON_END } from './utils/helpers';
-
-// Define a union type for all possible theme objects
-type ThemeType = typeof morningTheme | typeof dayTheme | typeof afternoonTheme | typeof theme;
-
+import { timeRanges } from './utils/helpers';
+import { ThemeType } from './utils/models';
 
 function App() {
   const dispatch = useDispatch();
@@ -25,14 +22,25 @@ function App() {
       const currentHour = new Date().getHours(); // Get the current hour
 
       // Determine which theme to use based on the current hour
-      if (currentHour >= MORNING_START && currentHour < MORNING_END) {
-        setSelectedTheme(morningTheme);
-      } else if (currentHour >= DAY_START && currentHour < DAY_END) {
-        setSelectedTheme(dayTheme);
-      } else if (currentHour >= AFTERNOON_START && currentHour < AFTERNOON_END) {
-        setSelectedTheme(afternoonTheme);
-      } else {
-        setSelectedTheme(theme);
+      for (const [themeName, { start, end }] of Object.entries(timeRanges)) {
+        if (currentHour >= start && currentHour < end) {
+          switch (themeName) {
+            case 'MorningSky':
+              setSelectedTheme(morningTheme);
+              break;
+            case 'DaySky':
+              setSelectedTheme(dayTheme);
+              break;
+            case 'AfternoonSky':
+              setSelectedTheme(afternoonTheme);
+              break;
+            // Add other themes here as needed
+            default:
+              setSelectedTheme(theme);
+              break;
+          }
+          break; // Exit loop once the theme is determined
+        }
       }
     };
 
@@ -53,7 +61,7 @@ function App() {
   return (
     <ChakraProvider theme={selectedTheme}>
       <main>
-        <ChatContextProvider>
+        <ChatContextProvider theme={selectedTheme}>
           <ResizableChat />
         </ChatContextProvider>
       </main>
