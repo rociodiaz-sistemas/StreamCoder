@@ -10,7 +10,6 @@ const TimeSlider: React.FC<TimeSliderProps> = ({ time, setTime }) => {
     setTime(Number(event.target.value));
   };
 
-
   return (
     <div>
       <input

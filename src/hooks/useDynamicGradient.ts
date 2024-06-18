@@ -6,7 +6,7 @@ type Gradient = {
   endColor: string;
 };
 
-const useDynamicGradientColor = (): string => {
+const useDynamicGradientColor = (time: number | undefined): string => {
   const [gradientColor, setGradientColor] = useState<string>('');
 
   const timeRanges: { [key: string]: { start: number; end: number } } = {
@@ -46,9 +46,9 @@ const useDynamicGradientColor = (): string => {
       },
     };
 
-    const determineGradientColor = () => {
+    const determineGradientColor = (time: number | undefined) => {
       const now = new Date();
-      const currentHour = now.getHours(); // Get the current hour
+      const currentHour = time !== undefined ? time : now.getHours(); // Get the current hour
 
       // Find the current gradient based on the current hour
       let currentGradient: Gradient | null = null;
@@ -83,11 +83,11 @@ const useDynamicGradientColor = (): string => {
       }
     };
 
-    determineGradientColor(); // Initial calculation
+    determineGradientColor(time); // Initial calculation
     const intervalId = setInterval(determineGradientColor, 60000); // Update every minute
 
     return () => clearInterval(intervalId); // Clear interval on unmount
-  }, []);
+  }, [time]);
 
   return gradientColor;
 };

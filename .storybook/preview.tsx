@@ -1,6 +1,6 @@
 // .storybook/preview.tsx
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Decorator, Preview } from '@storybook/react';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import morningTheme from '../src/themes/morningTheme';
