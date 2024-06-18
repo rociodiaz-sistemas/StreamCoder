@@ -1,4 +1,3 @@
-// YourComponent.tsx
 import React from 'react';
 
 export interface ComponentTimeProps {

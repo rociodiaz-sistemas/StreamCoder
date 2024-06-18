@@ -1,6 +1,4 @@
-// .storybook/decorators/withTimeSlider.tsx
-
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Decorator } from '@storybook/react';
 import TimeSlider from '../../src/components/storybook-tools/TimeSlider'; // Adjust the path as necessary
 
