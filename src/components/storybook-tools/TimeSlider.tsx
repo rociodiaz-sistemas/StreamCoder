@@ -1,5 +1,4 @@
 import React from 'react';
-
 interface TimeSliderProps {
   time: number;
   setTime: (time: number) => void;
