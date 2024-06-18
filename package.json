@@ -17,6 +17,7 @@
     "@emotion/styled": "^11.11.0",
     "@reduxjs/toolkit": "^2.2.5",
     "@storybook/addon-actions": "^8.0.4",
+    "@storybook/addon-controls": "^8.1.10",
     "@streamerbot/client": "^1.5.1",
     "@types/react-redux": "^7.1.33",
     "@types/redux": "^3.6.0",
