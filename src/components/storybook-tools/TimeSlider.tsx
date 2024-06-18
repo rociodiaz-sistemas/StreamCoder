@@ -5,9 +5,11 @@ interface TimeSliderProps {
 }
 
 const TimeSlider: React.FC<TimeSliderProps> = ({ time, setTime }) => {
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTime(Number(event.target.value));
   };
+
 
   return (
     <div>
