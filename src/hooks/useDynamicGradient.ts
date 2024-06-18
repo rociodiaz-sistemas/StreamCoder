@@ -77,7 +77,9 @@ const useDynamicGradientColor = (): string => {
           .padding([0.2, -0.4])
           .out('hex')(percentage);
 
-        setGradientColor(`linear-gradient(180deg, ${currentGradient.startColor}, ${interpolatedColor}, ${currentGradient.endColor})`);
+        setGradientColor(
+          `linear-gradient(180deg, ${currentGradient.startColor}, ${interpolatedColor}, ${currentGradient.endColor})`,
+        );
       }
     };
 
