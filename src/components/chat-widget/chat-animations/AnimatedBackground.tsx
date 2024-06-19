@@ -8,12 +8,18 @@ import MoonAnimation from './MoonAnimation';
 const StarField = React.lazy(() => import('./StarField'));
 
 interface AnimationBoxProps {
+  time?: number | undefined;
   children: ReactNode;
 }
 
-const AnimatedBackground: React.FC = () => {
+interface AnimatedBackgroundProps {
+  time?: number | undefined;
+}
+
+const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ time }) => {
   const theme = useTheme();
 
+  /* eslint-disable */
   const renderThemeAnimations = () => {
     switch (theme.themeName) {
       case 'morningTheme':
@@ -28,12 +34,13 @@ const AnimatedBackground: React.FC = () => {
         return null;
     }
   };
+  /* eslint-enable */
 
-  return <AnimationBox>{renderThemeAnimations()}</AnimationBox>;
+  return <AnimationBox time={time}>{renderThemeAnimations()}</AnimationBox>;
 };
 
-const AnimationBox: React.FC<AnimationBoxProps> = ({ children }) => {
-  const currentGradient = useDynamicGradientColor();
+const AnimationBox: React.FC<AnimationBoxProps> = ({ children, time }) => {
+  const currentGradient = useDynamicGradientColor(time);
   return (
     <Box
       pos="absolute"

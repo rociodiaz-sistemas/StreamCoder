@@ -16,6 +16,7 @@ export type ChatProps = {
   defaultHeight: number;
   width: number;
   defaultWidth: number;
+  time?: number | undefined;
 };
 
 const Chat = ({
@@ -24,10 +25,12 @@ const Chat = ({
   defaultHeight,
   width,
   defaultWidth,
+  time,
 }: ChatProps) => { // Use the useChatContext hook to access context values
   const messages = useSelector((state: RootState) => state.messages);
   const { chatMessagesBoxRef, isLiveModeEnabled, scrollNewMessages } =
     useChatLiveModeScrolling<HTMLDivElement>(messages);
+
   return (
     <Flex pos="relative" direction="column" w="inherit" h="inherit">
       <ChatHeader
@@ -38,7 +41,7 @@ const Chat = ({
         defaultWidth={defaultWidth}
       />
 
-      <AnimatedBackground />
+      <AnimatedBackground time={time} />
 
       <Flex
         pos="absolute"
@@ -53,11 +56,7 @@ const Chat = ({
         borderTop="none"
       >
         <ChatMessagesBox ref={chatMessagesBoxRef} messages={messages} />
-        {!isLiveModeEnabled && (
-          <ChatPausedAlert
-            onClick={scrollNewMessages}
-          />
-        )}
+        {!isLiveModeEnabled && <ChatPausedAlert onClick={scrollNewMessages} />}
         {/* <SendMessageForm onSend={send} /> */}
       </Flex>
     </Flex>
@@ -67,11 +66,11 @@ const Chat = ({
 /* eslint-disable */
 const ChatMessagesBox = React.forwardRef<
   HTMLDivElement,
-  { messages: MessageModel[]; }
+  { messages: MessageModel[] }
 >(({ messages }, ref) => {
   const MessageList = messages.map((message) => (
     <ChatMessage key={message.msgId} message={message} />
-  ))
+  ));
 
   return (
     <Box ref={ref} overflow="auto" mt="4" px="10px" pb="10px" maxH="70vh">
