@@ -12,7 +12,6 @@ const meta: Meta<ChatProps> = {
 
 export default meta;
 
-// type Story = (args: ChatProps) => JSX.Element;
 type Story = StoryObj<typeof Chat>;
 
 export const Normal: Story = {
