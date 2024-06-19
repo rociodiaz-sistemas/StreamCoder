@@ -56,11 +56,7 @@ const Chat = ({
         borderTop="none"
       >
         <ChatMessagesBox ref={chatMessagesBoxRef} messages={messages} />
-        {!isLiveModeEnabled && (
-          <ChatPausedAlert
-            onClick={scrollNewMessages}
-          />
-        )}
+        {!isLiveModeEnabled && <ChatPausedAlert onClick={scrollNewMessages} />}
         {/* <SendMessageForm onSend={send} /> */}
       </Flex>
     </Flex>
@@ -70,11 +66,11 @@ const Chat = ({
 /* eslint-disable */
 const ChatMessagesBox = React.forwardRef<
   HTMLDivElement,
-  { messages: MessageModel[]; }
+  { messages: MessageModel[] }
 >(({ messages }, ref) => {
   const MessageList = messages.map((message) => (
     <ChatMessage key={message.msgId} message={message} />
-  ))
+  ));
 
   return (
     <Box ref={ref} overflow="auto" mt="4" px="10px" pb="10px" maxH="70vh">
