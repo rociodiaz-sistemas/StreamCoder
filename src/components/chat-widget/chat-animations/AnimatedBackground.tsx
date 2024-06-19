@@ -2,6 +2,7 @@ import { Box, useTheme } from '@chakra-ui/react';
 import React, { ReactNode } from 'react';
 import useDynamicGradientColor from '../../../hooks/useDynamicGradient';
 import UFOComponent from './UFO';
+import MoonAnimation from './MoonAnimation';
 
 // lazy load starfield component
 const StarField = React.lazy(() => import('./StarField'));
@@ -42,6 +43,7 @@ const AnimationBox: React.FC<AnimationBoxProps> = ({ children }) => {
       h="100%"
       bgGradient={currentGradient}
     >
+      <MoonAnimation />
       {children}
     </Box>
   );

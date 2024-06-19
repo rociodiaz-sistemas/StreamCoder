@@ -34,7 +34,7 @@ const useDynamicGradientColor = (): string => {
       },
       EveningSky: {
         startColor: '#373A47',
-        endColor: '#1E2025',
+        endColor: '#553A77',
       },
       NightSky: {
         startColor: '#141311',
@@ -77,7 +77,9 @@ const useDynamicGradientColor = (): string => {
           .padding([0.2, -0.4])
           .out('hex')(percentage);
 
-        setGradientColor(`linear-gradient(180deg, ${currentGradient.startColor}, ${interpolatedColor}, ${currentGradient.endColor})`);
+        setGradientColor(
+          `linear-gradient(180deg, ${currentGradient.startColor}, ${interpolatedColor}, ${currentGradient.endColor})`,
+        );
       }
     };
 
