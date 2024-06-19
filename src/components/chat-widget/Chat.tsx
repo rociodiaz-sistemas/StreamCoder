@@ -16,6 +16,7 @@ export type ChatProps = {
   defaultHeight: number;
   width: number;
   defaultWidth: number;
+  time?: number | undefined;
 };
 
 const Chat = ({
@@ -24,10 +25,12 @@ const Chat = ({
   defaultHeight,
   width,
   defaultWidth,
+  time,
 }: ChatProps) => { // Use the useChatContext hook to access context values
   const messages = useSelector((state: RootState) => state.messages);
   const { chatMessagesBoxRef, isLiveModeEnabled, scrollNewMessages } =
     useChatLiveModeScrolling<HTMLDivElement>(messages);
+
   return (
     <Flex pos="relative" direction="column" w="inherit" h="inherit">
       <ChatHeader
@@ -38,7 +41,7 @@ const Chat = ({
         defaultWidth={defaultWidth}
       />
 
-      <AnimatedBackground />
+      <AnimatedBackground time={time} />
 
       <Flex
         pos="absolute"
