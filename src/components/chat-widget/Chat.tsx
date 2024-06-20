@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Flex } from '@chakra-ui/react';
 import useChatLiveModeScrolling from '../../hooks/useChatLiveModeScrolling';
 import { MessageModel } from '../../utils/models';
@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { ChatHeader } from './ChatHeader';
 import AnimatedBackground from './chat-animations/AnimatedBackground';
+import TimeSlider from '../../stories/tools/TimeSlider';
 
 export type ChatProps = {
   onClick: () => void;
@@ -31,6 +32,7 @@ const Chat = ({
 
   return (
     <Flex pos="relative" direction="column" w="inherit" h="inherit">
+
       <ChatHeader
         onClick={onClick}
         height={height}
@@ -53,6 +55,7 @@ const Chat = ({
         borderColor={baseTheme.colors.brown}
         borderTop="none"
       >
+
         <ChatMessagesBox ref={chatMessagesBoxRef} messages={messages} />
         {!isLiveModeEnabled && <ChatPausedAlert onClick={scrollNewMessages} />}
         {/* <SendMessageForm onSend={send} /> */}

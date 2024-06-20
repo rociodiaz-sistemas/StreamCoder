@@ -6,11 +6,13 @@ type Gradient = {
   endColor: string;
 };
 
-const useDynamicGradientColor = (time: number | undefined): string => {
+const useDynamicGradientColor = (hours?: number, minutes?: number): string => {
   const [gradientColor, setGradientColor] = useState<string>('');
 
   const timeRanges: { [key: string]: { start: number; end: number } } = {
-    MorningSky: { start: 5, end: 10 },
+    DawnSky: { start: 5, end: 6 },
+    InterDawnMorning: { start: 5.3, end: 6 },
+    MorningSky: { start: 6, end: 10 },
     DaySky: { start: 10, end: 16 },
     AfternoonSky: { start: 16, end: 18 },
     EveningSky: { start: 18, end: 20 },
@@ -20,20 +22,28 @@ const useDynamicGradientColor = (time: number | undefined): string => {
 
   useEffect(() => {
     const gradients: { [key: string]: Gradient } = {
+      DawnSky: {
+        startColor: '#242321',
+        endColor: '#325782',
+      },
+      InterDawnMorning: {
+        startColor: '#242321',
+        endColor: '#325782',
+      },
       MorningSky: {
-        startColor: '#A9ABDB',
-        endColor: '#F5F5F5',
+        startColor: '#8ebfe4',
+        endColor: '#e0e7a6',
       },
       DaySky: {
-        startColor: '#FFC926',
-        endColor: '#A9BEDB',
+        startColor: '#8ebfe4',
+        endColor: '#e0e7a6',
       },
       AfternoonSky: {
-        startColor: '#64509F',
+        startColor: '#FFC926',
         endColor: '#EBDDB5',
       },
       EveningSky: {
-        startColor: '#373A47',
+        startColor: '#553A77',
         endColor: '#1E2025',
       },
       NightSky: {
@@ -46,26 +56,37 @@ const useDynamicGradientColor = (time: number | undefined): string => {
       },
     };
 
-    const determineGradientColor = (time: number | undefined) => {
-      const now = new Date();
-      const currentHour = time !== undefined ? time : now.getHours(); // Get the current hour
-
-      // Find the current gradient based on the current hour
+    const determineGradientColor = (hours: number, minutes: number) => {
       let currentGradient: Gradient | null = null;
+      let selectedKey: string | null = null;
 
+      // Determine the current time range
       for (const key in timeRanges) {
         const range = timeRanges[key];
-        if (currentHour >= range.start && currentHour < range.end) {
+        if (hours >= range.start && hours < range.end) {
           currentGradient = gradients[key];
+          selectedKey = key;
           break;
         }
       }
 
-      if (currentGradient) {
-        // Calculate the percentage of time passed within the current hour
-        const minutesPassed = now.getMinutes();
+      if (currentGradient && selectedKey) {
+        // Calculate the total minutes from the start of the current range
         const totalMinutesInHour = 60;
-        const percentage = minutesPassed / totalMinutesInHour;
+        const totalMinutes = hours * totalMinutesInHour + minutes;
+
+        // Calculate the percentage of time passed within the current range
+        const rangeDuration =
+          (timeRanges[selectedKey].end - timeRanges[selectedKey].start) *
+          totalMinutesInHour;
+        let percentage =
+          (totalMinutes - timeRanges[selectedKey].start * totalMinutesInHour) /
+          rangeDuration;
+
+        // Adjust percentage for smooth transition in the last two hours
+        if (percentage >= 0.85) {
+          percentage = 0.85 + (percentage - 0.85) / 7; // Gradual increase in the last two hours
+        }
 
         // Interpolate between the start and end colors of the gradient
         const interpolatedColor = chroma
@@ -83,11 +104,21 @@ const useDynamicGradientColor = (time: number | undefined): string => {
       }
     };
 
-    determineGradientColor(time); // Initial calculation
-    const intervalId = setInterval(determineGradientColor, 60000); // Update every minute
+    // Initial calculation
+    const now = new Date();
+    determineGradientColor(
+      hours !== undefined ? hours : now.getHours(),
+      minutes !== undefined ? minutes : now.getMinutes(),
+    );
+
+    // Interval to update every minute
+    const intervalId = setInterval(() => {
+      const currentTime = new Date();
+      determineGradientColor(currentTime.getHours(), currentTime.getMinutes());
+    }, 60000);
 
     return () => clearInterval(intervalId); // Clear interval on unmount
-  }, [time]);
+  }, [hours, minutes]);
 
   return gradientColor;
 };
