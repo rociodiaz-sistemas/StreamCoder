@@ -16,7 +16,6 @@ export type ChatProps = {
   defaultHeight: number;
   width: number;
   defaultWidth: number;
-  time?: number | undefined;
 };
 
 const Chat = ({
@@ -25,7 +24,6 @@ const Chat = ({
   defaultHeight,
   width,
   defaultWidth,
-  time,
 }: ChatProps) => { // Use the useChatContext hook to access context values
   const messages = useSelector((state: RootState) => state.messages);
   const { chatMessagesBoxRef, isLiveModeEnabled, scrollNewMessages } =
@@ -41,7 +39,7 @@ const Chat = ({
         defaultWidth={defaultWidth}
       />
 
-      <AnimatedBackground time={time} />
+      <AnimatedBackground />
 
       <Flex
         pos="absolute"

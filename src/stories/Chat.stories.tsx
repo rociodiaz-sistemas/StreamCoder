@@ -1,14 +1,13 @@
 import { Meta, StoryObj } from '@storybook/react';
 import { ChatProps } from '../components/chat-widget/Chat';
 import Chat from '../components/chat-widget/Chat';
-import withTimeSlider from '../../.storybook/decorators/withTimeSlider';
 import withDivWrapper from '../../.storybook/decorators/withDivWrapper';
 
 const meta: Meta<ChatProps> = {
   title: 'Widgets/Chat',
   component: Chat,
   tags: ['autodocs'],
-  decorators: [withTimeSlider, withDivWrapper],
+  decorators: [withDivWrapper],
 };
 
 export default meta;
@@ -21,6 +20,5 @@ export const Normal: Story = {
     defaultHeight: 7,
     width: 7,
     defaultWidth: 7,
-    time: 19,
   },
 };
