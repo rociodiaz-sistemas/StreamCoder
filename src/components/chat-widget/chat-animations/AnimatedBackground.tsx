@@ -49,6 +49,7 @@ const AnimationBox: React.FC<AnimationBoxProps> = ({ children, time }) => {
       h="100%"
       bgGradient={currentGradient}
     >
+
       {children}
     </Box>
   );
@@ -68,13 +69,18 @@ const AfternoonThemeAnimations = () => {
   return <div>Afternoon Theme Animations</div>;
 };
 
-const NightThemeAnimations = () => {
+
+const NightThemeAnimations = React.memo(() => {
   const MemoizedStarfield = React.memo(StarField);
   const MemoizedUFOComponent = React.memo(UFOComponent);
   return (
     <>
-      <MemoizedStarfield />
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <MemoizedStarfield />
+      </React.Suspense>
       <MemoizedUFOComponent />
     </>
   );
-};
+});
+
+NightThemeAnimations.displayName = 'NightThemeAnimations';

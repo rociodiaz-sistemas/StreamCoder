@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Meta } from '@storybook/react';
-import MoonAnimation from '../components/chat-widget/chat-animations/MoonAndSun';
 import TimeSlider from './tools/TimeSlider';
+import MoonAndSunAnimation from '../components/chat-widget/chat-animations/MoonAndSun';
 
 // Meta information for the story
 const meta: Meta = {
-  title: 'Components/Moon Animation with Time Slider',
-  component: MoonAnimation,
+  title: 'Animations/Moon and Sun',
+  component: MoonAndSunAnimation,
   argTypes: {
     initialTime: { control: 'object' },
   },
@@ -14,7 +14,7 @@ const meta: Meta = {
 
 export default meta;
 
-// Story definition
+// Story definition for Moon Animation
 export const MoonAnimationWithTimeSlider = ({ initialTime }: { initialTime: { hours: number; minutes: number } }) => {
   const [selectedTime, setSelectedTime] = useState(initialTime || { hours: 18, minutes: 0 });
 
@@ -34,7 +34,8 @@ export const MoonAnimationWithTimeSlider = ({ initialTime }: { initialTime: { ho
       <div style={{
         position: 'relative', width: 500, height: 400, overflow: 'hidden', backgroundColor: 'black',
       }}>
-        <MoonAnimation
+        <MoonAndSunAnimation
+          astralbody='moon'
           overNight={true}
           startTime={{ hours: 18, minutes: 0 }} // Start time (18:00)
           peakTime={{ hours: 23, minutes: 0 }} // Peak time (23:00)
@@ -46,7 +47,45 @@ export const MoonAnimationWithTimeSlider = ({ initialTime }: { initialTime: { ho
   );
 };
 
-// Default props for the story
+// Default props for MoonAnimation
 MoonAnimationWithTimeSlider.args = {
-  initialTime: { hours: 12, minutes: 0 }, // Default initial time (noon)
+  initialTime: { hours: 18, minutes: 0 }, // Default initial time (18:00)
+};
+
+// Story definition for Sun Animation
+export const SunAnimationWithTimeSlider = ({ initialTime }: { initialTime: { hours: number; minutes: number } }) => {
+  const [selectedTime, setSelectedTime] = useState(initialTime || { hours: 5, minutes: 0 });
+
+  const handleTimeChange = (time: { hours: number; minutes: number }) => {
+    setSelectedTime(time);
+  };
+
+  return (
+    <>
+      <TimeSlider
+        startTime={initialTime}
+        onChange={handleTimeChange}
+        overNight={false}
+        minTime={{ hours: 5, minutes: 0 }}
+        maxTime={{ hours: 18, minutes: 0 }}
+      />
+      <div style={{
+        position: 'relative', width: 500, height: 400, overflow: 'hidden', backgroundColor: 'black',
+      }}>
+        <MoonAndSunAnimation
+          astralbody='sun'
+          overNight={false}
+          startTime={{ hours: 5, minutes: 0 }} // Start time (05:00)
+          peakTime={{ hours: 14, minutes: 0 }} // Peak time (14:00)
+          endTime={{ hours: 18, minutes: 0 }} // End time (18:00)
+          currentTime={selectedTime} // Pass current time to MoonAnimation
+        />
+      </div>
+    </>
+  );
+};
+
+// Default props for SunAnimation
+SunAnimationWithTimeSlider.args = {
+  initialTime: { hours: 5, minutes: 0 }, // Default initial time (05:00)
 };

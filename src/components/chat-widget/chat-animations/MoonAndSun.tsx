@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import moonsvg from '../../../assets/moons/moon.svg'; // Default moon SVG
+import sunsvg from '../../../assets/sun.svg'; // Default sun SVG
 import { Hemisphere, Moon } from 'lunarphase-js';
 
 // Import all SVGs for different lunar phases
@@ -24,9 +25,10 @@ interface MoonAnimationProps {
   endTime: Time;
   currentTime?: Time | Date; // Optional current time prop
   overNight?: boolean; // New prop to indicate overnight time range
+  astralbody: 'moon' | 'sun'; // New prop to specify moon or sun
 }
 
-const MoonAnimation: React.FC<MoonAnimationProps> = ({ startTime, peakTime, endTime, currentTime, overNight }) => {
+const MoonAndSunAnimation: React.FC<MoonAnimationProps> = ({ startTime, peakTime, endTime, currentTime, overNight, astralbody }) => {
   const [currentPosition, setCurrentPosition] = useState(0);
   const [moonPhase, setMoonPhase] = useState<string | null>(null);
 
@@ -103,7 +105,11 @@ const MoonAnimation: React.FC<MoonAnimationProps> = ({ startTime, peakTime, endT
     'Waning Crescent': waningcrescent,
   };
 
-  const moonSvg = moonPhase ? phaseToSvg[moonPhase] : moonsvg; // Default to full moon SVG if phase is null
+  // Determine which SVG to use based on the astralbody prop
+  const astralSvg = astralbody === 'moon' ? (moonPhase ? phaseToSvg[moonPhase] : moonsvg) : sunsvg;
+
+  // Adjust glow color based on astralbody
+  const glowColor = astralbody === 'moon' ? 'rgba(255, 255, 255, 0.8)' : 'rgba(255, 245, 107, 0.8)'; // Yellowish for sun
 
   return (
     <motion.div
@@ -124,21 +130,21 @@ const MoonAnimation: React.FC<MoonAnimationProps> = ({ startTime, peakTime, endT
           transform: 'translate(-50%, -50%)',
           borderRadius: '50%',
           opacity: '0.5',
-          boxShadow: '0 0 20px 20px rgba(255, 255, 255, 0.8)', // Soft and large spread glow effect
+          boxShadow: `0 0 20px 20px ${glowColor}`, // Soft and large spread glow effect with adjusted color
         }}
       />
       <motion.img
-        src={moonSvg}
-        alt="Moon"
+        src={astralSvg}
+        alt={astralbody === 'moon' ? 'Moon' : 'Sun'}
         style={{
           width: 50,
           height: 50,
           position: 'relative',
-          zIndex: 1, // Ensure moon SVG is on top of the glow
+          zIndex: 1, // Ensure moon or sun SVG is on top of the glow
         }}
       />
     </motion.div>
   );
 };
 
-export default MoonAnimation;
+export default MoonAndSunAnimation;
