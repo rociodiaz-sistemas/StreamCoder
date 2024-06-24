@@ -10,6 +10,7 @@ import { RootState } from '../../store';
 import { ChatHeader } from './ChatHeader';
 import AnimatedBackground from './chat-animations/AnimatedBackground';
 import TimeSlider from '../../stories/tools/TimeSlider';
+import MoonAndSunAnimation from './chat-animations/MoonAndSun';
 
 export type ChatProps = {
   onClick: () => void;
@@ -30,6 +31,8 @@ const Chat = ({
   const { chatMessagesBoxRef, isLiveModeEnabled, scrollNewMessages } =
     useChatLiveModeScrolling<HTMLDivElement>(messages);
 
+
+
   return (
     <Flex pos="relative" direction="column" w="inherit" h="inherit">
 
@@ -40,6 +43,8 @@ const Chat = ({
         defaultHeight={defaultHeight}
         defaultWidth={defaultWidth}
       />
+
+
 
       <AnimatedBackground />
 

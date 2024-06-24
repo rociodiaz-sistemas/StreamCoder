@@ -2,6 +2,7 @@ import { Box, useTheme } from '@chakra-ui/react';
 import React, { ReactNode } from 'react';
 import useDynamicGradientColor from '../../../hooks/useDynamicGradient';
 import UFOComponent from './UFO';
+import MoonAndSunAnimation from './MoonAndSun';
 
 // lazy load starfield component
 const StarField = React.lazy(() => import('./StarField'));
@@ -49,7 +50,14 @@ const AnimationBox: React.FC<AnimationBoxProps> = ({ children, time }) => {
       h="100%"
       bgGradient={currentGradient}
     >
-
+      <MoonAndSunAnimation
+        astralbody='sun'
+        overNight={false}
+        startTime={{ hours: 5, minutes: 0 }} // Start time (05:00)
+        peakTime={{ hours: 14, minutes: 0 }} // Peak time (14:00)
+        endTime={{ hours: 18, minutes: 0 }} // End time (18:00)
+        currentTime={{ hours: 13, minutes: 0 }} // Pass current time to MoonAnimation
+      />
       {children}
     </Box>
   );

@@ -83,7 +83,12 @@ const MoonAndSunAnimation: React.FC<MoonAnimationProps> = ({ startTime, peakTime
       }
     }
 
-    return Math.max(0, Math.min(1, position));
+    // Scale position to be between 10% and 90%
+    const minPosition = 0.1;
+    const maxPosition = 0.8;
+    position = minPosition + position * (maxPosition - minPosition);
+
+    return Math.max(minPosition, Math.min(maxPosition, position));
   };
 
   useEffect(() => {
@@ -115,9 +120,8 @@ const MoonAndSunAnimation: React.FC<MoonAnimationProps> = ({ startTime, peakTime
     <motion.div
       style={{
         position: 'absolute',
-        top: `${(1 - currentPosition) * 100}%`, // Invert position to start at the bottom
-        left: '50%',
-        transform: 'translateX(-50%)',
+        height: '100%',
+        width: '100%', // Ensure it takes the full height and width of the container
       }}
     >
       <div
@@ -125,9 +129,9 @@ const MoonAndSunAnimation: React.FC<MoonAnimationProps> = ({ startTime, peakTime
           width: 10,
           height: 10,
           position: 'absolute',
-          top: '50%',
+          top: `${(1 - currentPosition) * 100}%`, // Invert position to start at the bottom
           left: '50%',
-          transform: 'translate(-50%, -50%)',
+          transform: 'translateX(-50%)',
           borderRadius: '50%',
           opacity: '0.5',
           boxShadow: `0 0 20px 20px ${glowColor}`, // Soft and large spread glow effect with adjusted color
@@ -139,11 +143,15 @@ const MoonAndSunAnimation: React.FC<MoonAnimationProps> = ({ startTime, peakTime
         style={{
           width: 50,
           height: 50,
-          position: 'relative',
+          position: 'absolute',
+          top: `${(1 - currentPosition) * 100}%`, // Invert position to start at the bottom
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
           zIndex: 1, // Ensure moon or sun SVG is on top of the glow
         }}
       />
     </motion.div>
+
   );
 };
 
