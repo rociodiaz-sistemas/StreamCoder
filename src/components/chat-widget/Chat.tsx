@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Flex } from '@chakra-ui/react';
 import useChatLiveModeScrolling from '../../hooks/useChatLiveModeScrolling';
 import { MessageModel } from '../../utils/models';
@@ -28,8 +28,12 @@ const Chat = ({
   const messages = useSelector((state: RootState) => state.messages);
   const { chatMessagesBoxRef, isLiveModeEnabled, scrollNewMessages } =
     useChatLiveModeScrolling<HTMLDivElement>(messages);
+
+
+
   return (
     <Flex pos="relative" direction="column" w="inherit" h="inherit">
+
       <ChatHeader
         onClick={onClick}
         height={height}
@@ -37,6 +41,8 @@ const Chat = ({
         defaultHeight={defaultHeight}
         defaultWidth={defaultWidth}
       />
+
+
 
       <AnimatedBackground />
 
@@ -52,12 +58,9 @@ const Chat = ({
         borderColor={baseTheme.colors.brown}
         borderTop="none"
       >
+
         <ChatMessagesBox ref={chatMessagesBoxRef} messages={messages} />
-        {!isLiveModeEnabled && (
-          <ChatPausedAlert
-            onClick={scrollNewMessages}
-          />
-        )}
+        {!isLiveModeEnabled && <ChatPausedAlert onClick={scrollNewMessages} />}
         {/* <SendMessageForm onSend={send} /> */}
       </Flex>
     </Flex>
@@ -67,11 +70,11 @@ const Chat = ({
 /* eslint-disable */
 const ChatMessagesBox = React.forwardRef<
   HTMLDivElement,
-  { messages: MessageModel[]; }
+  { messages: MessageModel[] }
 >(({ messages }, ref) => {
   const MessageList = messages.map((message) => (
     <ChatMessage key={message.msgId} message={message} />
-  ))
+  ));
 
   return (
     <Box ref={ref} overflow="auto" mt="4" px="10px" pb="10px" maxH="70vh">
