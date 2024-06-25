@@ -5,18 +5,19 @@ const config: StorybookConfig = {
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
+    '@storybook/addon-onboarding',
     '@storybook/addon-interactions',
-    // This switches light-dark, but doesn't have icon
-    '@chakra-ui/storybook-addon',
+    '@chakra-ui/storybook-addon', // This switches light-dark, but doesn't have icon
     '@storybook/addon-themes',
     '@storybook/addon-actions',
     '@storybook/addon-mdx-gfm',
-    '@chromatic-com/storybook'
   ],
   framework: {
     name: '@storybook/react-vite',
     options: {},
   },
-  docs: {},
+  docs: {
+    autodocs: 'tag',
+  },
 };
 export default config;
