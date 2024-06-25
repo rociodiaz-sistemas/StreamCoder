@@ -84,8 +84,8 @@ const MoonAndSunAnimation: React.FC<MoonAnimationProps> = ({ startTime, peakTime
     }
 
     // Scale position to be between 10% and 90%
-    const minPosition = 0.1;
-    const maxPosition = 0.8;
+    const minPosition = -0.1;
+    const maxPosition = 0.9;
     position = minPosition + position * (maxPosition - minPosition);
 
     return Math.max(minPosition, Math.min(maxPosition, position));
