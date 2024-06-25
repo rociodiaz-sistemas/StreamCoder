@@ -72,7 +72,7 @@ const useDynamicGradientColor = (hours?: number, minutes?: number): string => {
     },
     Midnight: {
       start: 22,
-      end: 23,
+      end: 23.59,
       gradient:
         'linear-gradient(180deg, rgba(0,0,0,1) 15%, rgba(16,32,78,1) 67%, rgba(18,43,116,1) 88%, rgba(32,31,135,1) 100%)',
     },

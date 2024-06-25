@@ -25,7 +25,7 @@ const UFOComponent = () => {
       transition={{ duration: 5, ease: 'easeInOut' }} // Adjust duration and easing as necessary
     >
       <motion.img
-        style={{ width: '15%', height: '15%' }}
+        style={{ width: '20%', height: 'auto' }}
         src={ufosvg}
         alt="UFO"
       />
