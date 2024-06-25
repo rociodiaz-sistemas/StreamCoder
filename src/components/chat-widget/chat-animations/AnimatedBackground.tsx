@@ -4,6 +4,7 @@ import useDynamicGradientColor from '../../../hooks/useDynamicGradient';
 import UFOComponent from './UFO';
 import MoonAndSunAnimation from './MoonAndSun';
 import { MOON_END_TIME, MOON_PEAK_TIME, MOON_START_TIME, SUN_END_TIME, SUN_PEAK_TIME, SUN_START_TIME, getAstralBody } from '../../../utils/helpers';
+import NyanCatAnimation from './NyanCat';
 
 // lazy load starfield component
 const StarField = React.lazy(() => import('./StarField'));
@@ -41,7 +42,7 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ time }) => {
 };
 
 const AnimationBox: React.FC<AnimationBoxProps> = ({ children, time }) => {
-  const currentGradient = useDynamicGradientColor(time);
+  const currentGradient = useDynamicGradientColor();
   const [currentTime, setCurrentTime] = useState(new Date());
   const [astralbody, setAstralBody] = useState<'moon' | 'sun'>(getAstralBody(new Date()));
 
@@ -95,12 +96,14 @@ const AfternoonThemeAnimations = () => {
 const NightThemeAnimations = React.memo(() => {
   const MemoizedStarfield = React.memo(StarField);
   const MemoizedUFOComponent = React.memo(UFOComponent);
+  const MemoizedNyanCat = React.memo(NyanCatAnimation);
   return (
     <>
       <React.Suspense fallback={<div>Loading...</div>}>
         <MemoizedStarfield />
       </React.Suspense>
       <MemoizedUFOComponent />
+      <MemoizedNyanCat />
     </>
   );
 });
