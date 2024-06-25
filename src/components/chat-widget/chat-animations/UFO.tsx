@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import ufosvg from '../../../assets/ufo.svg';
+import { UFO_INDEX } from '../../../utils/helpers';
 
 // Define the animation variants
 const ufoVariants = {
@@ -13,6 +14,7 @@ const UFOComponent = () => {
       id="ufo"
       style={{
         position: 'relative',
+        zIndex: UFO_INDEX,
         width: '100%',
         height: '100%',
         overflow: 'hidden',
