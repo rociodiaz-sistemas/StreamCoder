@@ -41,7 +41,7 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ time }) => {
   return <AnimationBox time={time}>{renderThemeAnimations()}</AnimationBox>;
 };
 
-const AnimationBox: React.FC<AnimationBoxProps> = ({ children, time }) => {
+const AnimationBox: React.FC<AnimationBoxProps> = ({ children }) => {
   const currentGradient = useDynamicGradientColor();
   const [currentTime, setCurrentTime] = useState(new Date());
   const [astralbody, setAstralBody] = useState<'moon' | 'sun'>(getAstralBody(new Date()));
