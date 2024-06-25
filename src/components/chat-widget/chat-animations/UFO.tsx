@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import ufosvg from '../../../assets/ufo.svg';
-import { UFO_INDEX } from '../../../utils/helpers';
 
 // Define the animation variants
 const ufoVariants = {
@@ -14,7 +13,6 @@ const UFOComponent = () => {
       id="ufo"
       style={{
         position: 'relative',
-        zIndex: UFO_INDEX,
         width: '100%',
         height: '100%',
         overflow: 'hidden',
@@ -25,7 +23,7 @@ const UFOComponent = () => {
       transition={{ duration: 5, ease: 'easeInOut' }} // Adjust duration and easing as necessary
     >
       <motion.img
-        style={{ width: '20%', height: 'auto' }}
+        style={{ width: '15%', height: '15%' }}
         src={ufosvg}
         alt="UFO"
       />
