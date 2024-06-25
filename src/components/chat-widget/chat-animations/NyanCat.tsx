@@ -7,7 +7,6 @@ const NyanCatAnimation: React.FC = () => {
     <motion.div
       id='nyan-cat-animation'
       style={{
-        position: 'absolute',
         width: '100%',
         height: '100%',
         overflow: 'hidden',
@@ -19,10 +18,11 @@ const NyanCatAnimation: React.FC = () => {
         alt="Nyan Cat"
         style={{
           position: 'absolute',
-          width: '55%', // Adjust the width as needed
+          width: '15%', // Adjust the width as needed
           height: 'auto',
           top: '0%',
           transform: 'translateY(-50%)',
+          zIndex: 3,
         }}
         initial={{ x: '-100%' }}
         animate={{ x: '200%' }}

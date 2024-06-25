@@ -5,6 +5,7 @@ import UFOComponent from './UFO';
 import MoonAndSunAnimation from './MoonAndSun';
 import { MOON_END_TIME, MOON_PEAK_TIME, MOON_START_TIME, SUN_END_TIME, SUN_PEAK_TIME, SUN_START_TIME, getAstralBody } from '../../../utils/helpers';
 import NyanCatAnimation from './NyanCat';
+import FirefliesAnimation from './Fireflies';
 
 // lazy load starfield component
 const StarField = React.lazy(() => import('./StarField'));
@@ -102,8 +103,9 @@ const NightThemeAnimations = React.memo(() => {
       <React.Suspense fallback={<div>Loading...</div>}>
         <MemoizedStarfield />
       </React.Suspense>
-      <MemoizedUFOComponent />
-      <MemoizedNyanCat />
+      {/* <MemoizedUFOComponent />
+      <MemoizedNyanCat /> */}
+      <FirefliesAnimation />
     </>
   );
 });
