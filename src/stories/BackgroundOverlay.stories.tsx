@@ -1,6 +1,5 @@
 import BackgroundOverlay from '../components/background/BackgroundOverlay';
 
-
 export default {
   title: 'Components/BackgroundOverlay',
   component: BackgroundOverlay,
