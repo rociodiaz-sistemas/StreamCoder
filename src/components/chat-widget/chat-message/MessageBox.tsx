@@ -6,6 +6,8 @@ import { MessageBoxStyle, MessageType } from '../../../utils/models';
 import { AnimationProps } from 'framer-motion';
 import { itemSpringAnimationProps } from '../../../animations';
 import Animation from '../Animation';
+import LevitatingWrapper from '../chat-animations/LevitatingWrapper';
+import '../chat-animations/diamond-shine/diamond-shine-keyframes.css';
 
 type MessageBoxProps = {
   children: React.ReactNode;
@@ -36,6 +38,14 @@ export default function MessageBox({ children, messageType }: MessageBoxProps) {
   const animationProps =
     animationPropsMap[messageType] || itemSpringAnimationProps;
 
+  const BitsStyle = {
+    border: '3px solid transparent', // Initial border settings
+    borderImage: 'linear-gradient(to right, #A23EFC, #D3A6FF)', // Gradient border
+    borderImageSlice: '1',
+    padding: '20px',
+    animation: 'pulsate 3s infinite',
+  };
+
   return (
     <Box pt="0.5em">
       <Animation animationProps={animationProps}>
@@ -53,9 +63,12 @@ export default function MessageBox({ children, messageType }: MessageBoxProps) {
           borderRadius="12px"
           shadow={boxShadow ? '0px 4px 6px rgba(0, 0, 0, 0.25)' : 'none'}
           bgColor={background}
+          style={messageType === 'bits' ? BitsStyle : {}}
         >
           {children}
+
         </Box>
+
       </Animation>
     </Box>
   );

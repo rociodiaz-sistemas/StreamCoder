@@ -1,0 +1,23 @@
+.diamond-shine {
+  animation: pulsate 2s infinite;
+}
+
+@keyframes pulsate {
+  0% {
+    box-shadow: 0 0 20px 0 rgba(174, 30, 227, 0.3), 0 0 30px 0 rgba(109, 75, 121, 0.2), 0 0 40px 0 rgba(109, 75, 121, 0.1);
+    opacity: 0.7;
+    /* Initial opacity */
+  }
+
+  50% {
+    box-shadow: 0 0 30px 0 rgba(174, 30, 227, 0.4), 0 0 40px 0 rgba(109, 75, 121, 0.3), 0 0 50px 0 rgba(109, 75, 121, 0.2);
+    opacity: 0.9;
+    /* Higher opacity at midpoint */
+  }
+
+  100% {
+    box-shadow: 0 0 20px 0 rgba(174, 30, 227, 0.3), 0 0 30px 0 rgba(109, 75, 121, 0.2), 0 0 40px 0 rgba(109, 75, 121, 0.1);
+    opacity: 0.7;
+    /* Return to initial opacity */
+  }
+}
