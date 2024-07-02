@@ -1,5 +1,4 @@
 import { MessageModel } from '../../../utils/models';
-
 import { Flex } from '@chakra-ui/react';
 import Username from './usernames/UserName';
 import './styles.css';
@@ -16,9 +15,26 @@ export const MessageContent = ({ message }: { message: MessageModel }) => {
   return (
     <>
       <Flex align="center" direction="row">
-        <Username displayName={message.author.displayName} color={message.author.color} type={message.type} />
+        <Username
+          displayName={message.author.displayName}
+          color={message.author.color}
+          type={message.type}
+        />
       </Flex>
-      <Flex wrap='wrap' dangerouslySetInnerHTML={{ __html: message.content }}></Flex>
+      <Flex
+        wrap="wrap"
+        bg="red"
+        style={{
+          overflow: 'hidden',
+          wordWrap: 'break-word',
+          whiteSpace: 'normal',
+        }}
+      >
+        <div
+          className="content-wrapper"
+          dangerouslySetInnerHTML={{ __html: message.content }}
+        ></div>
+      </Flex>
     </>
   );
 };

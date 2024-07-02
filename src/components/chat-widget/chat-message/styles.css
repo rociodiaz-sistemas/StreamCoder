@@ -1,3 +1,9 @@
-p {
+.content-wrapper p {
   flex-wrap: wrap;
+  align-items: center;
+}
+
+.content-wrapper img {
+  width: 10%;
+  height: auto;
 }
