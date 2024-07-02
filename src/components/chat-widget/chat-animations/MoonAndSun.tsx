@@ -126,8 +126,8 @@ const MoonAndSunAnimation: React.FC<MoonAnimationProps> = ({ startTime, peakTime
     >
       <div
         style={{
-          width: 10,
-          height: 10,
+          width: 1,
+          height: 1,
           position: 'absolute',
           top: `${(1 - currentPosition) * 100}%`, // Invert position to start at the bottom
           left: '50%',
