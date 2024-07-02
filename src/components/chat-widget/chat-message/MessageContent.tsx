@@ -23,7 +23,6 @@ export const MessageContent = ({ message }: { message: MessageModel }) => {
       </Flex>
       <Flex
         wrap="wrap"
-        bg="red"
         style={{
           overflow: 'hidden',
           wordWrap: 'break-word',
