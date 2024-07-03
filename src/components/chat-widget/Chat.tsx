@@ -24,16 +24,14 @@ const Chat = ({
   defaultHeight,
   width,
   defaultWidth,
-}: ChatProps) => { // Use the useChatContext hook to access context values
+}: ChatProps) => {
+  // Use the useChatContext hook to access context values
   const messages = useSelector((state: RootState) => state.messages);
   const { chatMessagesBoxRef, isLiveModeEnabled, scrollNewMessages } =
     useChatLiveModeScrolling<HTMLDivElement>(messages);
 
-
-
   return (
     <Flex pos="relative" direction="column" w="inherit" h="inherit">
-
       <ChatHeader
         onClick={onClick}
         height={height}
@@ -41,8 +39,6 @@ const Chat = ({
         defaultHeight={defaultHeight}
         defaultWidth={defaultWidth}
       />
-
-
 
       <AnimatedBackground />
 
@@ -58,7 +54,6 @@ const Chat = ({
         borderColor={baseTheme.colors.brown}
         borderTop="none"
       >
-
         <ChatMessagesBox ref={chatMessagesBoxRef} messages={messages} />
         {!isLiveModeEnabled && <ChatPausedAlert onClick={scrollNewMessages} />}
         {/* <SendMessageForm onSend={send} /> */}
