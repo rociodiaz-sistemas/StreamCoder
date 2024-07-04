@@ -6,8 +6,8 @@ import { MessageBoxStyle, MessageType } from '../../../utils/models';
 import { AnimationProps } from 'framer-motion';
 import { itemSpringAnimationProps } from '../../../animations';
 import Animation from '../Animation';
-import LevitatingWrapper from '../chat-animations/LevitatingWrapper';
 import '../chat-animations/diamond-shine/diamond-shine-keyframes.css';
+import CrawlingLadybug from '../chat-animations/CrawlingLadybug';
 
 type MessageBoxProps = {
   children: React.ReactNode;
@@ -25,6 +25,7 @@ export default function MessageBox({ children, messageType }: MessageBoxProps) {
   const themeInfo = useThemeMapping();
   const { fontSize } = useChatContext();
   const messageBoxStyle = themeInfo.getMessageBoxStyles(messageType) || {};
+  const containerRef = React.useRef<HTMLDivElement>(null);
 
   const {
     borderColor,
@@ -50,6 +51,7 @@ export default function MessageBox({ children, messageType }: MessageBoxProps) {
     <Box pt="0.5em">
       <Animation animationProps={animationProps}>
         <Box
+          ref={containerRef as React.RefObject<HTMLDivElement>}
           w="90%"
           p="1em"
           fontSize={fontSize}
@@ -63,12 +65,11 @@ export default function MessageBox({ children, messageType }: MessageBoxProps) {
           borderRadius="12px"
           shadow={boxShadow ? '0px 4px 6px rgba(0, 0, 0, 0.25)' : 'none'}
           bgColor={background}
-          style={messageType === 'bits' ? BitsStyle : {}}
+          style={messageType === 'bits' ? BitsStyle : { position: 'relative' }}
         >
           {children}
-
+          <CrawlingLadybug /> {/* Render Ladybug component */}
         </Box>
-
       </Animation>
     </Box>
   );

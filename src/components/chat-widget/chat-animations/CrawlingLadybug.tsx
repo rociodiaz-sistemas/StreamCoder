@@ -1,0 +1,133 @@
+import React, { useEffect, useState } from 'react';
+import { motion, useAnimation } from 'framer-motion';
+import ladybugSvg from '../../../assets/ladybug-sus.svg';
+
+type Position = {
+  top: number;
+  left: number;
+};
+
+const getRandom = (min: number, max: number): number => Math.random() * (max - min) + min;
+
+const generateGridPath = (maxX: number, maxY: number): Position[] => {
+  const path: Position[] = [];
+
+  // Start from a random position within the container
+  let startX = getRandom(10, maxX - 10);
+  let startY = getRandom(10, maxY - 10);
+
+  // Move horizontally to the right border
+  for (let x = startX; x <= maxX - 10; x += 20) {
+    path.push({ top: startY, left: x });
+  }
+
+  // Move vertically to the bottom border
+  startY = maxY - 10;
+  for (let y = startY; y >= 10; y -= 20) {
+    path.push({ top: y, left: path[path.length - 1].left });
+  }
+
+  // Move horizontally to the left border
+  startX = 10;
+  for (let x = path[path.length - 1].left; x >= startX; x -= 20) {
+    path.push({ top: path[path.length - 1].top, left: x });
+  }
+
+  // Move vertically to the top border
+  startY = 10;
+  for (let y = path[path.length - 1].top; y <= startY + 10; y += 20) {
+    path.push({ top: y, left: path[path.length - 1].left });
+  }
+
+  return path;
+};
+
+const calculateRotation = (prev: Position, next: Position): number => {
+  const deltaX = next.left - prev.left;
+  const deltaY = next.top - prev.top;
+  let angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI); // Calculate angle in degrees
+
+  // Adjust angle to ladybug's default orientation (head up)
+  angle += 90;
+
+  // Normalize angle to be between -180 and 180 degrees
+  if (angle > 180) {
+    angle -= 360;
+  } else if (angle < -180) {
+    angle += 360;
+  }
+
+  return angle;
+};
+
+const CrawlingLadybug: React.FC = () => {
+  const controls = useAnimation();
+  const [path, setPath] = useState<Position[]>(generateGridPath(100, 100)); // Adjust dimensions as needed
+  const [currentPosition, setCurrentPosition] = useState(0);
+
+  useEffect(() => {
+    const moveLadybug = async () => {
+      while (true) {
+        for (let i = 0; i < path.length; i++) {
+          const nextPosition = path[i];
+          const rotation = calculateRotation(path[i === 0 ? path.length - 1 : i - 1], nextPosition);
+
+          await controls.start({
+            rotate: rotation,
+            transition: { duration: 0.5, ease: 'easeInOut' },
+          });
+
+          await controls.start({
+            top: `${nextPosition.top}%`,
+            left: `${nextPosition.left}%`,
+            transition: { duration: 3, ease: 'linear' },
+          });
+
+          setCurrentPosition(i);
+
+          // Introduce a random pause between movements
+          const minDirectionTime = 2000; // Adjust as needed
+          await new Promise((resolve) => setTimeout(resolve, minDirectionTime));
+        }
+      }
+    };
+
+    moveLadybug();
+  }, [path, controls]);
+
+  return (
+    <div style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0 }}>
+      <motion.div
+        animate={controls}
+        style={{
+          position: 'absolute',
+          top: `${path[currentPosition].top}%`,
+          left: `${path[currentPosition].left}%`,
+        }}
+      >
+        <motion.img
+          src={ladybugSvg}
+          alt="Ladybug"
+          style={{
+            width: '25px',
+            height: '25px',
+            originX: 0.5,
+            originY: 0.5,
+            rotate: 0, // Start with no rotation
+            filter: 'drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25))', // Drop shadow effect
+          }}
+          animate={{
+            rotate: [-2, 2, -1, 1, 0], // Smooth and subtle wobble animation
+          }}
+          transition={{
+            duration: 1,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+        />
+      </motion.div>
+    </div>
+  );
+};
+
+export default CrawlingLadybug;
