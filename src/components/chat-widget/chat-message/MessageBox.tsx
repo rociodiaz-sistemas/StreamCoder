@@ -6,12 +6,14 @@ import { MessageBoxStyle, MessageType } from '../../../utils/models';
 import { AnimationProps } from 'framer-motion';
 import { itemSpringAnimationProps } from '../../../animations';
 import Animation from '../Animation';
-import LevitatingWrapper from '../chat-animations/LevitatingWrapper';
 import '../chat-animations/diamond-shine/diamond-shine-keyframes.css';
+import CrawlingLadybug from '../chat-animations/CrawlingLadybug';
+import Leaves from '../../../assets/leaves-corner.png';
 
 type MessageBoxProps = {
   children: React.ReactNode;
   messageType: MessageType;
+  isSuscriber?: boolean;
 };
 
 const animationPropsMap: { [key in MessageType]: AnimationProps } = {
@@ -21,10 +23,11 @@ const animationPropsMap: { [key in MessageType]: AnimationProps } = {
   // Add more message types as needed
 };
 
-export default function MessageBox({ children, messageType }: MessageBoxProps) {
+export default function MessageBox({ children, messageType, isSuscriber }: MessageBoxProps) {
   const themeInfo = useThemeMapping();
   const { fontSize } = useChatContext();
   const messageBoxStyle = themeInfo.getMessageBoxStyles(messageType) || {};
+  const containerRef = React.useRef<HTMLDivElement>(null);
 
   const {
     borderColor,
@@ -49,7 +52,9 @@ export default function MessageBox({ children, messageType }: MessageBoxProps) {
   return (
     <Box pt="0.5em">
       <Animation animationProps={animationProps}>
+
         <Box
+          ref={containerRef as React.RefObject<HTMLDivElement>}
           w="90%"
           p="1em"
           fontSize={fontSize}
@@ -63,12 +68,15 @@ export default function MessageBox({ children, messageType }: MessageBoxProps) {
           borderRadius="12px"
           shadow={boxShadow ? '0px 4px 6px rgba(0, 0, 0, 0.25)' : 'none'}
           bgColor={background}
-          style={messageType === 'bits' ? BitsStyle : {}}
+          style={messageType === 'bits' ? BitsStyle : { position: 'relative' }}
         >
+          {isSuscriber &&
+            <>
+              <img src={Leaves} alt='leaves1' style={{ position: 'absolute', height: 'auto', width: '90px', right: '-19px', top: '-11px', transform: 'rotate(180deg)' }} />
+              <img src={Leaves} alt='leaves2' style={{ position: 'absolute', height: 'auto', width: '90px', left: '-22px', top: '34px' }} /> </>}
           {children}
-
+          {isSuscriber && <CrawlingLadybug />}
         </Box>
-
       </Animation>
     </Box>
   );

@@ -25,3 +25,4 @@ export const getAstralBody = (currentTime: Date): 'moon' | 'sun' => {
 export const STARFIELD_INDEX = 0;
 export const MOON_INDEX = 1;
 export const UFO_INDEX = 2;
+export const LADY_BUG_INDEX = 3;

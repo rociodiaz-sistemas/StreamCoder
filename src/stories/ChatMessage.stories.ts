@@ -64,3 +64,13 @@ export const Bits: Story = {
     },
   },
 };
+
+export const Suscriber: Story = {
+  args: {
+    message: {
+      ...baseMessage,
+      type: 'common',
+      suscriber: true,
+    },
+  },
+};

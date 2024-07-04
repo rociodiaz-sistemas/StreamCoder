@@ -8,7 +8,7 @@ export type MessageProps = {
 
 const ChatMessage = ({ message }: MessageProps) => {
   return (
-    <MessageBox messageType={message.type}>
+    <MessageBox messageType={message.type} isSuscriber={message.suscriber}>
       <MessageContent message={message} />
     </MessageBox>
   );
