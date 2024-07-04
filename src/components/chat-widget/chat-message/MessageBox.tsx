@@ -8,10 +8,12 @@ import { itemSpringAnimationProps } from '../../../animations';
 import Animation from '../Animation';
 import '../chat-animations/diamond-shine/diamond-shine-keyframes.css';
 import CrawlingLadybug from '../chat-animations/CrawlingLadybug';
+import Leaves from '../../../assets/leaves-corner.png';
 
 type MessageBoxProps = {
   children: React.ReactNode;
   messageType: MessageType;
+  isSuscriber?: boolean;
 };
 
 const animationPropsMap: { [key in MessageType]: AnimationProps } = {
@@ -21,7 +23,7 @@ const animationPropsMap: { [key in MessageType]: AnimationProps } = {
   // Add more message types as needed
 };
 
-export default function MessageBox({ children, messageType }: MessageBoxProps) {
+export default function MessageBox({ children, messageType, isSuscriber }: MessageBoxProps) {
   const themeInfo = useThemeMapping();
   const { fontSize } = useChatContext();
   const messageBoxStyle = themeInfo.getMessageBoxStyles(messageType) || {};
@@ -50,6 +52,7 @@ export default function MessageBox({ children, messageType }: MessageBoxProps) {
   return (
     <Box pt="0.5em">
       <Animation animationProps={animationProps}>
+
         <Box
           ref={containerRef as React.RefObject<HTMLDivElement>}
           w="90%"
@@ -67,8 +70,12 @@ export default function MessageBox({ children, messageType }: MessageBoxProps) {
           bgColor={background}
           style={messageType === 'bits' ? BitsStyle : { position: 'relative' }}
         >
+          {isSuscriber &&
+            <>
+              <img src={Leaves} alt='leaves1' style={{ position: 'absolute', height: 'auto', width: '90px', right: '-19px', top: '-11px', transform: 'rotate(180deg)' }} />
+              <img src={Leaves} alt='leaves2' style={{ position: 'absolute', height: 'auto', width: '90px', left: '-22px', top: '34px' }} /> </>}
           {children}
-          <CrawlingLadybug /> {/* Render Ladybug component */}
+          {isSuscriber && <CrawlingLadybug />}
         </Box>
       </Animation>
     </Box>

@@ -45,6 +45,8 @@ const generateGridPath = (maxX: number, maxY: number): Position[] => {
 const calculateRotation = (prev: Position, next: Position): number => {
   const deltaX = next.left - prev.left;
   const deltaY = next.top - prev.top;
+
+  // Determine the angle of movement direction
   let angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI); // Calculate angle in degrees
 
   // Adjust angle to ladybug's default orientation (head up)
@@ -64,36 +66,44 @@ const CrawlingLadybug: React.FC = () => {
   const controls = useAnimation();
   const [path, setPath] = useState<Position[]>(generateGridPath(100, 100)); // Adjust dimensions as needed
   const [currentPosition, setCurrentPosition] = useState(0);
+  const [initialRotation, setInitialRotation] = useState(getRandom(0, 360)); // Random initial rotation
 
   useEffect(() => {
     const moveLadybug = async () => {
-      while (true) {
-        for (let i = 0; i < path.length; i++) {
-          const nextPosition = path[i];
-          const rotation = calculateRotation(path[i === 0 ? path.length - 1 : i - 1], nextPosition);
+      for (let i = 0; i < path.length; i++) {
+        const nextPosition = path[i];
 
+        if (i > 0) {
+          const rotation = calculateRotation(path[i - 1], nextPosition);
           await controls.start({
             rotate: rotation,
             transition: { duration: 0.5, ease: 'easeInOut' },
           });
-
+        } else {
+          // Apply initial random rotation after a short delay
+          await new Promise((resolve) => setTimeout(resolve, 500)); // Adjust delay time as needed
           await controls.start({
-            top: `${nextPosition.top}%`,
-            left: `${nextPosition.left}%`,
-            transition: { duration: 3, ease: 'linear' },
+            rotate: initialRotation,
+            transition: { duration: 0.5, ease: 'easeInOut' },
           });
-
-          setCurrentPosition(i);
-
-          // Introduce a random pause between movements
-          const minDirectionTime = 2000; // Adjust as needed
-          await new Promise((resolve) => setTimeout(resolve, minDirectionTime));
         }
+
+        await controls.start({
+          top: `${nextPosition.top}%`,
+          left: `${nextPosition.left}%`,
+          transition: { duration: 3, ease: 'linear' },
+        });
+
+        setCurrentPosition(i);
+
+        // Introduce a random pause between movements
+        const minDirectionTime = 2000; // Adjust as needed
+        await new Promise((resolve) => setTimeout(resolve, minDirectionTime));
       }
     };
 
     moveLadybug();
-  }, [path, controls]);
+  }, [path, controls, initialRotation]);
 
   return (
     <div style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0 }}>
@@ -113,11 +123,10 @@ const CrawlingLadybug: React.FC = () => {
             height: '25px',
             originX: 0.5,
             originY: 0.5,
-            rotate: 0, // Start with no rotation
-            filter: 'drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25))', // Drop shadow effect
+            rotate: initialRotation, // Start with random initial rotation
           }}
           animate={{
-            rotate: [-2, 2, -1, 1, 0], // Smooth and subtle wobble animation
+            rotate: [-5, 5, -3, 3, 0], // Smooth wobble animation
           }}
           transition={{
             duration: 1,
