@@ -141,7 +141,7 @@ const MoonAndSunAnimation: React.FC<MoonAnimationProps> = ({ startTime, peakTime
         src={astralSvg}
         alt={astralbody === 'moon' ? 'Moon' : 'Sun'}
         style={{
-          width: 50,
+          width: '18%',
           height: 'auto',
           position: 'absolute',
           top: `${(1 - currentPosition) * 100}%`, // Invert position to start at the bottom
