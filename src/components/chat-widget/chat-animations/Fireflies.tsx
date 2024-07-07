@@ -16,7 +16,7 @@ const Firefly: React.FC = () => {
         backgroundColor: 'yellow',
         boxShadow: '0 0 10px yellow',
         opacity: 0.8,
-        top: `${getRandom(0, 100)}%`,
+        top: `${getRandom(50, 100)}%`,
         left: `${getRandom(0, 100)}%`,
       }}
       animate={{

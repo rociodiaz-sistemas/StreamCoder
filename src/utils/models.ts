@@ -65,6 +65,7 @@ export interface MessageBoxStyle {
   backgroundGradient?: string;
   gifBackground?: string;
   boxShadow?: string;
+  color?: string;
 }
 
 //TBD: CHEER EMOTES

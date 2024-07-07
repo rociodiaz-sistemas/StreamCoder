@@ -25,13 +25,14 @@ export default {
       backgroundGradient: undefined,
       gifBackground: gifs.general.subscriberGif,
     },
-    bit: {
+    bits: {
       borderColor: 'lila',
       background: 'rosaPalido',
       backgroundGradient: undefined,
-      gifBackground: gifs.general.bitGif,
+      // gifBackground: gifs.general.bitGif,
     },
     highlighted: {
+      color: 'nightWhite',
       borderColor: 'nightWhite',
       background: undefined,
       backgroundGradient: gradients.afternoonTheme.nightSkyAfternoon,
@@ -44,7 +45,7 @@ export default {
       gifBackground: undefined,
     },
     common: {
-      borderColor: 'lila',
+      borderColor: 'nightWhite',
       background: 'rosaPalido',
       backgroundGradient: undefined,
       gifBackground: undefined,

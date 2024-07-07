@@ -19,31 +19,37 @@ export default {
   },
   messageStyles: {
     // Define message box styles based on user type
+
     subscriber: {
+      color: 'nightWhite',
       borderColor: 'rosaBarbie',
       background: 'nightWhite',
       backgroundGradient: undefined,
       gifBackground: gifs.general.subscriberGif,
     },
-    bit: {
+    bits: {
+      color: 'nightWhite',
       borderColor: 'rosaBarbie',
-      background: 'nightWhite',
+      background: 'rositaBb',
       backgroundGradient: undefined,
-      gifBackground: gifs.general.bitGif,
+      gifBackground: undefined,
     },
     highlighted: {
+      color: 'nightWhite',
       borderColor: 'nightWhite',
       background: 'cuteCosmico',
       backgroundGradient: gradients.nightTheme.cuteCosmico,
       gifBackground: undefined,
     },
     vip: {
+      color: 'nightWhite',
       borderColor: 'rosaBarbie',
       background: 'nightWhite',
       backgroundGradient: undefined,
       gifBackground: undefined,
     },
     common: {
+      color: 'nightWhite',
       borderColor: 'rosaBarbie',
       background: 'rositaBb',
       backgroundGradient: undefined,
