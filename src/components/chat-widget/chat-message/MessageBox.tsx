@@ -9,6 +9,7 @@ import Animation from '../Animation';
 import '../chat-animations/diamond-shine/diamond-shine-keyframes.css';
 import CrawlingLadybug from '../chat-animations/CrawlingLadybug';
 import Leaves from '../../../assets/leaves-corner.png';
+import LevitatingWrapper from '../chat-animations/LevitatingWrapper';
 
 type MessageBoxProps = {
   children: React.ReactNode;
@@ -35,6 +36,7 @@ export default function MessageBox({ children, messageType, isSuscriber }: Messa
     backgroundGradient,
     gifBackground,
     boxShadow,
+    color,
   } = messageBoxStyle as MessageBoxStyle;
 
   // Get animation props based on message type from the mapping
@@ -52,11 +54,11 @@ export default function MessageBox({ children, messageType, isSuscriber }: Messa
   return (
     <Box pt="0.5em">
       <Animation animationProps={animationProps}>
-
         <Box
           ref={containerRef as React.RefObject<HTMLDivElement>}
           w="90%"
           p="1em"
+          color={color}
           fontSize={fontSize}
           bgImage={backgroundGradient ? undefined : gifBackground}
           bgSize="cover"
@@ -72,8 +74,8 @@ export default function MessageBox({ children, messageType, isSuscriber }: Messa
         >
           {isSuscriber &&
             <>
-              <img src={Leaves} alt='leaves1' style={{ position: 'absolute', height: 'auto', width: '90px', right: '-19px', top: '-11px', transform: 'rotate(180deg)' }} />
-              <img src={Leaves} alt='leaves2' style={{ position: 'absolute', height: 'auto', width: '90px', left: '-22px', top: '34px' }} /> </>}
+              <img src={Leaves} alt='leaves1' style={{ position: 'absolute', height: 'auto', width: '18%', right: '-19px', top: '-11px', transform: 'rotate(180deg)' }} />
+              <img src={Leaves} alt='leaves2' style={{ position: 'absolute', height: 'auto', width: '18%', left: '-19px', bottom: '-15px' }} /> </>}
           {children}
           {isSuscriber && <CrawlingLadybug />}
         </Box>

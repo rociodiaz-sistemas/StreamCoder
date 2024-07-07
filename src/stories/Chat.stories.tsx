@@ -15,7 +15,7 @@ export default meta;
 type Story = StoryObj<typeof Chat>;
 
 export const Normal: Story = {
-  args: {
+  args: { 
     height: 7,
     defaultHeight: 7,
     width: 7,

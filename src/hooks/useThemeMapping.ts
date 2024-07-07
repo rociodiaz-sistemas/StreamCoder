@@ -10,6 +10,7 @@ interface MessageStyles {
   gifBackground?: string;
   messageBoxStyle: string;
   backgroundGradient?: string;
+  color?: string;
 }
 
 interface ThemeInfo {
