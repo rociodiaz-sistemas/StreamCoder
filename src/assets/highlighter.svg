@@ -2,7 +2,7 @@
 <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
 <svg height="800px" width="800px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
 	 viewBox="0 0 512 512" xml:space="preserve">
-<polygon style="fill:#FFBA57;" points="113.466,244.023 276.228,406.785 501.801,136.426 383.826,18.451 "/>
+<polygon style="fill:var(--highlighted-color, #E6E6E6)" points="113.466,244.023 276.228,406.785 501.801,136.426 383.826,18.451 "/>
 <polygon style="fill:#B3B3B3;" points="132.056,262.612 257.678,388.234 219.576,425.808 94.181,300.412 "/>
 <path style="fill:#E6E6E6;" d="M45.35,415.831l59.072,59.072l0.079,0.079c31.968-22.906,68.91-39.471,107.397-47.56l7.679-1.614
 	L94.181,300.412l-1.482,7.217C84.698,346.585,68.512,383.504,45.35,415.831L45.35,415.831z"/>

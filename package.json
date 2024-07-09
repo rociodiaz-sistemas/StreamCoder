@@ -35,7 +35,8 @@
     "redux": "^5.0.1",
     "redux-saga": "^1.3.0",
     "socket.io-client": "^4.5.2",
-    "usehooks-ts": "^2.7.1"
+    "usehooks-ts": "^2.7.1",
+    "vite-plugin-svgr": "^4.2.0"
   },
   "devDependencies": {
     "@chakra-ui/storybook-addon": "^5.1.0",
@@ -50,6 +51,7 @@
     "@storybook/react": "^8.1.10",
     "@storybook/react-vite": "^8.1.10",
     "@storybook/test": "^8.1.10",
+    "@svgr/webpack": "^8.1.0",
     "@types/chroma-js": "^2.4.4",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
