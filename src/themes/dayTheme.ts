@@ -36,6 +36,8 @@ export default {
       background: 'nightWhite',
       backgroundGradient: undefined,
       gifBackground: undefined,
+      fontColor: 'red',
+      highlightedColor: 'pink',
     },
     vip: {
       borderColor: 'blueDay',

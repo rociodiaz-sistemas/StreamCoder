@@ -40,6 +40,8 @@ export default {
       background: 'cuteCosmico',
       backgroundGradient: gradients.nightTheme.cuteCosmico,
       gifBackground: undefined,
+      fontColor: 'red',
+      highlightedColor: 'pink',
     },
     vip: {
       color: 'nightWhite',

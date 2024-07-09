@@ -37,6 +37,8 @@ export default {
       background: undefined,
       backgroundGradient: gradients.afternoonTheme.nightSkyAfternoon,
       gifBackground: undefined,
+      fontColor: 'red',
+      highlightedColor: 'pink',
     },
     vip: {
       borderColor: 'lila',
