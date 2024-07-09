@@ -1,2 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-<svg fill="#f0f0e1" width="800px" height="800px" viewBox="0 0 24 24" id="moon-alt-6" data-name="Flat Color" xmlns="http://www.w3.org/2000/svg" class="icon flat-color"><path id="primary" d="M11,2a9.8,9.8,0,0,0-3.55.66A1,1,0,0,0,7,3,15,15,0,0,0,7,21a1,1,0,0,0,.44.33A9.8,9.8,0,0,0,11,22,10,10,0,0,0,11,2Z" style="fill: #f0f0e1;"></path></svg>
+<svg width="800" height="800" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_356_181)">
+<path d="M340.165 0.000361136C291.576 -0.0709043 243.397 8.88102 198.081 26.4003C190.896 29.1127 184.644 33.8339 180.071 40.0003C102.131 143.858 60 270.178 60 400C60 529.822 102.131 656.142 180.071 760C184.591 765.959 190.692 770.531 197.681 773.2C243.096 790.905 291.416 799.993 340.165 800C446.314 800 548.115 757.857 623.174 682.843C698.232 607.828 740.4 506.087 740.4 400C740.4 293.914 698.232 192.172 623.174 117.158C548.115 42.1431 446.314 0.000361136 340.165 0.000361136Z" fill="#F0F0E1"/>
+</g>
+<defs>
+<clipPath id="clip0_356_181">
+<rect width="800" height="800" fill="white"/>
+</clipPath>
+</defs>
+</svg>
