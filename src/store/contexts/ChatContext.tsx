@@ -24,7 +24,7 @@ export const ChatContextProvider: React.FC<{ children: ReactNode, theme: ThemeTy
     setFontSize,
     setWindowSize,
     theme,
-    setSelectedTheme
+    setSelectedTheme,
   };
 
   return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;

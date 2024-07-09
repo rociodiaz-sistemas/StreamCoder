@@ -36,6 +36,8 @@ export default {
       background: undefined,
       backgroundGradient: gradients.morningTheme.blueHighlighted,
       gifBackground: undefined,
+      fontColor: '#0E3BB9', // blueDay
+      highlightedColor: '#FCE293', // amarillo
     },
     vip: {
       borderColor: 'amarilloMorning',
