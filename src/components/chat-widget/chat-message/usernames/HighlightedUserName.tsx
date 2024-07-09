@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Highlighter from '../../../../assets/highlighter.svg';
+import { useTheme } from '@chakra-ui/react';
 
 const HighlightedUsername = ({ displayName, color }: { displayName: string; color: string }) => {
+  const theme = useTheme();
   const [fadeOut, setFadeOut] = useState(false);
 
   const handleAnimationComplete = () => {
@@ -10,16 +12,18 @@ const HighlightedUsername = ({ displayName, color }: { displayName: string; colo
       setFadeOut(true);
     }, 500);
   };
+  const highlightedColor = theme.messageStyles.highlighted.highlightedColor;
+  const fontColor = theme.messageStyles.highlighted.fontColor;
 
   return (
     <div style={{ position: 'relative', display: 'inline-block', overflow: 'visible' }}>
       <motion.span
         style={{
-          color: color,
+          color: fontColor,
           display: 'inline-block',
           overflow: 'hidden',
           position: 'relative',
-          backgroundImage: 'linear-gradient(to right, transparent 50%, yellow 50%)',
+          backgroundImage: `linear-gradient(to right, transparent 50%, ${highlightedColor} 50%)`,
           backgroundSize: '200% 100%',
           backgroundPosition: '0% 0%',
         }}
