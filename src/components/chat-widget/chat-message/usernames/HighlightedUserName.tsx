@@ -19,6 +19,7 @@ const HighlightedUsername = ({ displayName, color }: { displayName: string; colo
     <div style={{ position: 'relative', display: 'inline-block', overflow: 'visible' }}>
       <motion.span
         style={{
+          fontWeight: 'bold',
           color: fontColor,
           display: 'inline-block',
           overflow: 'hidden',
@@ -26,6 +27,7 @@ const HighlightedUsername = ({ displayName, color }: { displayName: string; colo
           backgroundImage: `linear-gradient(to right, transparent 50%, ${highlightedColor} 50%)`,
           backgroundSize: '200% 100%',
           backgroundPosition: '0% 0%',
+          paddingInline: '2px',
         }}
         animate={{ backgroundPosition: '-100% 0' }}
         transition={{ duration: 0.75, delay: 0.6, type: 'tween' }}
