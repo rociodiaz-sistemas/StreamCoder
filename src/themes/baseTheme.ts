@@ -23,7 +23,7 @@ const baseTheme = extendTheme({
     white: '#FFFFFF',
     rositaBb: 'rgba(237, 30, 129, 0.35)',
     lila: '#9747FF',
-    rosaPalido: 'rgba(245, 214, 211, 0.43)',
+    rosaPalido: 'rgb(247 222 239 / 43%)',
     amarilloMorning: '#FFC926',
     amarilloMorningBit: '#FFB800',
     grisPalidoMorning: 'rgba(245, 245, 245, 0.56)',

@@ -52,7 +52,7 @@ export default function MessageBox({ children, messageType, isSuscriber }: Messa
   };
 
   return (
-    <Box pt="0.5em">
+    <Box pt="0.5em" pb="0.7em">
       <Animation animationProps={animationProps}>
         <Box
           ref={containerRef as React.RefObject<HTMLDivElement>}
