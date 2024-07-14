@@ -37,6 +37,21 @@ export const ResizableChat = () => {
     }));
   };
 
+  const handleStyles = {
+    top: { height: '20px', cursor: 'ns-resize' },
+    right: { width: '20px', cursor: 'ew-resize' },
+    bottom: { height: '20px', cursor: 'ns-resize' },
+    left: { width: '20px', cursor: 'ew-resize' },
+    topRight: { width: '20px', height: '20px', cursor: 'nesw-resize' },
+    bottomRight: { width: '20px', height: '20px', cursor: 'nwse-resize' },
+    bottomLeft: { width: '20px', height: '20px', cursor: 'nesw-resize' },
+    topLeft: { width: '20px', height: '20px', cursor: 'nwse-resize' },
+  };
+
+  const handleWrapperStyle = {
+    zIndex: 99,
+  };
+
   return (
     <Resizable
       minHeight={400}
@@ -63,6 +78,8 @@ export const ResizableChat = () => {
         bottomLeft: true,
         topLeft: true,
       }}
+      handleStyles={handleStyles}
+      handleWrapperStyle={handleWrapperStyle}
     >
       <Chat
         onClick={handleButtonClick}
