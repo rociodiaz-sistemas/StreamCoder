@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Resizable } from 're-resizable';
-import Chat from './Chat';
 import { handleResize } from '../../utils/handleResize'; // Import the context and hooks
 import { useChatContext } from '../../store/contexts/ChatContext';
+import OnlyMessagesChat from './OnlyMessagesChat';
 
-export const ResizableChat = () => {
+export const ResizableMessagesChat = () => {
   const { setFontSize } = useChatContext();
   const [windowSize, setWindowSize] = useState({ width: 400, height: 450 });
 
@@ -40,9 +40,9 @@ export const ResizableChat = () => {
   return (
     <Resizable
       minHeight={400}
-      maxHeight={900}
+      maxHeight={600}
       minWidth={300}
-      maxWidth={900}
+      maxWidth={600}
       onResizeStop={onResizeStop}
       defaultSize={{ width: windowSize.width, height: windowSize.height }}
       size={{ width: windowSize.width, height: windowSize.height }}
@@ -64,7 +64,7 @@ export const ResizableChat = () => {
         topLeft: true,
       }}
     >
-      <Chat
+      <OnlyMessagesChat
         onClick={handleButtonClick}
         height={windowSize.height}
         width={windowSize.width}
@@ -74,4 +74,4 @@ export const ResizableChat = () => {
     </Resizable>
   );
 };
-export default ResizableChat;
+export default ResizableMessagesChat;

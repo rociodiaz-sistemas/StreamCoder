@@ -10,6 +10,10 @@ import afternoonTheme from './themes/afternoonTheme';
 import theme from './themes/theme';
 import { timeRanges } from './utils/helpers';
 import { ThemeType } from './utils/models';
+import { Routes, Route } from 'react-router-dom';
+import ResizableMessagesChat from './components/only-messages/ResizableOnlyMessagesChat';
+import BackgroundOverlay from './components/background/BackgroundOverlay';
+import TopBackgroundOverlay from './components/top-background/TopBackgroundOverlay';
 
 function App() {
   const dispatch = useDispatch();
@@ -17,11 +21,9 @@ function App() {
   const [selectedTheme, setSelectedTheme] = useState<ThemeType>(morningTheme);
 
   useEffect(() => {
-    // Function to determine the theme based on the current hour
     const determineTheme = () => {
-      const currentHour = new Date().getHours(); // Get the current hour
+      const currentHour = new Date().getHours();
 
-      // Determine which theme to use based on the current hour
       for (const [themeName, { start, end }] of Object.entries(timeRanges)) {
         if (currentHour >= start && currentHour < end) {
           switch (themeName) {
@@ -34,27 +36,25 @@ function App() {
             case 'AfternoonSky':
               setSelectedTheme(afternoonTheme);
               break;
-            // Add other themes here as needed
             default:
               setSelectedTheme(theme);
               break;
           }
-          break; // Exit loop once the theme is determined
+          break;
         }
       }
     };
 
-    determineTheme(); // Call the function initially
-    const intervalId = setInterval(determineTheme, 3600000); // Update theme every hour
+    determineTheme();
+    const intervalId = setInterval(determineTheme, 3600000);
 
-    return () => clearInterval(intervalId); // Clear interval on component unmount
+    return () => clearInterval(intervalId);
   }, []);
 
   useEffect(() => {
-    // Check if WebSocket is not yet connected before dispatching the action
     if (!isWebSocketConnected) {
       dispatch(connectWebSocket());
-      isWebSocketConnected = true; // Update the local variable to indicate connection
+      isWebSocketConnected = true;
     }
   }, [dispatch]);
 
@@ -62,7 +62,13 @@ function App() {
     <ChakraProvider theme={selectedTheme}>
       <main>
         <ChatContextProvider theme={selectedTheme}>
-          <ResizableChat />
+          <Routes>
+            <Route path="/" element={<ResizableChat />} />
+            <Route path="/OnlyMessages" element={<ResizableMessagesChat />} />
+            <Route path="/BackgroundOverlay" element={<BackgroundOverlay />} />
+            <Route path="/TopBackgroundOverlay" element={<TopBackgroundOverlay />} />
+            {/* Add more routes as needed */}
+          </Routes>
         </ChatContextProvider>
       </main>
     </ChakraProvider>
