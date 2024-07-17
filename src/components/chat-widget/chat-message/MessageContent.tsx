@@ -9,6 +9,7 @@ export const MessageContent = ({ message }: { message: MessageModel }) => {
       key={badge.name + i}
       src={`${badge.imageUrl}`}
       alt={`${badge.name} ${badge.version} badge`}
+      style={{ width: '1rem', marginInlineStart: '5px' }}
     />
   ));
 
@@ -20,6 +21,7 @@ export const MessageContent = ({ message }: { message: MessageModel }) => {
           color={message.author.color}
           type={message.type}
         />
+        {Badges}
       </Flex>
       <Flex
         wrap="wrap"
