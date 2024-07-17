@@ -3,6 +3,7 @@ import { Resizable } from 're-resizable';
 import Chat from './Chat';
 import { handleResize } from '../../utils/handleResize'; // Import the context and hooks
 import { useChatContext } from '../../store/contexts/ChatContext';
+import './Resizable.css';
 
 export const ResizableChat = () => {
   const { setFontSize } = useChatContext();
@@ -37,16 +38,28 @@ export const ResizableChat = () => {
     }));
   };
 
-  const handleStyles = {
-    top: { height: '20px', cursor: 'ns-resize' },
-    right: { width: '20px', cursor: 'ew-resize' },
-    bottom: { height: '20px', cursor: 'ns-resize' },
-    left: { width: '20px', cursor: 'ew-resize' },
-    topRight: { width: '20px', height: '20px', cursor: 'nesw-resize' },
-    bottomRight: { width: '20px', height: '20px', cursor: 'nwse-resize' },
-    bottomLeft: { width: '20px', height: '20px', cursor: 'nesw-resize' },
-    topLeft: { width: '20px', height: '20px', cursor: 'nwse-resize' },
+  const handleClasses = {
+    top: 'handle handle-top',
+    right: 'handle handle-right',
+    bottom: 'handle handle-bottom',
+    left: 'handle handle-left',
+    topRight: 'handle handle-topRight',
+    bottomRight: 'handle handle-bottomRight',
+    bottomLeft: 'handle handle-bottomLeft',
+    topLeft: 'handle handle-topLeft',
   };
+
+  const handleStyles = {
+    top: { height: '20px' },
+    right: { width: '20px' },
+    bottom: { height: '20px' },
+    left: { width: '20px' },
+    topRight: { width: '40px', height: '40px', marginTop: '-5px', marginRight: '-5px' },
+    bottomRight: { width: '40px', height: '40px', marginBottom: '-5px', marginRight: '-5px' },
+    bottomLeft: { width: '40px', height: '40px', marginBottom: '-5px', marginLeft: '-5px' },
+    topLeft: { width: '40px', height: '40px', marginTop: '-5px', marginLeft: '-5px' },
+  };
+
 
   const handleWrapperStyle = {
     zIndex: 99,
@@ -78,7 +91,9 @@ export const ResizableChat = () => {
         bottomLeft: true,
         topLeft: true,
       }}
+      handleClasses={handleClasses}
       handleStyles={handleStyles}
+
       handleWrapperStyle={handleWrapperStyle}
     >
       <Chat
