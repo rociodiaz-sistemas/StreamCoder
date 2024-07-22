@@ -32,10 +32,15 @@ export const ResizableChat = () => {
     _ref: unknown,
     delta: { width: number; height: number },
   ) => {
-    setWindowSize((prevSize) => ({
-      width: prevSize.width + delta.width,
-      height: prevSize.height + delta.height,
-    }));
+    setWindowSize((prevSize) => {
+      const newWidth = prevSize.width + delta.width;
+      const newHeight = prevSize.height + delta.height;
+      sendBrowserSourceProperties(newWidth, newHeight);
+      return {
+        width: newWidth,
+        height: newHeight,
+      };
+    });
   };
 
   const handleClasses = {
@@ -54,12 +59,31 @@ export const ResizableChat = () => {
     right: { width: '20px' },
     bottom: { height: '20px' },
     left: { width: '20px' },
-    topRight: { width: '40px', height: '40px', marginTop: '-5px', marginRight: '-5px' },
-    bottomRight: { width: '40px', height: '40px', marginBottom: '-5px', marginRight: '-5px' },
-    bottomLeft: { width: '40px', height: '40px', marginBottom: '-5px', marginLeft: '-5px' },
-    topLeft: { width: '40px', height: '40px', marginTop: '-5px', marginLeft: '-5px' },
+    topRight: {
+      width: '40px',
+      height: '40px',
+      marginTop: '-5px',
+      marginRight: '-5px',
+    },
+    bottomRight: {
+      width: '40px',
+      height: '40px',
+      marginBottom: '-5px',
+      marginRight: '-5px',
+    },
+    bottomLeft: {
+      width: '40px',
+      height: '40px',
+      marginBottom: '-5px',
+      marginLeft: '-5px',
+    },
+    topLeft: {
+      width: '40px',
+      height: '40px',
+      marginTop: '-5px',
+      marginLeft: '-5px',
+    },
   };
-
 
   const handleWrapperStyle = {
     zIndex: 99,
@@ -93,7 +117,6 @@ export const ResizableChat = () => {
       }}
       handleClasses={handleClasses}
       handleStyles={handleStyles}
-
       handleWrapperStyle={handleWrapperStyle}
     >
       <Chat
