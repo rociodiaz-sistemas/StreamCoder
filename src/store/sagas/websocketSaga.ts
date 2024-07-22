@@ -1,6 +1,15 @@
-// sagas/websocketSaga.ts
-import { call, put, takeEvery, take, select } from 'redux-saga/effects';
-import { eventChannel } from 'redux-saga';
+import {
+  call,
+  put,
+  takeEvery,
+  take,
+  fork,
+  ForkEffect,
+  CallEffect,
+  PutEffect,
+  TakeEffect,
+} from 'redux-saga/effects';
+import { eventChannel, EventChannel } from 'redux-saga';
 import {
   CONNECT_WEBSOCKET,
   websocketConnected,
@@ -8,74 +17,123 @@ import {
 import { StreamerbotClient } from '@streamerbot/client'; // Import your WebSocket client
 import { formatTwitchChatMessage } from '../dataProcessors';
 import { receiveMessage } from '../slices/messageSlice';
+import { MessageModel } from '../../utils/models';
 
-// Variable to track WebSocket connection status
-let isWebSocketConnected = false;
+// WebSocket event type
+interface WebSocketEvent {
+  event: {
+    source: string;
+    type: string;
+  };
+  data: any;
+}
 
-function createWebSocketConnection() {
+// Function to create a WebSocket connection
+function createWebSocketConnection(subscribe: {
+  [key: string]: string[];
+}): EventChannel<WebSocketEvent> {
   return eventChannel((emit) => {
-    // Instantiate StreamerbotClient with custom configuration
     const client = new StreamerbotClient({
-      subscribe: {
-        Twitch: ['ChatMessage', 'Follow'],
-      },
+      subscribe,
       onData: (data: any) => {
-        // Emit the received data to the channel
         emit(data);
       },
     });
 
-    // Update connection status
-    isWebSocketConnected = true;
-
-    // Return cleanup function
     return () => {
-      // Close WebSocket connection if needed
       client.disconnect();
-      isWebSocketConnected = false;
     };
   });
 }
 
-function* handleWebSocketData(data: any) {
+// Handler for Twitch events
+function* handleTwitchEvent(
+  eventType: string,
+  eventData: any,
+): Generator<PutEffect> {
+  switch (eventType) {
+    case 'ChatMessage': {
+      const formattedMessage: MessageModel = formatTwitchChatMessage(
+        eventData.message,
+      );
+      yield put(receiveMessage(formattedMessage));
+      break;
+    }
+    // Handle other Twitch event types here
+    default:
+      break;
+  }
+}
+
+// Handler for YouTube events
+function* handleYouTubeEvent(
+  eventType: string,
+  eventData: any,
+): Generator<PutEffect> {
+  switch (eventType) {
+    case 'SuperChat': {
+      // Example: handle YouTube SuperChat event
+      console.log('YouTube SuperChat:', eventData);
+      break;
+    }
+    // Handle other YouTube event types here
+    default:
+      break;
+  }
+}
+
+// Function to handle WebSocket data
+function* handleWebSocketData(
+  data: WebSocketEvent,
+): Generator<CallEffect | PutEffect> {
   const { event, data: eventData } = data;
   if (event) {
     const { source, type } = event;
-    switch (source) {
-      case 'Twitch':
-        switch (type) {
-          case 'ChatMessage':
-            // Format the chat message data
-            const formattedMessage = formatTwitchChatMessage(eventData.message);
-            yield put(receiveMessage(formattedMessage));
-            break;
-        }
-        break;
+    if (source === 'Twitch') {
+      yield call(handleTwitchEvent, type, eventData);
+    } else if (source === 'YouTube') {
+      yield call(handleYouTubeEvent, type, eventData);
     }
+    // Add more sources here if needed
   }
 }
 
-function* watchWebSocketConnection() {
-  // Check if WebSocket is already connected
-  if (!isWebSocketConnected) {
-    // Dispatch action to indicate WebSocket connection
+// Watcher saga for Twitch WebSocket connection
+function* watchTwitchWebSocketConnection(): Generator<
+  ForkEffect | CallEffect | PutEffect | TakeEffect
+> {
+  yield takeEvery(CONNECT_WEBSOCKET, function* () {
+    const channel: EventChannel<WebSocketEvent> = yield call(
+      createWebSocketConnection,
+      { Twitch: ['ChatMessage', 'Follow'] },
+    );
     yield put(websocketConnected());
-
-    // Take CONNECT_WEBSOCKET action and create WebSocket connection
-    yield takeEvery(CONNECT_WEBSOCKET, function* () {
-      // @ts-ignore
-      const channel = yield call(createWebSocketConnection);
-      while (true) {
-        // @ts-ignore
-        const data = yield take(channel);
-        yield call(handleWebSocketData, data);
-      }
-    });
-  } else {
-    console.log('WebSocket connection is already established.');
-  }
+    while (true) {
+      const data: WebSocketEvent = yield take(channel);
+      yield call(handleWebSocketData, data);
+    }
+  });
 }
 
-export default function* websocketSaga() {
-  yield watchWebSocketConnection();
+// Watcher saga for YouTube WebSocket connection
+function* watchYouTubeWebSocketConnection(): Generator<
+  ForkEffect | CallEffect | PutEffect | TakeEffect
+> {
+  yield takeEvery(CONNECT_WEBSOCKET, function* () {
+    const channel: EventChannel<WebSocketEvent> = yield call(
+      createWebSocketConnection,
+      { YouTube: ['SuperChat', 'Subscription'] }, // Example events
+    );
+    yield put(websocketConnected());
+    while (true) {
+      const data: WebSocketEvent = yield take(channel);
+      yield call(handleWebSocketData, data);
+    }
+  });
+}
+
+// Root saga
+export default function* websocketSaga(): Generator<ForkEffect> {
+  yield fork(watchTwitchWebSocketConnection);
+  yield fork(watchYouTubeWebSocketConnection);
 }
