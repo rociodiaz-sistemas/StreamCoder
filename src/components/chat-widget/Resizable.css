@@ -1,0 +1,67 @@
+.handle {
+  background: transparent;
+  transition: background 0.3s;
+  border-radius: 15px;
+  /*border: 2px solid transparent; */
+}
+
+.handle-top {
+  /* height: 80px; */
+  /* margin-top: -5px; */
+  cursor: ns-resize;
+  border-top-color: transparent;
+}
+
+.handle-right {
+  /* width: 80px; */
+  cursor: url('../../assets/ew-cute-resize.svg'), ew-resize;
+  border-right-color: transparent;
+}
+
+.handle-bottom {
+  /* height: 80px; */
+  cursor: ns-resize;
+  border-bottom-color: transparent;
+}
+
+.handle-left {
+  /* width: 80px; */
+  cursor: ew-resize;
+  border-left-color: transparent;
+}
+
+.handle-topRight {
+  /* width: 80px; */
+  /* height: 80px; */
+  cursor: nesw-resize;
+  border-top-color: transparent;
+  border-right-color: transparent;
+}
+
+.handle-bottomRight {
+  /* width: 80px; */
+  /* height: 80px; */
+  cursor: nwse-resize;
+  border-bottom-color: transparent;
+  border-right-color: transparent;
+}
+
+.handle-bottomLeft {
+  /* width: 80px;
+  height: 80px; */
+  cursor: nesw-resize;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+}
+
+.handle-topLeft {
+  /* width: 80px;
+  height: 80px; */
+  cursor: nwse-resize;
+  border-top-color: transparent;
+  border-left-color: transparent;
+}
+
+.handle:hover {
+  background-color: rgba(255, 217, 0, 0.5);
+}

@@ -30,7 +30,7 @@ export const ChatHeader = ({
 
   return (
     <Flex
-      zIndex={999}
+      zIndex={99}
       align="center"
       justify="space-between"
       direction="row"
@@ -70,6 +70,7 @@ export const ChatHeader = ({
           aria-label="Close window"
           colorScheme=""
           icon={<CloseIcon />}
+          marginInlineEnd='20px'
         />
       </Box>
     </Flex>
