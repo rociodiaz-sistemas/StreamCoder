@@ -9,9 +9,10 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:react/jsx-runtime",
     "plugin:react-hooks/recommended",
-    "plugin:storybook/recommended"
+    "plugin:storybook/recommended",
+    "prettier", // Add Prettier configuration
+    "plugin:prettier/recommended" // Ensures Prettier errors are displayed as ESLint errors
   ],
-  "overrides": [],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -20,17 +21,16 @@
   "plugins": [
     "react",
     "@typescript-eslint",
-    "chakra-ui"
+    "chakra-ui",
+    "prettier" // Add Prettier plugin
   ],
   "rules": {
-    "comma-dangle": ["error", "always-multiline"],
-    "indent": ["error", 2],
-    "semi": ["error", "always"],
-    "quotes": ["error", "single"],
-    "chakra-ui/props-order": "error",
-    "chakra-ui/props-shorthand": "error",
-    "chakra-ui/require-specific-component": "error",
-    "eol-last": ["error", "always"],
+    "prettier/prettier": "error", // Report Prettier issues as ESLint errors
+    "comma-dangle": "off", // Disable rule as Prettier handles it
+    "indent": "off", // Disable rule as Prettier handles it
+    "semi": "off", // Disable rule as Prettier handles it
+    "quotes": "off", // Disable rule as Prettier handles it
+    "eol-last": "off", // Disable rule as Prettier handles it
     "no-console": "warn",
     "@typescript-eslint/no-unused-vars": "warn"
   }

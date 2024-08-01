@@ -52,10 +52,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (!isWebSocketConnected) {
-      dispatch(connectWebSocket());
-      isWebSocketConnected = true;
-    }
+    dispatch(connectWebSocket());
   }, [dispatch]);
 
   return (
@@ -66,7 +63,10 @@ function App() {
             <Route path="/" element={<ResizableChat />} />
             <Route path="/OnlyMessages" element={<ResizableMessagesChat />} />
             <Route path="/BackgroundOverlay" element={<BackgroundOverlay />} />
-            <Route path="/TopBackgroundOverlay" element={<TopBackgroundOverlay />} />
+            <Route
+              path="/TopBackgroundOverlay"
+              element={<TopBackgroundOverlay />}
+            />
             {/* Add more routes as needed */}
           </Routes>
         </ChatContextProvider>

@@ -4,10 +4,13 @@ import Chat from './Chat';
 import { handleResize } from '../../utils/handleResize'; // Import the context and hooks
 import { useChatContext } from '../../store/contexts/ChatContext';
 import './Resizable.css';
+import { useDispatch } from 'react-redux';
+import { resizeSource } from '../../store/slices/obsSlice';
 
 export const ResizableChat = () => {
   const { setFontSize } = useChatContext();
   const [windowSize, setWindowSize] = useState({ width: 400, height: 450 });
+  const dispatch = useDispatch();
 
   const handleResizeCallback = (
     event: unknown,
@@ -26,16 +29,41 @@ export const ResizableChat = () => {
     });
   };
 
+  const onResizeStart = () => {
+    // Temporarily increase the size for easier resizing
+    dispatch(
+      resizeSource({
+        sourceName: 'Chat',
+        width: 1000,
+        height: 1000,
+      }),
+    );
+  };
+
   const onResizeStop = (
     _event: unknown,
     _direction: unknown,
     _ref: unknown,
     delta: { width: number; height: number },
   ) => {
-    setWindowSize((prevSize) => ({
-      width: prevSize.width + delta.width,
-      height: prevSize.height + delta.height,
-    }));
+    setWindowSize((prevSize) => {
+      const newWidth = prevSize.width + delta.width;
+      const newHeight = prevSize.height + delta.height;
+
+      // Dispatch the resize action with the actual size
+      dispatch(
+        resizeSource({
+          sourceName: 'Chat',
+          width: newWidth,
+          height: newHeight,
+        }),
+      );
+
+      return {
+        width: newWidth,
+        height: newHeight,
+      };
+    });
   };
 
   const handleClasses = {
@@ -54,12 +82,31 @@ export const ResizableChat = () => {
     right: { width: '20px' },
     bottom: { height: '20px' },
     left: { width: '20px' },
-    topRight: { width: '40px', height: '40px', marginTop: '-5px', marginRight: '-5px' },
-    bottomRight: { width: '40px', height: '40px', marginBottom: '-5px', marginRight: '-5px' },
-    bottomLeft: { width: '40px', height: '40px', marginBottom: '-5px', marginLeft: '-5px' },
-    topLeft: { width: '40px', height: '40px', marginTop: '-5px', marginLeft: '-5px' },
+    topRight: {
+      width: '40px',
+      height: '40px',
+      marginTop: '-5px',
+      marginRight: '-5px',
+    },
+    bottomRight: {
+      width: '40px',
+      height: '40px',
+      marginBottom: '-5px',
+      marginRight: '-5px',
+    },
+    bottomLeft: {
+      width: '40px',
+      height: '40px',
+      marginBottom: '-5px',
+      marginLeft: '-5px',
+    },
+    topLeft: {
+      width: '40px',
+      height: '40px',
+      marginTop: '-5px',
+      marginLeft: '-5px',
+    },
   };
-
 
   const handleWrapperStyle = {
     zIndex: 99,
@@ -71,9 +118,10 @@ export const ResizableChat = () => {
       maxHeight={900}
       minWidth={300}
       maxWidth={900}
+      onResizeStart={onResizeStart}
       onResizeStop={onResizeStop}
       defaultSize={{ width: windowSize.width, height: windowSize.height }}
-      size={{ width: windowSize.width, height: windowSize.height }}
+      size={windowSize} // Use the actual size for rendering
       style={{
         display: 'flex',
         alignItems: 'center',
@@ -93,7 +141,6 @@ export const ResizableChat = () => {
       }}
       handleClasses={handleClasses}
       handleStyles={handleStyles}
-
       handleWrapperStyle={handleWrapperStyle}
     >
       <Chat
@@ -106,4 +153,5 @@ export const ResizableChat = () => {
     </Resizable>
   );
 };
+
 export default ResizableChat;
