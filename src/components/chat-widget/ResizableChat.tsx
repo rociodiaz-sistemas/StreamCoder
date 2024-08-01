@@ -4,10 +4,13 @@ import Chat from './Chat';
 import { handleResize } from '../../utils/handleResize'; // Import the context and hooks
 import { useChatContext } from '../../store/contexts/ChatContext';
 import './Resizable.css';
+import { useDispatch } from 'react-redux';
+import { resizeSource } from '../../store/slices/obsSlice';
 
 export const ResizableChat = () => {
   const { setFontSize } = useChatContext();
   const [windowSize, setWindowSize] = useState({ width: 400, height: 450 });
+  const dispatch = useDispatch();
 
   const handleResizeCallback = (
     event: unknown,
@@ -35,7 +38,18 @@ export const ResizableChat = () => {
     setWindowSize((prevSize) => {
       const newWidth = prevSize.width + delta.width;
       const newHeight = prevSize.height + delta.height;
-      sendBrowserSourceProperties(newWidth, newHeight);
+
+      console.log(newHeight, newWidth, 'widthsheights');
+
+      // Dispatch the resize action
+      dispatch(
+        resizeSource({
+          sourceName: 'Chat',
+          width: newWidth,
+          height: newHeight,
+        }),
+      );
+
       return {
         width: newWidth,
         height: newHeight,

@@ -53,7 +53,7 @@ const StarField: React.FC<StarFieldProps> = ({ numStars = 100 }) => {
       style={{
         position: 'absolute',
         width: '100%',
-        height: '100%',
+        height: '50%',
         overflow: 'hidden',
       }}
     >
