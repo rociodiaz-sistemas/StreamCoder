@@ -29,6 +29,17 @@ export const ResizableChat = () => {
     });
   };
 
+  const onResizeStart = () => {
+    // Temporarily increase the size for easier resizing
+    dispatch(
+      resizeSource({
+        sourceName: 'Chat',
+        width: 1000,
+        height: 1000,
+      }),
+    );
+  };
+
   const onResizeStop = (
     _event: unknown,
     _direction: unknown,
@@ -39,9 +50,7 @@ export const ResizableChat = () => {
       const newWidth = prevSize.width + delta.width;
       const newHeight = prevSize.height + delta.height;
 
-      console.log(newHeight, newWidth, 'widthsheights');
-
-      // Dispatch the resize action
+      // Dispatch the resize action with the actual size
       dispatch(
         resizeSource({
           sourceName: 'Chat',
@@ -109,9 +118,10 @@ export const ResizableChat = () => {
       maxHeight={900}
       minWidth={300}
       maxWidth={900}
+      onResizeStart={onResizeStart}
       onResizeStop={onResizeStop}
       defaultSize={{ width: windowSize.width, height: windowSize.height }}
-      size={{ width: windowSize.width, height: windowSize.height }}
+      size={windowSize} // Use the actual size for rendering
       style={{
         display: 'flex',
         alignItems: 'center',
@@ -143,4 +153,5 @@ export const ResizableChat = () => {
     </Resizable>
   );
 };
+
 export default ResizableChat;
