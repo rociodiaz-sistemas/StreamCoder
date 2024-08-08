@@ -1,5 +1,5 @@
 import { MessageModel } from '../../../utils/models';
-import { Flex } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 import Username from './usernames/UserName';
 import './styles.css';
 
@@ -9,6 +9,7 @@ export const MessageContent = ({ message }: { message: MessageModel }) => {
       key={badge.name + i}
       src={`${badge.imageUrl}`}
       alt={`${badge.name} ${badge.version} badge`}
+      style={{ width: '1em', marginInlineStart: '5px' }}
     />
   ));
 
@@ -20,6 +21,7 @@ export const MessageContent = ({ message }: { message: MessageModel }) => {
           color={message.author.color}
           type={message.type}
         />
+        {Badges}
       </Flex>
       <Flex
         wrap="wrap"
@@ -29,10 +31,10 @@ export const MessageContent = ({ message }: { message: MessageModel }) => {
           whiteSpace: 'normal',
         }}
       >
-        <div
+        <Box
           className="content-wrapper"
           dangerouslySetInnerHTML={{ __html: message.content }}
-        ></div>
+        />
       </Flex>
     </>
   );
