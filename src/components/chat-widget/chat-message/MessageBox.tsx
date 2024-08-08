@@ -75,7 +75,9 @@ export default function MessageBox({ children, messageType, isSuscriber }: Messa
           {isSuscriber &&
             <>
               <img src={Leaves} alt='leaves1' style={{ position: 'absolute', height: 'auto', width: '18%', right: '-19px', top: '-11px', transform: 'rotate(180deg)' }} />
-              <img src={Leaves} alt='leaves2' style={{ position: 'absolute', height: 'auto', width: '18%', left: '-19px', bottom: '-15px' }} /> </>}
+              <img src={Leaves} alt='leaves2' style={{ position: 'absolute', height: 'auto', width: '18%', left: '-19px', bottom: '-15px' }} />
+            </>
+          }
           {children}
           {isSuscriber && <CrawlingLadybug />}
         </Box>

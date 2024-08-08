@@ -4,6 +4,8 @@ import Username from './usernames/UserName';
 import './styles.css';
 
 export const MessageContent = ({ message }: { message: MessageModel }) => {
+  const areThereBits = message.type === 'bits' && message.bits !== 0;
+
   const Badges = message.author.badges.map((badge, i) => (
     <img
       key={badge.name + i}
@@ -23,6 +25,11 @@ export const MessageContent = ({ message }: { message: MessageModel }) => {
         />
         {Badges}
       </Flex>
+      {areThereBits &&
+        <>
+          <Box>{message.bits}</Box>
+        </>
+      }
       <Flex
         wrap="wrap"
         style={{
