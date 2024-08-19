@@ -3,7 +3,15 @@ import React, { ReactNode, useEffect, useState } from 'react';
 import useDynamicGradientColor from '../../../hooks/useDynamicGradient';
 import UFOComponent from './UFO';
 import MoonAndSunAnimation from './MoonAndSun';
-import { MOON_END_TIME, MOON_PEAK_TIME, MOON_START_TIME, SUN_END_TIME, SUN_PEAK_TIME, SUN_START_TIME, getAstralBody } from '../../../utils/helpers';
+import {
+  MOON_END_TIME,
+  MOON_PEAK_TIME,
+  MOON_START_TIME,
+  SUN_END_TIME,
+  SUN_PEAK_TIME,
+  SUN_START_TIME,
+  getAstralBody,
+} from '../../../utils/helpers';
 import NyanCatAnimation from './NyanCat';
 import FirefliesAnimation from './Fireflies';
 
@@ -45,7 +53,9 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ time }) => {
 const AnimationBox: React.FC<AnimationBoxProps> = ({ children }) => {
   const currentGradient = useDynamicGradientColor();
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [astralbody, setAstralBody] = useState<'moon' | 'sun'>(getAstralBody(new Date()));
+  const [astralbody, setAstralBody] = useState<'moon' | 'sun'>(
+    getAstralBody(new Date()),
+  );
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -93,7 +103,6 @@ const AfternoonThemeAnimations = () => {
   return <div>Afternoon Theme Animations</div>;
 };
 
-
 const NightThemeAnimations = React.memo(() => {
   const MemoizedStarfield = React.memo(StarField);
   const MemoizedUFOComponent = React.memo(UFOComponent);
@@ -105,7 +114,7 @@ const NightThemeAnimations = React.memo(() => {
       </React.Suspense>
       {/* <MemoizedUFOComponent />
       <MemoizedNyanCat /> */}
-      <FirefliesAnimation />
+      {/* <FirefliesAnimation /> */}
     </>
   );
 });
