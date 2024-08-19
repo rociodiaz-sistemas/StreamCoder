@@ -28,8 +28,8 @@ interface WebSocketEvent {
   data: any;
 }
 
-// Function to create a WebSocket connection
-function createWebSocketConnection(subscribe: {
+// Function to create a WebSocket connection specifically for chat
+function createChatWebSocketConnection(subscribe: {
   [key: string]: string[];
 }): EventChannel<WebSocketEvent> {
   return eventChannel((emit) => {
@@ -40,28 +40,19 @@ function createWebSocketConnection(subscribe: {
       },
     });
 
+    // Clean up the WebSocket connection on channel close
     return () => {
       client.disconnect();
     };
   });
 }
 
-// Handler for Twitch events
-function* handleTwitchEvent(
-  eventType: string,
-  eventData: any,
-): Generator<PutEffect> {
-  switch (eventType) {
-    case 'ChatMessage': {
-      const formattedMessage: MessageModel = formatTwitchChatMessage(
-        eventData.message,
-      );
-      yield put(receiveMessage(formattedMessage));
-      break;
-    }
-    default:
-      break;
-  }
+// Handler for Twitch chat events
+function* handleTwitchChatEvent(eventData: any): Generator<PutEffect> {
+  const formattedMessage: MessageModel = formatTwitchChatMessage(
+    eventData.message,
+  );
+  yield put(receiveMessage(formattedMessage));
 }
 
 // Function to handle WebSocket data
@@ -69,23 +60,19 @@ function* handleWebSocketData(
   data: WebSocketEvent,
 ): Generator<CallEffect | PutEffect> {
   const { event, data: eventData } = data;
-  if (event) {
-    const { source, type } = event;
-    if (source === 'Twitch') {
-      yield call(handleTwitchEvent, type, eventData);
-    }
-    // Add more sources if needed
+  if (event && event.source === 'Twitch' && event.type === 'ChatMessage') {
+    yield call(handleTwitchChatEvent, eventData);
   }
 }
 
-// Watcher saga for Twitch WebSocket connection
-function* watchTwitchWebSocketConnection(): Generator<
+// Watcher saga for Twitch chat WebSocket connection
+function* watchTwitchChatWebSocketConnection(): Generator<
   ForkEffect | CallEffect | PutEffect | TakeEffect
 > {
   yield takeEvery(CONNECT_WEBSOCKET, function* () {
     const channel: EventChannel<WebSocketEvent> = yield call(
-      createWebSocketConnection,
-      { Twitch: ['ChatMessage', 'Follow'] },
+      createChatWebSocketConnection,
+      { Twitch: ['ChatMessage'] },
     );
     yield put(websocketConnected());
     while (true) {
@@ -95,7 +82,7 @@ function* watchTwitchWebSocketConnection(): Generator<
   });
 }
 
-// Root saga
-export default function* streamerbotSaga(): Generator<ForkEffect> {
-  yield fork(watchTwitchWebSocketConnection);
+// Root saga for chat-related WebSocket functionality
+export default function* chatSaga(): Generator<ForkEffect> {
+  yield fork(watchTwitchChatWebSocketConnection);
 }
