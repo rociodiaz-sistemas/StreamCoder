@@ -1,6 +1,6 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { connectWebSocket } from './store/actions/websocketActions';
 import morningTheme from './themes/morningTheme';
 import { ChatContextProvider } from './store/contexts/ChatContext';
@@ -17,8 +17,8 @@ import TopBackgroundOverlay from './components/top-background/TopBackgroundOverl
 
 function App() {
   const dispatch = useDispatch();
-  let isWebSocketConnected = false;
   const [selectedTheme, setSelectedTheme] = useState<ThemeType>(morningTheme);
+  const isWebSocketConnected = useRef(false); // useRef to track connection status
 
   useEffect(() => {
     const determineTheme = () => {
@@ -50,9 +50,11 @@ function App() {
 
     return () => clearInterval(intervalId);
   }, []);
-
   useEffect(() => {
-    dispatch(connectWebSocket());
+    if (!isWebSocketConnected.current) {
+      dispatch(connectWebSocket());
+      isWebSocketConnected.current = true;
+    }
   }, [dispatch]);
 
   return (
