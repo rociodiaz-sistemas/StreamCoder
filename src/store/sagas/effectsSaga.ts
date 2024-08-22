@@ -75,8 +75,14 @@ function* handleTwitchEffectsEvent(eventType: any): Generator<any, void, any> {
       );
       break;
     case 'FirstWord':
-      // Trigger money rain for first messages
-      // yield put(triggerMoneyRain(eventData.data));
+      yield put(
+        addFirefly({
+          id: Date.now(),
+          top: Math.random() * 100,
+          left: Math.random() * 100,
+          opacity: getRandom(0.5, 1),
+        }),
+      );
       break;
     case 'ChatMessage':
       // Add a firefly for resubs
