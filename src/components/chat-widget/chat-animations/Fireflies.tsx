@@ -1,10 +1,17 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store';
 
 // Firefly component
-const Firefly: React.FC = () => {
-  const getRandom = (min: number, max: number) => Math.random() * (max - min) + min;
+const Firefly: React.FC<{ top: number; left: number; opacity: number }> = ({
+  top,
+  left,
+  opacity,
+}) => {
+  const getRandom = (min: number, max: number) =>
+    Math.random() * (max - min) + min;
 
   return (
     <motion.div
@@ -15,14 +22,14 @@ const Firefly: React.FC = () => {
         borderRadius: '50%',
         backgroundColor: 'yellow',
         boxShadow: '0 0 10px yellow',
-        opacity: 0.8,
-        top: `${getRandom(50, 100)}%`,
-        left: `${getRandom(0, 100)}%`,
+        opacity,
+        top: `${top}%`,
+        left: `${left}%`,
       }}
       animate={{
         x: [0, getRandom(-50, 50), getRandom(-100, 100)],
         y: [0, getRandom(-50, 50), getRandom(-100, 100)],
-        opacity: [0.8, 0.2, 0.8],
+        opacity: [opacity, opacity * 0.5, opacity],
       }}
       transition={{
         duration: getRandom(5, 10),
@@ -36,19 +43,20 @@ const Firefly: React.FC = () => {
 
 // FirefliesAnimation component
 const FirefliesAnimation: React.FC = () => {
-  const numberOfFireflies = 20; // Adjust the number of fireflies as needed
+  const fireflies = useSelector((state: RootState) => state.effects.fireflies);
 
   return (
-    <Box
-      pos="relative"
-      overflow="hidden"
-      w="100%"
-      h="100%"
-    >
-      {Array.from({ length: numberOfFireflies }).map((_, index) => (
-        <Firefly key={index} />
+    <Box pos="relative" overflow="hidden" w="100%" h="100%">
+      {fireflies.map((firefly) => (
+        <Firefly
+          key={firefly.id}
+          top={firefly.top}
+          left={firefly.left}
+          opacity={firefly.opacity}
+        />
       ))}
     </Box>
   );
 };
+
 export default FirefliesAnimation;

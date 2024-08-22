@@ -1,16 +1,8 @@
-import { call, put, take, fork, takeEvery } from 'redux-saga/effects';
+// sagas/effectsSaga.ts
+import { call, put, take, fork } from 'redux-saga/effects';
 import { eventChannel, EventChannel } from 'redux-saga';
 import { StreamerbotClient } from '@streamerbot/client';
-import {
-  EFFECT_RECEIVE_TWITCH_FOLLOW,
-  EFFECT_RECEIVE_TWITCH_SUB,
-  EFFECT_RECEIVE_TWITCH_RESUB,
-  EFFECT_RECEIVE_TWITCH_FIRSTMESSAGE,
-  receiveTwitchFollow,
-  receiveTwitchSub,
-  receiveTwitchResub,
-  receiveTwitchFirstMessage,
-} from '../actions/effectsActions';
+import { addFirefly, triggerMoneyRain } from '../slices/effectsSlice'; // Import actions from the slice
 
 // WebSocket event type
 interface WebSocketEvent {
@@ -33,6 +25,7 @@ function createEffectsWebSocketConnection(subscribe: {
       },
     });
 
+    console.log('Effects saga connected');
     // Clean up the WebSocket connection on channel close
     return () => {
       client.disconnect();
@@ -40,23 +33,64 @@ function createEffectsWebSocketConnection(subscribe: {
   });
 }
 
+// Utility function to generate a random number within a range
+const getRandom = (min: number, max: number) =>
+  Math.random() * (max - min) + min;
+
 // Handler for Twitch effects events
-function* handleTwitchEffectsEvent(eventData: any): Generator<any, void, any> {
-  switch (eventData.eventType) {
+function* handleTwitchEffectsEvent(eventType: any): Generator<any, void, any> {
+  switch (eventType) {
     case 'Follow':
-      yield put(receiveTwitchFollow(eventData.data));
+      // Add a firefly for follows
+      console.log('follow');
+      yield put(
+        addFirefly({
+          id: Date.now(), // Generate a unique ID or use another method
+          top: Math.random() * 100,
+          left: Math.random() * 100,
+          opacity: getRandom(0.5, 1),
+        }),
+      );
       break;
-    case 'Sub':
-      yield put(receiveTwitchSub(eventData.data));
+    case 'Subscribe':
+      // Add a firefly for subs
+      yield put(
+        addFirefly({
+          id: Date.now(),
+          top: Math.random() * 100,
+          left: Math.random() * 100,
+          opacity: getRandom(0.5, 1),
+        }),
+      );
       break;
     case 'ReSub':
-      yield put(receiveTwitchResub(eventData.data));
+      // Add a firefly for resubs
+      yield put(
+        addFirefly({
+          id: Date.now(),
+          top: Math.random() * 100,
+          left: Math.random() * 100,
+          opacity: getRandom(0.5, 1),
+        }),
+      );
       break;
     case 'FirstWord':
-      yield put(receiveTwitchFirstMessage(eventData.data));
+      // Trigger money rain for first messages
+      // yield put(triggerMoneyRain(eventData.data));
+      break;
+    case 'ChatMessage':
+      // Add a firefly for resubs
+      yield put(
+        addFirefly({
+          id: Date.now(),
+          top: Math.random() * 100,
+          left: Math.random() * 100,
+          opacity: getRandom(0.5, 1),
+        }),
+      );
       break;
     default:
-      console.error('Unknown event type:', eventData.eventType);
+      console.error('Unknown event type:', eventType);
   }
 }
 
@@ -64,18 +98,19 @@ function* handleTwitchEffectsEvent(eventData: any): Generator<any, void, any> {
 function* handleWebSocketData(data: WebSocketEvent): Generator<any, void, any> {
   const { event, data: eventData } = data;
   if (event && event.source === 'Twitch') {
-    yield call(handleTwitchEffectsEvent, eventData);
+    yield call(handleTwitchEffectsEvent, event.type);
   }
 }
 
 // Watcher saga for Twitch effects WebSocket connection
 function* watchTwitchEffectsWebSocketConnection(): Generator<any, void, any> {
   const channel = yield call(createEffectsWebSocketConnection, {
-    Twitch: ['Follow', 'Sub', 'ReSub', 'FirstWord'],
+    Twitch: ['Follow', 'Sub', 'ReSub', 'FirstWord', 'ChatMessage'],
   });
 
   while (true) {
     const data: WebSocketEvent = yield take(channel);
+    // const eventData = data.event.type;
     yield call(handleWebSocketData, data);
   }
 }

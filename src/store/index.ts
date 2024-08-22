@@ -4,6 +4,7 @@ import { combineReducers } from 'redux';
 import { messagesReducer } from './slices/messageSlice';
 import { obsReducer } from './slices/obsSlice';
 import rootSaga from './sagas/rootSaga'; // Import the root saga
+import { effectsReducer } from './slices/effectsSlice';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -11,6 +12,7 @@ const sagaMiddleware = createSagaMiddleware();
 const rootReducer = combineReducers({
   messages: messagesReducer,
   obsActions: obsReducer,
+  effects: effectsReducer,
   // Add other reducers here if needed
 });
 
