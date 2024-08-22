@@ -52,8 +52,10 @@ function* handleTwitchEffectsEvent(eventType: any): Generator<any, void, any> {
         }),
       );
       break;
-    case 'Subscribe':
+    case 'Sub':
       // Add a firefly for subs
+      console.log('subs');
+
       yield put(
         addFirefly({
           id: Date.now(),
@@ -65,6 +67,8 @@ function* handleTwitchEffectsEvent(eventType: any): Generator<any, void, any> {
       break;
     case 'ReSub':
       // Add a firefly for resubs
+      console.log('resub');
+
       yield put(
         addFirefly({
           id: Date.now(),
@@ -75,6 +79,8 @@ function* handleTwitchEffectsEvent(eventType: any): Generator<any, void, any> {
       );
       break;
     case 'FirstWord':
+      console.log('FirstWord');
+
       yield put(
         addFirefly({
           id: Date.now(),
@@ -86,6 +92,8 @@ function* handleTwitchEffectsEvent(eventType: any): Generator<any, void, any> {
       break;
     case 'ChatMessage':
       // Add a firefly for resubs
+      console.log('cm');
+
       yield put(
         addFirefly({
           id: Date.now(),
