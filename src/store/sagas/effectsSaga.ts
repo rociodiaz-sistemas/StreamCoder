@@ -42,7 +42,6 @@ function* handleTwitchEffectsEvent(eventType: any): Generator<any, void, any> {
   switch (eventType) {
     case 'Follow':
       // Add a firefly for follows
-      console.log('follow');
       yield put(
         addFirefly({
           id: Date.now(), // Generate a unique ID or use another method
@@ -54,8 +53,6 @@ function* handleTwitchEffectsEvent(eventType: any): Generator<any, void, any> {
       break;
     case 'Sub':
       // Add a firefly for subs
-      console.log('subs');
-
       yield put(
         addFirefly({
           id: Date.now(),
@@ -67,8 +64,6 @@ function* handleTwitchEffectsEvent(eventType: any): Generator<any, void, any> {
       break;
     case 'ReSub':
       // Add a firefly for resubs
-      console.log('resub');
-
       yield put(
         addFirefly({
           id: Date.now(),
@@ -79,8 +74,6 @@ function* handleTwitchEffectsEvent(eventType: any): Generator<any, void, any> {
       );
       break;
     case 'FirstWord':
-      console.log('FirstWord');
-
       yield put(
         addFirefly({
           id: Date.now(),
@@ -92,8 +85,6 @@ function* handleTwitchEffectsEvent(eventType: any): Generator<any, void, any> {
       break;
     case 'ChatMessage':
       // Add a firefly for resubs
-      console.log('cm');
-
       yield put(
         addFirefly({
           id: Date.now(),
