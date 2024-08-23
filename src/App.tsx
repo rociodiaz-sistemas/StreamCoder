@@ -17,8 +17,8 @@ import TopBackgroundOverlay from './components/top-background/TopBackgroundOverl
 
 function App() {
   const dispatch = useDispatch();
-  const isWebSocketConnected = useRef(false); // Use a ref to track WebSocket connection status
   const [selectedTheme, setSelectedTheme] = useState<ThemeType>(morningTheme);
+  const isWebSocketConnected = useRef(false); // useRef to track connection status
 
   useEffect(() => {
     const determineTheme = () => {
@@ -50,7 +50,6 @@ function App() {
 
     return () => clearInterval(intervalId);
   }, []);
-
   useEffect(() => {
     if (!isWebSocketConnected.current) {
       dispatch(connectWebSocket());
