@@ -1,6 +1,6 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { connectWebSocket } from './store/actions/websocketActions';
 import morningTheme from './themes/morningTheme';
 import { ChatContextProvider } from './store/contexts/ChatContext';
@@ -53,7 +53,7 @@ function App() {
   useEffect(() => {
     if (!isWebSocketConnected.current) {
       dispatch(connectWebSocket());
-      isWebSocketConnected.current = true;
+      isWebSocketConnected.current = true; // Update the ref to indicate connection has been established
     }
   }, [dispatch]);
 

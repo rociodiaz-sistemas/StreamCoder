@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react';
 import MoneyRain from '../chat-widget/chat-animations/MoneyRain';
+import FirefliesAnimation from '../chat-widget/chat-animations/Fireflies';
 
 const TopBackgroundOverlay: React.FC = () => {
   return (
@@ -11,7 +12,8 @@ const TopBackgroundOverlay: React.FC = () => {
       h="100vh"
       bgGradient="transparent"
     >
-      <MoneyRain />
+      {/* <MoneyRain /> */}
+      <FirefliesAnimation />
     </Box>
   );
 };

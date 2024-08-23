@@ -28,7 +28,14 @@ interface MoonAnimationProps {
   astralbody: 'moon' | 'sun'; // New prop to specify moon or sun
 }
 
-const MoonAndSunAnimation: React.FC<MoonAnimationProps> = ({ startTime, peakTime, endTime, currentTime, overNight, astralbody }) => {
+const MoonAndSunAnimation: React.FC<MoonAnimationProps> = ({
+  startTime,
+  peakTime,
+  endTime,
+  currentTime,
+  overNight,
+  astralbody,
+}) => {
   const [currentPosition, setCurrentPosition] = useState(0);
   const [moonPhase, setMoonPhase] = useState<string | null>(null);
 
@@ -50,14 +57,27 @@ const MoonAndSunAnimation: React.FC<MoonAnimationProps> = ({ startTime, peakTime
     }
   };
 
-  const convertToContinuousScale = (hours: number, minutes: number, startHours: number, endHours: number) => {
+  const convertToContinuousScale = (
+    hours: number,
+    minutes: number,
+    startHours: number,
+    endHours: number,
+  ) => {
     if (overNight) {
-      return hours < startHours ? (hours + 24) * 60 + minutes : hours * 60 + minutes;
+      return hours < startHours
+        ? (hours + 24) * 60 + minutes
+        : hours * 60 + minutes;
     }
     return hours * 60 + minutes;
   };
 
-  const convertTimeToContinuousScale = (time: Time) => convertToContinuousScale(time.hours, time.minutes, startTime.hours, endTime.hours);
+  const convertTimeToContinuousScale = (time: Time) =>
+    convertToContinuousScale(
+      time.hours,
+      time.minutes,
+      startTime.hours,
+      endTime.hours,
+    );
 
   const startMinutes = convertTimeToContinuousScale(startTime);
   const peakMinutes = convertTimeToContinuousScale(peakTime);
@@ -71,15 +91,19 @@ const MoonAndSunAnimation: React.FC<MoonAnimationProps> = ({ startTime, peakTime
         currentMinutes += 24 * 60; // Adjust for overnight wrap-around
       }
       if (currentMinutes <= peakMinutes) {
-        position = (currentMinutes - startMinutes) / (peakMinutes - startMinutes);
+        position =
+          (currentMinutes - startMinutes) / (peakMinutes - startMinutes);
       } else if (currentMinutes <= endMinutes) {
-        position = 1 - (currentMinutes - peakMinutes) / (endMinutes - peakMinutes);
+        position =
+          1 - (currentMinutes - peakMinutes) / (endMinutes - peakMinutes);
       }
     } else {
       if (currentMinutes >= startMinutes && currentMinutes <= peakMinutes) {
-        position = (currentMinutes - startMinutes) / (peakMinutes - startMinutes);
+        position =
+          (currentMinutes - startMinutes) / (peakMinutes - startMinutes);
       } else if (currentMinutes > peakMinutes && currentMinutes <= endMinutes) {
-        position = 1 - (currentMinutes - peakMinutes) / (endMinutes - peakMinutes);
+        position =
+          1 - (currentMinutes - peakMinutes) / (endMinutes - peakMinutes);
       }
     }
 
@@ -111,10 +135,18 @@ const MoonAndSunAnimation: React.FC<MoonAnimationProps> = ({ startTime, peakTime
   };
 
   // Determine which SVG to use based on the astralbody prop
-  const astralSvg = astralbody === 'moon' ? (moonPhase ? phaseToSvg[moonPhase] : moonsvg) : sunsvg;
+  const astralSvg =
+    astralbody === 'moon'
+      ? moonPhase
+        ? phaseToSvg[moonPhase]
+        : moonsvg
+      : sunsvg;
 
   // Adjust glow color based on astralbody
-  const glowColor = astralbody === 'moon' ? 'rgba(255, 255, 255, 0.8)' : 'rgba(255, 245, 107, 0.8)'; // Yellowish for sun
+  const glowColor =
+    astralbody === 'moon'
+      ? 'rgba(255, 255, 255, 0.8)'
+      : 'rgba(255, 245, 107, 0.8)'; // Yellowish for sun
 
   return (
     <motion.div
@@ -134,14 +166,14 @@ const MoonAndSunAnimation: React.FC<MoonAnimationProps> = ({ startTime, peakTime
           transform: 'translateX(-50%)',
           borderRadius: '50%',
           opacity: '0.5',
-          boxShadow: `0 0 20px 20px ${glowColor}`, // Soft and large spread glow effect with adjusted color
+          boxShadow: `0 0 3vw 3vw ${glowColor}`, // Soft and large spread glow effect with adjusted color
         }}
       />
       <motion.img
         src={astralSvg}
         alt={astralbody === 'moon' ? 'Moon' : 'Sun'}
         style={{
-          width: '18%',
+          width: '5vw',
           height: 'auto',
           position: 'absolute',
           top: `${(1 - currentPosition) * 100}%`, // Invert position to start at the bottom
@@ -151,7 +183,6 @@ const MoonAndSunAnimation: React.FC<MoonAnimationProps> = ({ startTime, peakTime
         }}
       />
     </motion.div>
-
   );
 };
 

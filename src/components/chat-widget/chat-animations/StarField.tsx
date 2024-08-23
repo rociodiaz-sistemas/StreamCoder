@@ -6,11 +6,12 @@ interface StarProps {
   left: number;
   top: number;
   delay: number;
+  maxOpacity: number;
 }
 
-const Star: React.FC<StarProps> = ({ left, top, delay }) => {
+const Star: React.FC<StarProps> = ({ left, top, delay, maxOpacity }) => {
   const transition: Transition = {
-    duration: 1.5,
+    duration: 4, // Duration of twinkle animation
     repeat: Infinity,
     ease: 'easeInOut',
     delay,
@@ -28,7 +29,7 @@ const Star: React.FC<StarProps> = ({ left, top, delay }) => {
         top: `${top}%`,
       }}
       initial={{ opacity: 0 }}
-      animate={{ opacity: [0, 1, 0] }}
+      animate={{ opacity: [0, maxOpacity, 0] }} // Use maxOpacity for varying brightness
       transition={transition}
     />
   );
@@ -39,12 +40,13 @@ interface StarFieldProps {
   numStars?: number;
 }
 
-const StarField: React.FC<StarFieldProps> = ({ numStars = 100 }) => {
+const StarField: React.FC<StarFieldProps> = ({ numStars = 60 }) => {
   const stars = Array.from({ length: numStars }, (_, index) => ({
     id: index,
     left: Math.random() * 100,
     top: Math.random() * 100,
-    delay: Math.random() * 2,
+    delay: Math.random() * 5,
+    maxOpacity: Math.random() * 0.8 + 0.2, // Random opacity between 0.2 and 1
   }));
 
   return (
@@ -63,6 +65,7 @@ const StarField: React.FC<StarFieldProps> = ({ numStars = 100 }) => {
           left={star.left}
           top={star.top}
           delay={star.delay}
+          maxOpacity={star.maxOpacity}
         />
       ))}
     </div>
