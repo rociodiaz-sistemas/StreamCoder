@@ -1,0 +1,163 @@
+.parallax-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50vh;
+  overflow: hidden;
+}
+
+.cloud-layer {
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  background-repeat: repeat-x;
+  background-size: auto 100%;
+  top: 0;
+  left: 0;
+  will-change: background-position;
+  animation: cloudScroll 500s linear infinite;
+}
+
+@keyframes cloudScroll {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100vw 0;
+  }
+}
+
+@keyframes cloudOpacity1 {
+  0% {
+    opacity: 0.2; /* Start more transparent */
+  }
+  15% {
+    opacity: 0.35; /* Gradually increase */
+  }
+  30% {
+    opacity: 0.25; /* Decrease slightly */
+  }
+  45% {
+    opacity: 0.5; /* Peak opacity */
+  }
+  60% {
+    opacity: 0.3; /* Decrease again */
+  }
+  75% {
+    opacity: 0.45; /* Gradual increase */
+  }
+  85% {
+    opacity: 0.2; /* Return to near start */
+  }
+  90% {
+    opacity: 0; /* Start fading out */
+  }
+  95% {
+    opacity: 0; /* Fully faded out */
+  }
+  100% {
+    opacity: 0.2; /* Fade back in */
+  }
+}
+
+@keyframes cloudOpacity2 {
+  /* Similar to cloudOpacity1, but with slight variations for different layers */
+  0% {
+    opacity: 0.3;
+  }
+  15% {
+    opacity: 0.4;
+  }
+  30% {
+    opacity: 0.3;
+  }
+  45% {
+    opacity: 0.55;
+  }
+  60% {
+    opacity: 0.35;
+  }
+  75% {
+    opacity: 0.5;
+  }
+  85% {
+    opacity: 0.3;
+  }
+  90% {
+    opacity: 0;
+  }
+  95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+@keyframes cloudOpacity3 {
+  /* Similar to cloudOpacity1, but with slight variations for different layers */
+  0% {
+    opacity: 0.4;
+  }
+  15% {
+    opacity: 0.55;
+  }
+  30% {
+    opacity: 0.35;
+  }
+  45% {
+    opacity: 0.6;
+  }
+  60% {
+    opacity: 0.4;
+  }
+  75% {
+    opacity: 0.5;
+  }
+  85% {
+    opacity: 0.4;
+  }
+  90% {
+    opacity: 0;
+  }
+  95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+
+/* Apply the animations to the layers */
+
+.layer1 {
+  background-image: url('./clouds-night/3.png');
+  z-index: 1;
+  animation: cloudScroll 60s linear infinite,
+    cloudOpacity1 450s ease-in-out infinite;
+}
+
+.layer2 {
+  background-image: url('./clouds-night/4.png');
+  z-index: 2;
+  animation: cloudScroll 90s linear infinite,
+    cloudOpacity2 450s ease-in-out infinite;
+}
+
+.layer3 {
+  background-image: url('./clouds-night/5.png');
+  z-index: 3;
+  animation: cloudScroll 120s linear infinite,
+    cloudOpacity3 450s ease-in-out infinite;
+}
+
+.static-stars {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('./clouds-night/starspara.png');
+  background-repeat: repeat-x;
+  background-size: 10% auto;
+  z-index: 0;
+}

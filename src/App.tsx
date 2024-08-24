@@ -14,6 +14,7 @@ import { Routes, Route } from 'react-router-dom';
 import ResizableMessagesChat from './components/only-messages/ResizableOnlyMessagesChat';
 import BackgroundOverlay from './components/background/BackgroundOverlay';
 import TopBackgroundOverlay from './components/top-background/TopBackgroundOverlay';
+import CloudParallax from './components/background/parallax-clouds/ParallaxClouds';
 
 function App() {
   const dispatch = useDispatch();
@@ -69,6 +70,7 @@ function App() {
               path="/TopBackgroundOverlay"
               element={<TopBackgroundOverlay />}
             />
+            <Route path="/Test" element={<CloudParallax />} />
             {/* Add more routes as needed */}
           </Routes>
         </ChatContextProvider>
