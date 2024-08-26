@@ -108,12 +108,10 @@ const sceneMapping: { [key: string]: string } = {
   MidnightMidnight: 'MidnightMidnightScene',
 };
 
-// Function to determine whether it's moon or sun
-const getAstralBody = (hours: number): 'moon' | 'sun' => {
-  if (hours >= 20 || hours < 6) {
-    return 'moon';
-  }
-  return 'sun';
+// Using the original version of getAstralBody
+export const getAstralBody = (currentTime: Date): 'moon' | 'sun' => {
+  const hours = currentTime.getHours();
+  return hours >= 5 && hours < 18 ? 'sun' : 'moon';
 };
 
 const TimeManagerProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -133,7 +131,7 @@ const TimeManagerProvider: React.FC<{ children: React.ReactNode }> = ({
 
       setHour(hours);
       setMinute(minutes);
-      setAstralBody(getAstralBody(hours));
+      setAstralBody(getAstralBody(now));
 
       let selectedKey: string | null = null;
       for (const key in timeRanges) {
@@ -154,7 +152,6 @@ const TimeManagerProvider: React.FC<{ children: React.ReactNode }> = ({
     };
 
     determineTimeData();
-
     const intervalId = setInterval(determineTimeData, 60000); // Update every minute
 
     return () => clearInterval(intervalId);
