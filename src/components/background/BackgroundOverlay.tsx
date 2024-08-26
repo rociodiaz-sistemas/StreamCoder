@@ -15,7 +15,6 @@ const BackgroundOverlay: React.FC = () => {
       bgGradient={backgroundGradient}
     >
       <AnimatedBackground />
-      <CloudParallax />
     </Box>
   );
 };

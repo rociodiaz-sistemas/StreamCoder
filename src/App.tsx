@@ -70,7 +70,7 @@ function App() {
               path="/TopBackgroundOverlay"
               element={<TopBackgroundOverlay />}
             />
-            <Route path="/Test" element={<CloudParallax />} />
+            {/* <Route path="/Test" element={<CloudParallax />} /> */}
             {/* Add more routes as needed */}
           </Routes>
         </ChatContextProvider>

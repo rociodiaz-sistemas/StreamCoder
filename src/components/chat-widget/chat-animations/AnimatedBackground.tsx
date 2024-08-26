@@ -13,7 +13,9 @@ import {
   getAstralBody,
 } from '../../../utils/helpers';
 import NyanCatAnimation from './NyanCat';
-import FirefliesAnimation from './Fireflies';
+import ParallaxClouds from '../../background/parallax-clouds/ParallaxClouds';
+import Cloud1Afternoon from '../../background/parallax-clouds/Clouds-4/3.png';
+import Cloud2Afternoon from '../../background/parallax-clouds/Clouds-4/4.png';
 
 // lazy load starfield component
 const StarField = React.lazy(() => import('./StarField'));
@@ -100,7 +102,15 @@ const DayThemeAnimations = () => {
 };
 
 const AfternoonThemeAnimations = () => {
-  return <div>Afternoon Theme Animations</div>;
+  return (
+    <>
+      <div>hello</div>
+      <ParallaxClouds
+      // cloudImage={Cloud1Afternoon}
+      // topCloudImage={Cloud2Afternoon}
+      />
+    </>
+  );
 };
 
 const NightThemeAnimations = React.memo(() => {
