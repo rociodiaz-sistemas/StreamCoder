@@ -12,6 +12,7 @@ type TimeManagerContextType = {
   hour: number;
   minute: number;
   astralBody: 'moon' | 'sun';
+  timeDate?: Date;
 };
 
 const TimeManagerContext = createContext<TimeManagerContextType | undefined>(
@@ -122,13 +123,14 @@ const TimeManagerProvider: React.FC<{ children: React.ReactNode }> = ({
   const [hour, setHour] = useState<number>(0);
   const [minute, setMinute] = useState<number>(0);
   const [astralBody, setAstralBody] = useState<'moon' | 'sun'>('sun');
+  const [timeDate, setTimeDate] = useState<Date | undefined>(undefined);
 
   useEffect(() => {
     const determineTimeData = () => {
       const now = new Date();
       const hours = now.getHours();
       const minutes = now.getMinutes();
-
+      setTimeDate(now);
       setHour(hours);
       setMinute(minutes);
       setAstralBody(getAstralBody(now));
@@ -159,7 +161,7 @@ const TimeManagerProvider: React.FC<{ children: React.ReactNode }> = ({
 
   return (
     <TimeManagerContext.Provider
-      value={{ gradientColor, sceneKey, hour, minute, astralBody }}
+      value={{ gradientColor, sceneKey, hour, minute, astralBody, timeDate }}
     >
       {children}
     </TimeManagerContext.Provider>

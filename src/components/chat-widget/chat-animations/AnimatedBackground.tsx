@@ -1,6 +1,5 @@
 import { Box, useTheme } from '@chakra-ui/react';
 import React, { ReactNode, useEffect, useState } from 'react';
-import useDynamicGradientColor from '../../../hooks/useDynamicGradient';
 import UFOComponent from './UFO';
 import MoonAndSunAnimation from './MoonAndSun';
 import {
@@ -53,22 +52,8 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ time }) => {
 };
 
 const AnimationBox: React.FC<AnimationBoxProps> = ({ children }) => {
-  const { gradientColor, sceneKey, hour, minute, astralBody } =
+  const { gradientColor, sceneKey, hour, minute, astralBody, timeDate } =
     useTimeManager();
-  const [currentTime, setCurrentTime] = useState(new Date());
-  // const [astralbody, setAstralBody] = useState<'moon' | 'sun'>(
-  //   getAstralBody(new Date()),
-  // );
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     const now = new Date();
-  //     setCurrentTime(now);
-  //     setAstralBody(getAstralBody(now));
-  //   }, 60000); // Update every minute
-
-  //   return () => clearInterval(interval);
-  // }, []);
 
   return (
     <Box
@@ -85,7 +70,7 @@ const AnimationBox: React.FC<AnimationBoxProps> = ({ children }) => {
         startTime={astralBody === 'moon' ? MOON_START_TIME : SUN_START_TIME} // Start time (05:00)
         peakTime={astralBody === 'moon' ? MOON_PEAK_TIME : SUN_PEAK_TIME} // Peak time (14:00)
         endTime={astralBody === 'moon' ? MOON_END_TIME : SUN_END_TIME} // End time (18:00)
-        currentTime={currentTime} // Pass current time to MoonAnimation
+        currentTime={timeDate} // Pass current time to MoonAnimation
       />
       {children}
     </Box>
