@@ -15,6 +15,7 @@ import ResizableMessagesChat from './components/only-messages/ResizableOnlyMessa
 import BackgroundOverlay from './components/background/BackgroundOverlay';
 import TopBackgroundOverlay from './components/top-background/TopBackgroundOverlay';
 import CloudParallax from './components/background/parallax-clouds/ParallaxClouds';
+import { TimeManagerProvider } from './store/contexts/TimeManagerContext';
 
 function App() {
   const dispatch = useDispatch();
@@ -61,19 +62,24 @@ function App() {
   return (
     <ChakraProvider theme={selectedTheme}>
       <main>
-        <ChatContextProvider theme={selectedTheme}>
-          <Routes>
-            <Route path="/" element={<ResizableChat />} />
-            <Route path="/OnlyMessages" element={<ResizableMessagesChat />} />
-            <Route path="/BackgroundOverlay" element={<BackgroundOverlay />} />
-            <Route
-              path="/TopBackgroundOverlay"
-              element={<TopBackgroundOverlay />}
-            />
-            {/* <Route path="/Test" element={<CloudParallax />} /> */}
-            {/* Add more routes as needed */}
-          </Routes>
-        </ChatContextProvider>
+        <TimeManagerProvider>
+          <ChatContextProvider theme={selectedTheme}>
+            <Routes>
+              <Route path="/" element={<ResizableChat />} />
+              <Route path="/OnlyMessages" element={<ResizableMessagesChat />} />
+              <Route
+                path="/BackgroundOverlay"
+                element={<BackgroundOverlay />}
+              />
+              <Route
+                path="/TopBackgroundOverlay"
+                element={<TopBackgroundOverlay />}
+              />
+              {/* <Route path="/Test" element={<CloudParallax />} /> */}
+              {/* Add more routes as needed */}
+            </Routes>
+          </ChatContextProvider>
+        </TimeManagerProvider>
       </main>
     </ChakraProvider>
   );

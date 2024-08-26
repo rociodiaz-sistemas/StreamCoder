@@ -16,6 +16,7 @@ import NyanCatAnimation from './NyanCat';
 import ParallaxClouds from '../../background/parallax-clouds/ParallaxClouds';
 import Cloud1Afternoon from '../../background/parallax-clouds/Clouds-4/3.png';
 import Cloud2Afternoon from '../../background/parallax-clouds/Clouds-4/4.png';
+import { useTimeManager } from '../../../store/contexts/TimeManagerContext';
 
 // lazy load starfield component
 const StarField = React.lazy(() => import('./StarField'));
@@ -53,7 +54,7 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ time }) => {
 };
 
 const AnimationBox: React.FC<AnimationBoxProps> = ({ children }) => {
-  const currentGradient = useDynamicGradientColor();
+  const { gradientColor } = useTimeManager();
   const [currentTime, setCurrentTime] = useState(new Date());
   const [astralbody, setAstralBody] = useState<'moon' | 'sun'>(
     getAstralBody(new Date()),
@@ -76,7 +77,7 @@ const AnimationBox: React.FC<AnimationBoxProps> = ({ children }) => {
       overflow="hidden"
       w="100%"
       h="100%"
-      bgGradient={currentGradient}
+      bgGradient={gradientColor}
     >
       <MoonAndSunAnimation
         astralbody={astralbody}
