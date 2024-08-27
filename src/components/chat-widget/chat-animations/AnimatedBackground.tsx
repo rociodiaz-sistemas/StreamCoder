@@ -15,6 +15,7 @@ import ParallaxClouds from '../../background/parallax-clouds/ParallaxClouds';
 import Cloud1Afternoon from '../../background/parallax-clouds/Clouds-4/3.png';
 import Cloud2Afternoon from '../../background/parallax-clouds/Clouds-4/4.png';
 import { useTimeManager } from '../../../store/contexts/TimeManagerContext';
+import FirefliesAnimation from './Fireflies';
 
 // lazy load starfield component
 const StarField = React.lazy(() => import('./StarField'));
@@ -91,10 +92,10 @@ const AfternoonThemeAnimations = () => {
   return (
     <>
       <div>hello</div>
-      <ParallaxClouds
+      {/* <ParallaxClouds
       // cloudImage={Cloud1Afternoon}
       // topCloudImage={Cloud2Afternoon}
-      />
+      /> */}
     </>
   );
 };
@@ -107,6 +108,7 @@ const NightThemeAnimations = React.memo(() => {
     <>
       <React.Suspense fallback={<div>Loading...</div>}>
         <MemoizedStarfield />
+        <FirefliesAnimation />
       </React.Suspense>
       {/* <MemoizedUFOComponent />
       <MemoizedNyanCat /> */}
