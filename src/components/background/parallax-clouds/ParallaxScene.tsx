@@ -8,7 +8,7 @@ export interface CloudConfig {
   alphaRange: [number, number];
   width?: number; // Optional width
   height?: number; // Optional height
-  spacing?: number;
+  scale?: number; // Optional scale factor
 }
 
 interface ParallaxOptions {
@@ -55,8 +55,10 @@ class ParallaxScene extends Phaser.Scene {
         )
         .setOrigin(0, 0);
 
-      cloud.displayWidth = cloudWidth;
-      cloud.displayHeight = cloudHeight; // Ensure height is set
+      // Apply scaling if provided
+      const scale = cloudConfig.scale ?? 1;
+      cloud.setDisplaySize(cloudWidth * scale, cloudHeight * scale);
+
       cloud.setAlpha(cloudConfig.alphaRange[0]);
 
       this.tweens.add({

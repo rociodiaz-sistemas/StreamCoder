@@ -16,6 +16,7 @@ import Cloud1Afternoon from '../../background/parallax-clouds/Clouds-4/3.png';
 import Cloud2Afternoon from '../../background/parallax-clouds/Clouds-4/4.png';
 import { useTimeManager } from '../../../store/contexts/TimeManagerContext';
 import FirefliesAnimation from './Fireflies';
+import { CloudConfig } from '../../background/parallax-clouds/ParallaxScene';
 
 // lazy load starfield component
 const StarField = React.lazy(() => import('./StarField'));
@@ -78,45 +79,42 @@ const AnimationBox: React.FC<AnimationBoxProps> = ({ children }) => {
   );
 };
 
-const cloudsConfig: {
-  image: string;
-  position: { x: number; y: number };
-  scrollSpeed: number;
-  alphaRange: [number, number]; // Ensure it's a tuple
-}[] = [
+const cloudsConfig: CloudConfig[] = [
   {
     image: 'twilight-5.png',
     position: { x: 0, y: 290 },
     scrollSpeed: 0.1,
-    alphaRange: [0.3, 0.8], // Correct tuple format
+    alphaRange: [0.3, 0.8],
+    // scale: 1.5,
   },
   {
     image: 'twilight-4.png',
     position: { x: 0, y: 70 },
     scrollSpeed: 0.02,
     alphaRange: [0.3, 0.8],
+    scale: 2,
   },
-  // {
-  //   image: 'twilight-2.png',
-  //   position: { x: 0, y: 290 },
-  //   scrollSpeed: 0.07,
-  //   alphaRange: [0.5, 1], // Correct tuple format
-  // },
-  // {
-  //   image: 'twilight-3.png',
-  //   position: { x: 0, y: 290 },
-  //   scrollSpeed: 0.1,
-  //   alphaRange: [0.3, 0.8], // Correct tuple format
-  // },
-  // {
-  //   image: 'twilight-4.png',
-  //   position: { x: 0, y: 70 },
-  //   scrollSpeed: 0.1,
-  //   alphaRange: [0.3, 0.8], // Correct tuple format
-  // },
-
-  // Add more cloud configurations if needed
 ];
+// {
+//   image: 'twilight-2.png',
+//   position: { x: 0, y: 290 },
+//   scrollSpeed: 0.07,
+//   alphaRange: [0.5, 1], // Correct tuple format
+// },
+// {
+//   image: 'twilight-3.png',
+//   position: { x: 0, y: 290 },
+//   scrollSpeed: 0.1,
+//   alphaRange: [0.3, 0.8], // Correct tuple format
+// },
+// {
+//   image: 'twilight-4.png',
+//   position: { x: 0, y: 70 },
+//   scrollSpeed: 0.1,
+//   alphaRange: [0.3, 0.8], // Correct tuple format
+// },
+
+// Add more cloud configurations if needed
 
 export default AnimatedBackground;
 
