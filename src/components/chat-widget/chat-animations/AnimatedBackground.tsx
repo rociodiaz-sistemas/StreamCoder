@@ -78,6 +78,46 @@ const AnimationBox: React.FC<AnimationBoxProps> = ({ children }) => {
   );
 };
 
+const cloudsConfig: {
+  image: string;
+  position: { x: number; y: number };
+  scrollSpeed: number;
+  alphaRange: [number, number]; // Ensure it's a tuple
+}[] = [
+  {
+    image: 'twilight-5.png',
+    position: { x: 0, y: 290 },
+    scrollSpeed: 0.1,
+    alphaRange: [0.3, 0.8], // Correct tuple format
+  },
+  {
+    image: 'twilight-4.png',
+    position: { x: 0, y: 70 },
+    scrollSpeed: 0.05,
+    alphaRange: [0.3, 0.8], // Correct tuple format
+  },
+  // {
+  //   image: 'twilight-2.png',
+  //   position: { x: 0, y: 290 },
+  //   scrollSpeed: 0.07,
+  //   alphaRange: [0.5, 1], // Correct tuple format
+  // },
+  // {
+  //   image: 'twilight-3.png',
+  //   position: { x: 0, y: 290 },
+  //   scrollSpeed: 0.1,
+  //   alphaRange: [0.3, 0.8], // Correct tuple format
+  // },
+  // {
+  //   image: 'twilight-4.png',
+  //   position: { x: 0, y: 70 },
+  //   scrollSpeed: 0.1,
+  //   alphaRange: [0.3, 0.8], // Correct tuple format
+  // },
+
+  // Add more cloud configurations if needed
+];
+
 export default AnimatedBackground;
 
 const MorningThemeAnimations = () => {
@@ -85,17 +125,19 @@ const MorningThemeAnimations = () => {
 };
 
 const DayThemeAnimations = () => {
-  return <div>Day Theme Animations</div>;
+  return (
+    <div>
+      {' '}
+      <ParallaxClouds cloudsConfig={cloudsConfig} />
+    </div>
+  );
 };
 
 const AfternoonThemeAnimations = () => {
   return (
     <>
       <div>hello</div>
-      {/* <ParallaxClouds
-      // cloudImage={Cloud1Afternoon}
-      // topCloudImage={Cloud2Afternoon}
-      /> */}
+      <ParallaxClouds cloudsConfig={cloudsConfig} />
     </>
   );
 };
@@ -109,6 +151,7 @@ const NightThemeAnimations = React.memo(() => {
       <React.Suspense fallback={<div>Loading...</div>}>
         <MemoizedStarfield />
         <FirefliesAnimation />
+        <ParallaxClouds cloudsConfig={cloudsConfig} />
       </React.Suspense>
       {/* <MemoizedUFOComponent />
       <MemoizedNyanCat /> */}

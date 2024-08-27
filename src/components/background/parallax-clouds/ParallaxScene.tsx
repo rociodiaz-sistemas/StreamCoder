@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import imageMap from './assets/imageMapping'; // Import the image map
 
 interface CloudConfig {
   image: string;
@@ -25,28 +26,34 @@ class ParallaxScene extends Phaser.Scene {
 
   preload(): void {
     this.options.clouds.forEach((cloud) => {
-      this.load.image(cloud.image, cloud.image);
+      const imagePath = imageMap[cloud.image];
+      if (imagePath) {
+        this.load.image(cloud.image, imagePath);
+        console.log(`Loading image: ${cloud.image} from ${imagePath}`);
+      } else {
+        console.error(`Image not found: ${cloud.image}`);
+      }
     });
   }
 
   create(): void {
     this.options.clouds.forEach((cloudConfig) => {
-      const cloudHeight = this.textures
-        .get(cloudConfig.image)
-        .getSourceImage().height;
+      const texture = this.textures.get(cloudConfig.image);
+      const cloudHeight = cloudConfig.height ?? texture.getSourceImage().height;
+      const cloudWidth = cloudConfig.width ?? this.cameras.main.width;
 
       const cloud = this.add
         .tileSprite(
           cloudConfig.position.x,
           cloudConfig.position.y,
-          this.cameras.main.width,
+          cloudWidth,
           cloudHeight,
           cloudConfig.image,
         )
         .setOrigin(0, 0);
 
-      cloud.displayHeight = cloudHeight;
-      cloud.displayWidth = this.cameras.main.width;
+      cloud.displayWidth = cloudWidth;
+      cloud.displayHeight = cloudHeight; // Ensure height is set
       cloud.setAlpha(cloudConfig.alphaRange[0]);
 
       this.tweens.add({

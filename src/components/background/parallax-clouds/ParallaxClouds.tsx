@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Phaser from 'phaser';
 import ParallaxScene from './ParallaxScene'; // Import the updated ParallaxScene
+import { CLOUDS_INDEX } from '../../../utils/zindexes';
 
 interface ParallaxCloudsProps {
   cloudsConfig: {
@@ -8,6 +9,8 @@ interface ParallaxCloudsProps {
     position: { x: number; y: number };
     scrollSpeed: number;
     alphaRange: [number, number];
+    width?: number; // Optional width
+    caca?: number; // Optional height
   }[];
 }
 
@@ -38,16 +41,17 @@ const ParallaxClouds: React.FC<ParallaxCloudsProps> = ({ cloudsConfig }) => {
     return () => {
       game.destroy(true); // Clean up the game instance on unmount
     };
-  }, [cloudsConfig]); // Depend on cloudsConfig to recreate the game if configuration changes
+  }, [cloudsConfig]);
 
   return (
     <div
       ref={gameContainerRef}
       style={{
         width: '100%',
-        height: '300px',
+        height: '100%',
         position: 'absolute',
-        bottom: '0px', // Ensure positioning context if needed
+        bottom: '0px',
+        zIndex: CLOUDS_INDEX,
       }}
     />
   );
