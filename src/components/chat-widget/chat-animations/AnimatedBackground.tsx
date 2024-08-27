@@ -93,8 +93,8 @@ const cloudsConfig: {
   {
     image: 'twilight-4.png',
     position: { x: 0, y: 70 },
-    scrollSpeed: 0.05,
-    alphaRange: [0.3, 0.8], // Correct tuple format
+    scrollSpeed: 0.02,
+    alphaRange: [0.3, 0.8],
   },
   // {
   //   image: 'twilight-2.png',

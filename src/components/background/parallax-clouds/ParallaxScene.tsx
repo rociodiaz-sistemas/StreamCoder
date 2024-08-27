@@ -1,11 +1,14 @@
 import Phaser from 'phaser';
 import imageMap from './assets/imageMapping'; // Import the image map
 
-interface CloudConfig {
+export interface CloudConfig {
   image: string;
   position: { x: number; y: number };
   scrollSpeed: number;
   alphaRange: [number, number];
+  width?: number; // Optional width
+  height?: number; // Optional height
+  spacing?: number;
 }
 
 interface ParallaxOptions {

@@ -1,17 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import Phaser from 'phaser';
-import ParallaxScene from './ParallaxScene'; // Import the updated ParallaxScene
+import ParallaxScene, { CloudConfig } from './ParallaxScene'; // Import the updated ParallaxScene
 import { CLOUDS_INDEX } from '../../../utils/zindexes';
 
-interface ParallaxCloudsProps {
-  cloudsConfig: {
-    image: string;
-    position: { x: number; y: number };
-    scrollSpeed: number;
-    alphaRange: [number, number];
-    width?: number; // Optional width
-    caca?: number; // Optional height
-  }[];
+export interface ParallaxCloudsProps {
+  cloudsConfig: CloudConfig[]; // Ensure CloudConfig is used directly
 }
 
 const ParallaxClouds: React.FC<ParallaxCloudsProps> = ({ cloudsConfig }) => {
