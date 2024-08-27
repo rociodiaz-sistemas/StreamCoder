@@ -1,23 +1,24 @@
 import React, { useEffect, useRef } from 'react';
 import Phaser from 'phaser';
-import ParallaxScene, { CloudConfig } from './ParallaxScene'; // Import the updated ParallaxScene
+import ParallaxScene, { CloudConfig } from './ParallaxScene';
 import { CLOUDS_INDEX } from '../../../utils/zindexes';
 
 export interface ParallaxCloudsProps {
-  cloudsConfig: CloudConfig[]; // Ensure CloudConfig is used directly
+  cloudsConfig: CloudConfig[];
 }
 
 const ParallaxClouds: React.FC<ParallaxCloudsProps> = ({ cloudsConfig }) => {
   const gameContainerRef = useRef<HTMLDivElement>(null);
+  const gameRef = useRef<Phaser.Game | null>(null);
 
   useEffect(() => {
     if (!gameContainerRef.current) return;
 
     const config: Phaser.Types.Core.GameConfig = {
       type: Phaser.AUTO,
-      width: gameContainerRef.current.clientWidth,
-      height: gameContainerRef.current.clientHeight,
-      scene: new ParallaxScene({ clouds: cloudsConfig }), // Pass the configuration here
+      width: window.innerWidth, // Use window dimensions for initial size
+      height: window.innerHeight,
+      scene: new ParallaxScene({ clouds: cloudsConfig }),
       parent: gameContainerRef.current,
       transparent: true,
       physics: {
@@ -29,10 +30,21 @@ const ParallaxClouds: React.FC<ParallaxCloudsProps> = ({ cloudsConfig }) => {
       },
     };
 
-    const game = new Phaser.Game(config);
+    gameRef.current = new Phaser.Game(config);
+
+    const handleResize = () => {
+      if (gameRef.current) {
+        gameRef.current.scale.resize(window.innerWidth, window.innerHeight);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      game.destroy(true); // Clean up the game instance on unmount
+      window.removeEventListener('resize', handleResize);
+      if (gameRef.current) {
+        gameRef.current.destroy(true);
+      }
     };
   }, [cloudsConfig]);
 

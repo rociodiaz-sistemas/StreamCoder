@@ -8,13 +8,7 @@ import { useTimeManager } from '../../store/contexts/TimeManagerContext';
 const BackgroundOverlay: React.FC = () => {
   const { gradientColor } = useTimeManager();
   return (
-    <Box
-      pos="relative"
-      overflow="hidden"
-      w="100vw"
-      h="100vh"
-      bgGradient={gradientColor}
-    >
+    <Box pos="relative" w="100vw" h="100vh" bgGradient={gradientColor}>
       <AnimatedBackground />
     </Box>
   );
