@@ -65,13 +65,18 @@ class ParallaxScene extends Phaser.Scene {
 
       cloud.setAlpha(cloudConfig.alphaRange[0]);
 
+      // Randomized tween parameters for staggered opacity animation
+      const randomDelay = Phaser.Math.Between(0, 5000); // Random delay between 0 to 5 seconds
+      const randomDuration = Phaser.Math.Between(8000, 15000); // Random duration between 8 to 15 seconds
+
       this.tweens.add({
         targets: cloud,
         alpha: {
           from: cloudConfig.alphaRange[0],
           to: cloudConfig.alphaRange[1],
         },
-        duration: 10000,
+        duration: randomDuration,
+        delay: randomDelay,
         yoyo: true,
         repeat: -1,
       });

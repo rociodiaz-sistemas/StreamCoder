@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { gradients, timeRangesExpanded } from '../../utils/helpers';
 import { TimeRangeKey } from '../types';
+import { CloudConfig } from '../../components/background/parallax-clouds/ParallaxScene';
 
 type TimeManagerContextType = {
   gradientColor: string;
@@ -45,6 +46,9 @@ const TimeManagerProvider: React.FC<{ children: React.ReactNode }> = ({
   const [minute, setMinute] = useState<number>(0);
   const [astralBody, setAstralBody] = useState<'moon' | 'sun'>('sun');
   const [timeDate, setTimeDate] = useState<Date | undefined>(undefined);
+  const [CloudConfig, setCloudConfig] = useState<CloudConfig | undefined>(
+    undefined,
+  );
 
   useEffect(() => {
     const determineTimeData = () => {

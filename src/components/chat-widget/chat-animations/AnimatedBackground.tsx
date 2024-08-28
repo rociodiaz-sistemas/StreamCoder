@@ -105,7 +105,7 @@ const cloudsConfig: CloudConfig[] = [
   {
     image: 'twilight-4.png',
     position: { x: 0, y: 15 },
-    scrollSpeed: 0.02,
+    scrollSpeed: 0.1,
     alphaRange: [0.3, 0.8],
     scale: 1.2,
   },
