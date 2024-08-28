@@ -16,7 +16,6 @@ import BackgroundOverlay from './components/background/BackgroundOverlay';
 import TopBackgroundOverlay from './components/top-background/TopBackgroundOverlay';
 import CloudParallax from './components/background/parallax-clouds/ParallaxClouds';
 import { TimeManagerProvider } from './store/contexts/TimeManagerContext';
-import SkyShading from './components/background/pixel-art/PixelShadingDemo';
 import TestFile from './components/background/pixel-art/TestFile';
 
 function App() {
