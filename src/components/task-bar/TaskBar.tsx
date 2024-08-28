@@ -2,9 +2,6 @@ import React from 'react';
 import { Box, Flex, Icon, Text } from '@chakra-ui/react';
 import useThemeMapping from '../../hooks/useThemeMapping';
 import baseTheme from '../../themes/baseTheme';
-import HoverGifIconButton from '../common/HoveredGifIconButton';
-import StaticLadybug from '../../assets/icons/ladybug-2-png.png';
-import GifLadybug from '../../assets/icons/ladybug-2-gif.gif';
 import { useTimeManager } from '../../store/contexts/TimeManagerContext';
 
 interface TaskBarProps {
@@ -56,11 +53,23 @@ const TaskBar: React.FC<TaskBarProps> = (props) => {
     >
       <Flex align="center" direction="row" w="auto" h="30px" px={2}>
         <Box>
-          <Text as="b" fontSize="20px">
+          <Text
+            as="b"
+            fontSize="20px" // Adjust font size as needed
+            bgGradient="linear(to-b, rgba(44,36,68,1) 0%, rgba(92,79,129,1) 43%, rgba(131,92,159,1) 70%, rgba(154,115,167,1) 88%, rgba(174,138,182,1) 98%)"
+            bgClip="text"
+            color="transparent"
+          >
             Bug OS
           </Text>
         </Box>
-        <Text as="b" fontSize="20px">
+        <Text
+          as="b"
+          fontSize="20px" // Adjust font size as needed
+          bgGradient="linear(to-b, rgba(44,36,68,1) 0%, rgba(92,79,129,1) 43%, rgba(131,92,159,1) 70%, rgba(154,115,167,1) 88%, rgba(174,138,182,1) 98%)"
+          bgClip="text"
+          color="transparent"
+        >
           {formatTime(timeDate)}
         </Text>
       </Flex>
