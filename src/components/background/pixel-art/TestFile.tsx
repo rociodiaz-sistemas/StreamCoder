@@ -3,7 +3,7 @@ import React from 'react';
 import { useTimeManager } from '../../../store/contexts/TimeManagerContext';
 import ParallaxClouds from '../parallax-clouds/ParallaxClouds';
 import PixelArtGrid from './pixelDemo';
-import TaskBar from '../../task-bar/TaskBar';
+import TaskBar from '../../operating-system/task-bar/TaskBar';
 
 interface Props {}
 
