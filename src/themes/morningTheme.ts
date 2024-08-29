@@ -56,4 +56,7 @@ export default {
     MorningSky:
       'linear-gradient(180deg, #A9ABDB 5%, #A9BEDB 27.5%, #FCE293 66.5%, #F5F5F5 90%)',
   },
+  operatingSystem: {
+    taskbar: 'rositaBb',
+  },
 };
