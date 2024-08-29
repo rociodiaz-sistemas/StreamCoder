@@ -38,7 +38,7 @@ const TaskBarWindow = forwardRef<HTMLDivElement, TaskBarWindowProps>(
 
     return (
       <Box
-        width="800px"
+        width="500px"
         height="600px"
         id="taskbar-window"
         ref={ref}
@@ -50,7 +50,6 @@ const TaskBarWindow = forwardRef<HTMLDivElement, TaskBarWindowProps>(
         border={border}
         borderColor={borderColor}
         bg={taskbarColor}
-        borderRadius="md"
         boxShadow="md"
         p={4}
         zIndex={100} // Ensure it's above the taskbar

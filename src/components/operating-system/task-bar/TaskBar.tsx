@@ -90,13 +90,13 @@ const TaskBar: React.FC = () => {
           gradient="linear-gradient(180deg, rgba(23,19,19,1) 3%, rgba(33,52,105,1) 40%, rgba(46,68,128,1) 72%, rgba(60,84,154,1) 100%)"
         />
       </Flex>
-      {/* {windowVisible && ( */}
-      <TaskBarWindow
-        ref={windowRef}
-        title="Window Title"
-        content={<div>Here is some content!</div>}
-      />
-      {/* )} */}
+      {windowVisible && (
+        <TaskBarWindow
+          ref={windowRef}
+          title="Window Title"
+          content={<div>Here is some content!</div>}
+        />
+      )}
     </Flex>
   );
 };
