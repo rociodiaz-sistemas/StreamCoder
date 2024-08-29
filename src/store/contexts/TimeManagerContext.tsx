@@ -2,10 +2,11 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { gradients, timeRangesExpanded } from '../../utils/helpers';
 import { TimeRangeKey } from '../types';
 import { CloudConfig } from '../../components/background/parallax-clouds/ParallaxScene';
+import { CLOUD_CONFIGS } from '../../components/background/parallax-clouds/CloudsConfig';
 
 type TimeManagerContextType = {
   gradientColor: string;
-  sceneKey: string;
+  cloudConfig: CloudConfig[] | undefined;
   hour: number;
   minute: number;
   astralBody: 'moon' | 'sun';
@@ -15,21 +16,6 @@ type TimeManagerContextType = {
 const TimeManagerContext = createContext<TimeManagerContextType | undefined>(
   undefined,
 );
-
-const sceneMapping: { [key: string]: string } = {
-  Dawn: 'DawnScene',
-  Rising: 'RisingScene',
-  Morning: 'MorningScene',
-  Day: 'DayScene',
-  SuperDay: 'SuperDayScene',
-  DayAlmostDusk: 'DayAlmostDuskScene',
-  Dusk: 'DuskScene',
-  Twilight: 'TwilightScene',
-  Night: 'NightScene',
-  DeepNight: 'DeepNightScene',
-  Midnight: 'MidnightScene',
-  MidnightMidnight: 'MidnightMidnightScene',
-};
 
 // Using the original version of getAstralBody
 export const getAstralBody = (currentTime: Date): 'moon' | 'sun' => {
@@ -41,12 +27,11 @@ const TimeManagerProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [gradientColor, setGradientColor] = useState<string>('');
-  const [sceneKey, setSceneKey] = useState<string>('');
   const [hour, setHour] = useState<number>(0);
   const [minute, setMinute] = useState<number>(0);
   const [astralBody, setAstralBody] = useState<'moon' | 'sun'>('sun');
   const [timeDate, setTimeDate] = useState<Date | undefined>(undefined);
-  const [CloudConfig, setCloudConfig] = useState<CloudConfig | undefined>(
+  const [cloudConfig, setCloudConfig] = useState<CloudConfig[] | undefined>(
     undefined,
   );
 
@@ -74,8 +59,9 @@ const TimeManagerProvider: React.FC<{ children: React.ReactNode }> = ({
 
       if (selectedKey) {
         const gradientColor = gradients[selectedKey as TimeRangeKey];
+        const clouds = CLOUD_CONFIGS[selectedKey as TimeRangeKey]
         setGradientColor(gradientColor);
-        setSceneKey(sceneMapping[selectedKey]);
+        setCloudConfig(clouds);
       }
     };
 
@@ -87,7 +73,7 @@ const TimeManagerProvider: React.FC<{ children: React.ReactNode }> = ({
 
   return (
     <TimeManagerContext.Provider
-      value={{ gradientColor, sceneKey, hour, minute, astralBody, timeDate }}
+      value={{ gradientColor, cloudConfig, hour, minute, astralBody, timeDate }}
     >
       {children}
     </TimeManagerContext.Provider>
