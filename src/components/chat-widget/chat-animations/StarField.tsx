@@ -40,7 +40,7 @@ interface StarFieldProps {
   numStars?: number;
 }
 
-const StarField: React.FC<StarFieldProps> = ({ numStars = 90 }) => {
+const StarField: React.FC<StarFieldProps> = ({ numStars = 60 }) => {
   const stars = Array.from({ length: numStars }, (_, index) => ({
     id: index,
     left: Math.random() * 100,

@@ -1,5 +1,6 @@
 import { Box, useTheme } from '@chakra-ui/react';
 import React, { ReactNode, useEffect, useState } from 'react';
+import useDynamicGradientColor from '../../../hooks/useDynamicGradient';
 import UFOComponent from './UFO';
 import MoonAndSunAnimation from './MoonAndSun';
 import {
@@ -9,14 +10,10 @@ import {
   SUN_END_TIME,
   SUN_PEAK_TIME,
   SUN_START_TIME,
+  getAstralBody,
 } from '../../../utils/helpers';
 import NyanCatAnimation from './NyanCat';
-import ParallaxClouds from '../../background/parallax-clouds/ParallaxClouds';
-import Cloud1Afternoon from '../../background/parallax-clouds/Clouds-4/3.png';
-import Cloud2Afternoon from '../../background/parallax-clouds/Clouds-4/4.png';
-import { useTimeManager } from '../../../store/contexts/TimeManagerContext';
 import FirefliesAnimation from './Fireflies';
-import { CloudConfig } from '../../background/parallax-clouds/ParallaxScene';
 
 // lazy load starfield component
 const StarField = React.lazy(() => import('./StarField'));
@@ -54,8 +51,21 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ time }) => {
 };
 
 const AnimationBox: React.FC<AnimationBoxProps> = ({ children }) => {
-  const { gradientColor, sceneKey, hour, minute, astralBody, timeDate } =
-    useTimeManager();
+  const currentGradient = useDynamicGradientColor();
+  const [currentTime, setCurrentTime] = useState(new Date());
+  const [astralbody, setAstralBody] = useState<'moon' | 'sun'>(
+    getAstralBody(new Date()),
+  );
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date();
+      setCurrentTime(now);
+      setAstralBody(getAstralBody(now));
+    }, 60000); // Update every minute
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <Box
@@ -64,72 +74,20 @@ const AnimationBox: React.FC<AnimationBoxProps> = ({ children }) => {
       overflow="hidden"
       w="100%"
       h="100%"
-      bgGradient={gradientColor}
+      bgGradient={currentGradient}
     >
       <MoonAndSunAnimation
-        astralbody={astralBody}
-        overNight={astralBody === 'moon' ? true : false}
-        startTime={astralBody === 'moon' ? MOON_START_TIME : SUN_START_TIME} // Start time (05:00)
-        peakTime={astralBody === 'moon' ? MOON_PEAK_TIME : SUN_PEAK_TIME} // Peak time (14:00)
-        endTime={astralBody === 'moon' ? MOON_END_TIME : SUN_END_TIME} // End time (18:00)
-        currentTime={timeDate} // Pass current time to MoonAnimation
+        astralbody={astralbody}
+        overNight={astralbody === 'moon' ? true : false}
+        startTime={astralbody === 'moon' ? MOON_START_TIME : SUN_START_TIME} // Start time (05:00)
+        peakTime={astralbody === 'moon' ? MOON_PEAK_TIME : SUN_PEAK_TIME} // Peak time (14:00)
+        endTime={astralbody === 'moon' ? MOON_END_TIME : SUN_END_TIME} // End time (18:00)
+        currentTime={currentTime} // Pass current time to MoonAnimation
       />
       {children}
     </Box>
   );
 };
-
-const cloudsConfig: CloudConfig[] = [
-  {
-    image: 'twilight-5.png',
-    position: { x: 0, y: 70 },
-    scrollSpeed: 0.02,
-    alphaRange: [0.3, 0.8],
-    // scale: 1.5,
-  },
-  {
-    image: 'twilight-2.png',
-    position: { x: 0, y: 65 },
-    scrollSpeed: 0.02,
-    alphaRange: [0.3, 0.8],
-    scale: 1.2,
-  },
-  {
-    image: 'twilight-3.png',
-    position: { x: 0, y: 65 },
-    scrollSpeed: 0.04,
-    alphaRange: [0.3, 0.8],
-    scale: 1.2,
-  },
-
-  {
-    image: 'twilight-4.png',
-    position: { x: 0, y: 15 },
-    scrollSpeed: 0.1,
-    alphaRange: [0.3, 0.8],
-    scale: 1.2,
-  },
-];
-// {
-//   image: 'twilight-2.png',
-//   position: { x: 0, y: 290 },
-//   scrollSpeed: 0.07,
-//   alphaRange: [0.5, 1], // Correct tuple format
-// },
-// {
-//   image: 'twilight-3.png',
-//   position: { x: 0, y: 290 },
-//   scrollSpeed: 0.1,
-//   alphaRange: [0.3, 0.8], // Correct tuple format
-// },
-// {
-//   image: 'twilight-4.png',
-//   position: { x: 0, y: 70 },
-//   scrollSpeed: 0.1,
-//   alphaRange: [0.3, 0.8], // Correct tuple format
-// },
-
-// Add more cloud configurations if needed
 
 export default AnimatedBackground;
 
@@ -138,21 +96,11 @@ const MorningThemeAnimations = () => {
 };
 
 const DayThemeAnimations = () => {
-  return (
-    <div>
-      {' '}
-      <ParallaxClouds cloudsConfig={cloudsConfig} />
-    </div>
-  );
+  return <div>Day Theme Animations</div>;
 };
 
 const AfternoonThemeAnimations = () => {
-  return (
-    <>
-      <div>hello</div>
-      <ParallaxClouds cloudsConfig={cloudsConfig} />
-    </>
-  );
+  return <div>Afternoon Theme Animations</div>;
 };
 
 const NightThemeAnimations = React.memo(() => {
@@ -163,8 +111,6 @@ const NightThemeAnimations = React.memo(() => {
     <>
       <React.Suspense fallback={<div>Loading...</div>}>
         <MemoizedStarfield />
-        <FirefliesAnimation />
-        <ParallaxClouds cloudsConfig={cloudsConfig} />
       </React.Suspense>
       {/* <MemoizedUFOComponent />
       <MemoizedNyanCat /> */}
