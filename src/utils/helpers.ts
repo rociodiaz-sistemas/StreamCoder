@@ -1,3 +1,10 @@
+import {
+  GradientColor,
+  GradientKey,
+  TimeRange,
+  TimeRangeKey,
+} from '../store/types';
+
 export const randomNumberBetween = (min: number, max: number) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
@@ -26,3 +33,42 @@ export const STARFIELD_INDEX = 0;
 export const MOON_INDEX = 1;
 export const UFO_INDEX = 2;
 export const LADY_BUG_INDEX = 3;
+
+export const timeRangesExpanded: Record<TimeRangeKey, TimeRange> = {
+  Dawn: { start: 5, end: 7 },
+  Rising: { start: 6, end: 7 },
+  Morning: { start: 7, end: 10 },
+  Day: { start: 10, end: 15 },
+  SuperDay: { start: 15, end: 16 },
+  DayAlmostDusk: { start: 16, end: 17 },
+  Dusk: { start: 17, end: 18 },
+  Twilight: { start: 18, end: 19 },
+  Night: { start: 19, end: 20 },
+  DeepNight: { start: 20, end: 22 },
+  Midnight: { start: 22, end: 23.59 },
+  MidnightMidnight: { start: 0, end: 5 },
+};
+
+export const gradients: Record<GradientKey, GradientColor> = {
+  Dawn: 'linear-gradient(180deg, rgba(23,19,19,1) 3%, rgba(33,52,105,1) 40%, rgba(46,68,128,1) 72%, rgba(60,84,154,1) 100%)',
+  Rising:
+    'linear-gradient(180deg, rgba(50,58,69,1) 0%, rgba(74,104,145,1) 20%, rgba(152,169,179,1) 73%, rgba(200,192,157,1) 100%)',
+  Morning:
+    'linear-gradient(180deg, rgba(94,155,221,1) 18%, rgba(178,210,245,1) 61%, rgba(224,219,194,1) 87%, rgba(255,247,201,1) 100%)',
+  Day: 'linear-gradient(180deg, rgba(46,136,255,1) 41%, rgba(115,165,227,1) 61%, rgba(255,249,226,1) 100%)',
+  SuperDay:
+    'linear-gradient(180deg, rgba(13,120,227,1) 0%, rgba(103,189,255,1) 68%, rgba(255,255,255,1) 100%)',
+  DayAlmostDusk:
+    'linear-gradient(180deg, rgba(142,205,230,1) 2.5%, rgba(154,189,255,1) 32%, rgba(235,207,181,1) 100%)',
+  Dusk: 'linear-gradient(180deg, #64509F 2.5%, #CEA9DB 32%, #EBCFB5 100%)',
+  Twilight:
+    'linear-gradient(180deg, rgba(44,36,68,1) 0%, rgba(92,79,129,1) 43%, rgba(131,92,159,1) 70%, rgba(154,115,167,1) 88%, rgba(174,138,182,1) 98%)',
+  Night:
+    'linear-gradient(180deg, #141311 0%, #2D2E38 45.5%, #333850 60%, #553A77 100%)',
+  DeepNight:
+    'linear-gradient(180deg, rgba(20,19,17,1) 15%, rgba(41,49,70,1) 62%, rgba(54,59,108,1) 86%, rgba(61,58,119,1) 100%)',
+  Midnight:
+    'linear-gradient(180deg, rgba(0,0,0,1) 15%, rgba(16,32,78,1) 67%, rgba(18,43,116,1) 88%, rgba(32,31,135,1) 100%)',
+  MidnightMidnight:
+    'linear-gradient(180deg, rgba(0,0,0,1) 15%, rgba(16,32,78,1) 67%, rgba(18,43,116,1) 88%, rgba(32,31,135,1) 100%)',
+};
