@@ -56,4 +56,7 @@ export default {
     DaySky:
       'linear-gradient(180deg, #FFC926 0%, #FCE293 26%, #EBDDB5 44%, #A9BEDB 83.9%)',
   },
+  operatingSystem: {
+    taskbar: 'rositaBb',
+  },
 };

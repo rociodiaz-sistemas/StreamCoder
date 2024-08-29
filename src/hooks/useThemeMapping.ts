@@ -16,7 +16,7 @@ interface MessageStyles {
 interface ThemeInfo {
   themeName: string;
   getGradient: () => string;
-  getHeaderStyle: () => string;
+  getHeaderStyle: () => { backgroundColor: string; color: string };
   getMessageBoxStyles: (type: string) => MessageStyles | undefined;
 }
 
@@ -47,8 +47,8 @@ const useThemeMapping = (): ThemeInfo => {
     return gradientMappings[themeName] || ''; // Retrieve the gradient based on the current theme
   };
 
-  const getHeaderStyle = (): string => {
-    return getHeaderMappings[themeName] || '';
+  const getHeaderStyle = (): { backgroundColor: string; color: string } => {
+    return getHeaderMappings[themeName] || { backgroundColor: '', color: '' }; // Retrieve the header style based on the current theme
   };
 
   const getMessageBoxStyles = (type: string): MessageStyles | undefined => {

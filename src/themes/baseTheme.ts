@@ -12,6 +12,7 @@ const baseTheme = extendTheme({
     },
     Header: {
       baseStyle: {
+        backgroundColor: 'amarillo',
         border: '3px solid',
         borderColor: 'brown',
       },

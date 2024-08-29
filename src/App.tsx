@@ -16,8 +16,8 @@ import BackgroundOverlay from './components/background/BackgroundOverlay';
 import TopBackgroundOverlay from './components/top-background/TopBackgroundOverlay';
 import CloudParallax from './components/background/parallax-clouds/ParallaxClouds';
 import { TimeManagerProvider } from './store/contexts/TimeManagerContext';
-import SkyShading from './components/background/pixel-art/PixelShadingDemo';
 import TestFile from './components/background/pixel-art/TestFile';
+import CustomCursor from './components/common/CustomCursor';
 
 function App() {
   const dispatch = useDispatch();
@@ -66,6 +66,7 @@ function App() {
       <main>
         <TimeManagerProvider>
           <ChatContextProvider theme={selectedTheme}>
+            <CustomCursor />
             <Routes>
               <Route path="/" element={<ResizableChat />} />
               <Route path="/OnlyMessages" element={<ResizableMessagesChat />} />
