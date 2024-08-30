@@ -178,15 +178,15 @@ export const NIGHT_CLOUD_CONFIG: CloudConfig[] = [
 ];
 
 export const CLOUD_CONFIGS: { [key in TimeRangeKey]: CloudConfig[] } = {
-  Dawn: ALMOSTDUSK_CLOUD_CONFIG,
+  Dawn: DUSK_CLOUD_CONFIG,
   Rising: RISING_CLOUD_CONFIG,
-  Morning: DAY_CLOUD_CONFIG,
+  Morning: SUPERDAY_CLOUD_CONFIG,
   Day: DAY_CLOUD_CONFIG,
-  SuperDay: SUPERDAY_CLOUD_CONFIG, // Maybe changhe gradient color to a lighter one(?
+  SuperDay: SUPERDAY_CLOUD_CONFIG,
   DayAlmostDusk: ALMOSTDUSK_CLOUD_CONFIG,
   Dusk: DUSK_CLOUD_CONFIG,
   Twilight: TWILIGHT_CLOUD_CONFIG,
-  Night: NIGHT_CLOUD_CONFIG,
+  Night: TWILIGHT_CLOUD_CONFIG,
   DeepNight: NIGHT_CLOUD_CONFIG,
   Midnight: MORNING_CLOUD_CONFIG,
   MidnightMidnight: MORNING_CLOUD_CONFIG,
