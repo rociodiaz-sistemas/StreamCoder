@@ -15,6 +15,10 @@ const ParallaxClouds: React.FC<ParallaxCloudsProps> = ({ cloudsConfig }) => {
     if (!gameContainerRef.current) return;
 
     const config: Phaser.Types.Core.GameConfig = {
+      antialias: true,
+      antialiasGL: true,
+      resizeInterval: 0,
+      pixelArt: false,
       type: Phaser.AUTO,
       width: window.innerWidth, // Use window dimensions for initial size
       height: window.innerHeight,
@@ -27,6 +31,12 @@ const ParallaxClouds: React.FC<ParallaxCloudsProps> = ({ cloudsConfig }) => {
           gravity: { x: 0, y: 0 },
           debug: false,
         },
+      },
+      scale: {
+        //mode: Phaser.Scale.MAX_ZOOM,
+        mode: Phaser.Scale.ENVELOP,
+        // mode: Phaser.Scale.HEIGHT_CONTROLS_WIDTH,
+        autoCenter: Phaser.Scale.CENTER_VERTICALLY,
       },
     };
 
