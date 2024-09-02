@@ -88,7 +88,7 @@ class ParallaxScene extends Phaser.Scene {
     });
 
     // Listen for resize events to adjust cloud positions
-    this.scale.on('resize', this.handleResize, this);
+    //this.scale.on('resize', this.handleResize, this);
   }
 
   update(): void {
@@ -97,23 +97,23 @@ class ParallaxScene extends Phaser.Scene {
     });
   }
 
-  handleResize(gameSize: Phaser.Structs.Size): void {
-    const { width, height } = gameSize;
+  // handleResize(gameSize: Phaser.Structs.Size): void {
+  //   const { width, height } = gameSize;
 
-    this.cameras.resize(width, height);
+  //   this.cameras.resize(width, height);
 
-    this.cloudSprites.forEach((cloud, index) => {
-      const cloudConfig = this.options.clouds[index];
-      const cloudX = (cloudConfig.position.x / 100) * width;
-      const cloudY = (cloudConfig.position.y / 100) * height;
+  //   this.cloudSprites.forEach((cloud, index) => {
+  //     const cloudConfig = this.options.clouds[index];
+  //     const cloudX = (cloudConfig.position.x / 100) * width;
+  //     const cloudY = (cloudConfig.position.y / 100) * height;
 
-      // Reposition the cloud within the bounds
-      cloud.sprite.setPosition(
-        Math.min(cloudX, width - cloud.sprite.displayWidth),
-        Math.min(cloudY, height - cloud.sprite.displayHeight),
-      );
-    });
-  }
+  //     // Reposition the cloud within the bounds
+  //     cloud.sprite.setPosition(
+  //       Math.min(cloudX, width - cloud.sprite.displayWidth),
+  //       Math.min(cloudY, height - cloud.sprite.displayHeight),
+  //     );
+  //   });
+  // }
 }
 
 export default ParallaxScene;
