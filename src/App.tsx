@@ -66,7 +66,7 @@ function App() {
       <main>
         <TimeManagerProvider>
           <ChatContextProvider theme={selectedTheme}>
-            <CustomCursor />
+            {/* <CustomCursor /> */}
             <Routes>
               <Route path="/" element={<ResizableChat />} />
               <Route path="/OnlyMessages" element={<ResizableMessagesChat />} />

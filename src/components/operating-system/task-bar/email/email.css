@@ -1,0 +1,13 @@
+#email {
+  font-family: 'ABeeZee', sans-serif;
+}
+
+.lined-paper {
+  background: linear-gradient(to bottom, #ed1e81 1px, transparent 1px);
+  background-size: 100% 20px;
+  line-height: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 15px;
+  white-space: pre-wrap; /* Keeps the line breaks in the text */ /* Optional: For a more notepaper feel */
+}

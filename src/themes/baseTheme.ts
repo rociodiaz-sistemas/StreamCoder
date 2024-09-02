@@ -38,6 +38,13 @@ const baseTheme = extendTheme({
     brown: '#3A332D',
     rosa: '#F5D6D3',
     amarillo: '#FCE293',
+    blackCode: '#3D3D44',
+  },
+  textStyles: {
+    emailbody: {
+      fontSize: ['16px', '20px'],
+      lineHeight: '140%',
+    },
   },
 });
 
