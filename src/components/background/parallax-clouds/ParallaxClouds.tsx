@@ -18,7 +18,7 @@ const ParallaxClouds: React.FC<ParallaxCloudsProps> = ({ cloudsConfig }) => {
       antialias: true,
       antialiasGL: true,
       resizeInterval: 0,
-      pixelArt: false,
+      pixelArt: true,
       type: Phaser.AUTO,
       width: window.innerWidth, // Use window dimensions for initial size
       height: window.innerHeight,
