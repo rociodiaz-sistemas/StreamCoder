@@ -14,7 +14,7 @@ const Component: React.FC<Props> = () => {
   return (
     <div style={{ paddingLeft: '60px' }}>
       Test
-      <Unread />
+      <Email />
     </div>
   );
 };
