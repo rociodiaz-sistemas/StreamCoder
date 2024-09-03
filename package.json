@@ -3,11 +3,11 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
- "scripts": {
-    "start:client": "react-scripts start",
-    "start:server": "node server.js",
+  "scripts": {
+    "start:client": "vite",
+    "start:server": "node server/server.js",
     "start": "concurrently \"npm run start:client\" \"npm run start:server\"",
-    "build": "react-scripts build",
+    "build": "vite build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -42,8 +42,10 @@
     "redux-saga": "^1.3.0",
     "slick-carousel": "^1.8.1",
     "socket.io-client": "^4.5.2",
+    "sqlite3": "^5.1.7",
     "usehooks-ts": "^2.7.1",
-    "vite-plugin-svgr": "^4.2.0"
+    "vite-plugin-svgr": "^4.2.0",
+    "ws": "^8.18.0"
   },
   "devDependencies": {
     "@chakra-ui/storybook-addon": "^5.1.0",

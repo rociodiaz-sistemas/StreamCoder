@@ -1,6 +1,7 @@
-const express = require('express');
+import express from 'express';
+import { db } from '../db.js'; // Use named import
+
 const router = express.Router();
-const db = require('./db'); // Make sure the path to db.js is correct
 
 // Get all emails
 router.get('/', (req, res) => {
@@ -27,4 +28,4 @@ router.post('/', (req, res) => {
   );
 });
 
-module.exports = router;
+export default router;

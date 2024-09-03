@@ -1,20 +1,6 @@
-import {
-  Box,
-  Flex,
-  IconButton,
-  Input,
-  InputGroup,
-  InputRightElement,
-  Text,
-} from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import React, { useState } from 'react';
-import RecycleBinIcon from '../../../../assets/icons/recycle-bin.svg';
-import RecycleBinHoveredIcon from '../../../../assets/icons/recycle-bin-filled.svg';
-import StarIcon from '../../../../assets/icons/favourite-star.svg';
-import StarIconFilled from '../../../../assets/icons/favourite-star-filled.svg';
-import Loupe from '../../../../assets/icons/loupe.svg';
 import { ChevronDownIcon } from '@chakra-ui/icons';
-import EmailListItem from './EmailListItem';
 import EmailHome from './EmailHome';
 
 export interface EmailProps {

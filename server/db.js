@@ -1,5 +1,5 @@
-const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
+import sqlite3 from 'sqlite3';
+import path from 'path';
 
 // Path to your SQLite database file
 const dbPath = path.join('D:', 'db', 'letters.db');
@@ -21,4 +21,5 @@ db.serialize(() => {
   `);
 });
 
-module.exports = db;
+// Export db as a named export
+export { db };
