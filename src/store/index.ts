@@ -5,6 +5,7 @@ import { messagesReducer } from './slices/messageSlice';
 import { obsReducer } from './slices/obsSlice';
 import rootSaga from './sagas/rootSaga'; // Import the root saga
 import { effectsReducer } from './slices/effectsSlice';
+import { emailReducer } from './slices/emailSlice';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   messages: messagesReducer,
   obsActions: obsReducer,
   effects: effectsReducer,
+  emails: emailReducer,
   // Add other reducers here if needed
 });
 

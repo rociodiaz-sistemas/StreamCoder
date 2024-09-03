@@ -22,9 +22,6 @@ export interface EmailProps {
 }
 
 export const Email: React.FC<EmailProps> = ({ email }) => {
-  const [deleteIconHovered, setDeleteIconHovered] = useState(false);
-  const [starIconHovered, setStarIconHovered] = useState(false);
-
   return (
     <Box
       id="email"

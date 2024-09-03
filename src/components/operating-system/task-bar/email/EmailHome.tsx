@@ -1,3 +1,5 @@
+import React from 'react';
+import { useSelector } from 'react-redux';
 import {
   Box,
   Flex,
@@ -8,10 +10,22 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
-import Loupe from '../../../../assets/icons/loupe.svg'; // Import the EmailListItem component
+import Loupe from '../../../../assets/icons/loupe.svg';
 import EmailListItem from './EmailListItem';
+import { RootState } from '../../../../store';
+import { Email } from '../../../../store/types';
 
-export const EmailHome: React.FC = () => {
+const EmailHome: React.FC = () => {
+  const emails = useSelector((state: RootState) => state.emails.emails);
+
+  // Helper functions to categorize emails
+  const getUnreadEmails = (): Email[] =>
+    emails.filter((email: Email) => !email.isRead);
+  const getReadEmails = (): Email[] =>
+    emails.filter((email: Email) => email.isRead && !email.isFavorite);
+  const getFavoriteEmails = (): Email[] =>
+    emails.filter((email: Email) => email.isFavorite);
+
   return (
     <Flex direction="column" gap="5px">
       <Flex
@@ -22,7 +36,7 @@ export const EmailHome: React.FC = () => {
         width="100%"
         justifyContent="space-between"
       >
-        <Text>Letters</Text>
+        <Text>Letters from viewers 💜</Text>
         <Box width="300px">
           <InputGroup size="lg" paddingBottom="5px">
             <Input
@@ -58,13 +72,18 @@ export const EmailHome: React.FC = () => {
           fontSize="15px"
           icon={<ChevronDownIcon />}
         />
-        <Text>Unread</Text>
+        <Text>Unread ({getUnreadEmails().length})</Text>
       </Flex>
 
       {/* List of unread emails */}
-      <EmailListItem name="Antonia Vaquita" date="12/12/24" time="12:23 PM" />
-      <EmailListItem name="Antonia Vaquita" date="12/12/24" time="12:23 PM" />
-      <EmailListItem name="Antonia Vaquita" date="12/12/24" time="12:23 PM" />
+      {getUnreadEmails().map((email) => (
+        <EmailListItem
+          key={email.id}
+          name={email.sender}
+          date={new Date(email.timestamp).toLocaleDateString()}
+          time={new Date(email.timestamp).toLocaleTimeString()}
+        />
+      ))}
 
       <Flex direction="row" gap="2px">
         <IconButton
@@ -72,12 +91,18 @@ export const EmailHome: React.FC = () => {
           fontSize="15px"
           icon={<ChevronDownIcon />}
         />
-        <Text>Read</Text>
+        <Text>Read ({getReadEmails().length})</Text>
       </Flex>
 
       {/* List of read emails */}
-      <EmailListItem name="Antonia Vaquita" date="12/12/24" time="12:23 PM" />
-      <EmailListItem name="Antonia Vaquita" date="12/12/24" time="12:23 PM" />
+      {getReadEmails().map((email) => (
+        <EmailListItem
+          key={email.id}
+          name={email.sender}
+          date={new Date(email.timestamp).toLocaleDateString()}
+          time={new Date(email.timestamp).toLocaleTimeString()}
+        />
+      ))}
 
       <Flex direction="row" gap="2px">
         <IconButton
@@ -85,12 +110,20 @@ export const EmailHome: React.FC = () => {
           fontSize="15px"
           icon={<ChevronDownIcon />}
         />
-        <Text>Favourites</Text>
+        <Text>Favourites ({getFavoriteEmails().length})</Text>
       </Flex>
 
       {/* List of favourite emails */}
-      <EmailListItem name="Antonia Vaquita" date="12/12/24" time="12:23 PM" />
+      {getFavoriteEmails().map((email) => (
+        <EmailListItem
+          key={email.id}
+          name={email.sender}
+          date={new Date(email.timestamp).toLocaleDateString()}
+          time={new Date(email.timestamp).toLocaleTimeString()}
+        />
+      ))}
     </Flex>
   );
 };
+
 export default EmailHome;
