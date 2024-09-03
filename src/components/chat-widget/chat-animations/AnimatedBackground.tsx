@@ -20,6 +20,7 @@ const StarField = React.lazy(() => import('./StarField'));
 
 interface AnimationBoxProps {
   time?: number | undefined;
+  children: ReactNode;
 }
 
 interface AnimatedBackgroundProps {
@@ -27,10 +28,29 @@ interface AnimatedBackgroundProps {
 }
 
 const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({ time }) => {
-  return <AnimationBox time={time} />;
+  const theme = useTheme();
+
+  /* eslint-disable */
+  const renderThemeAnimations = () => {
+    switch (theme.themeName) {
+      case 'morningTheme':
+        return <MorningThemeAnimations />;
+      case 'dayTheme':
+        return <DayThemeAnimations />;
+      case 'afternoonTheme':
+        return <AfternoonThemeAnimations />;
+      case 'nightTheme':
+        return <NightThemeAnimations />;
+      default:
+        return null;
+    }
+  };
+  /* eslint-enable */
+
+  return <AnimationBox time={time}>{renderThemeAnimations()}</AnimationBox>;
 };
 
-const AnimationBox: React.FC<AnimationBoxProps> = () => {
+const AnimationBox: React.FC<AnimationBoxProps> = ({ children }) => {
   const { gradientColor, cloudConfig, hour, minute, astralBody, timeDate } =
     useTimeManager();
 
@@ -51,51 +71,49 @@ const AnimationBox: React.FC<AnimationBoxProps> = () => {
         endTime={astralBody === 'moon' ? MOON_END_TIME : SUN_END_TIME} // End time (18:00)
         currentTime={timeDate} // Pass current time to MoonAnimation
       />
+      {children}
       {cloudConfig && <ParallaxClouds cloudsConfig={cloudConfig} />}
-      {/* {themeName === 'nightTheme' && (
-        <NightThemeAnimations cloudsConfig={cloudConfig} />
-      )} */}
     </Box>
   );
 };
 
 export default AnimatedBackground;
 
-// const MorningThemeAnimations: React.FC<{ cloudsConfig: CloudConfig[] }> = ({ cloudsConfig }) => (
-//   <div>
-//     <ParallaxClouds cloudsConfig={cloudsConfig} />
-//   </div>
-// );
+const MorningThemeAnimations = () => {
+  return <div>MorningThemeAnimations</div>;
+};
 
-// const DayThemeAnimations: React.FC<{ cloudsConfig: CloudConfig[] }> = ({ cloudsConfig }) => (
-//   <div>
-//     <ParallaxClouds cloudsConfig={cloudsConfig} />
-//   </div>
-// );
+const DayThemeAnimations = () => {
+  return (
+    <div>
+      <div>DayThemeAnimations</div>
+    </div>
+  );
+};
 
-// const AfternoonThemeAnimations: React.FC<{ cloudsConfig: CloudConfig[] }> = ({ cloudsConfig }) => (
-//   <>
-//     <div>Hello</div>
-//     <ParallaxClouds cloudsConfig={cloudsConfig} />
-//   </>
-// );
+const AfternoonThemeAnimations = () => {
+  return (
+    <>
+      <div>AfternoonThemeAnimations</div>
+    </>
+  );
+};
 
-// const NightThemeAnimations: React.FC<{ cloudsConfig: CloudConfig[] }> = React.memo(({ cloudsConfig }) => {
-//   const MemoizedStarfield = React.memo(StarField);
-//   const MemoizedUFOComponent = React.memo(UFOComponent);
-//   const MemoizedNyanCat = React.memo(NyanCatAnimation);
-//   return (
-//     <>
-//       <React.Suspense fallback={<div>Loading...</div>}>
-//         <MemoizedStarfield />
-//         <FirefliesAnimation />
-//         <ParallaxClouds cloudsConfig={cloudsConfig} />
-//       </React.Suspense>
-//       {/* <MemoizedUFOComponent />
-//       <MemoizedNyanCat /> */}
-//       {/* <FirefliesAnimation /> */}
-//     </>
-//   );
-// });
+const NightThemeAnimations = React.memo(() => {
+  const MemoizedStarfield = React.memo(StarField);
+  // const MemoizedUFOComponent = React.memo(UFOComponent);
+  // const MemoizedNyanCat = React.memo(NyanCatAnimation);
+  return (
+    <>
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <MemoizedStarfield />
+        <FirefliesAnimation />
+        {/* <ParallaxClouds cloudsConfig={cloudsConfig} /> */}
+      </React.Suspense>
+      {/* <MemoizedUFOComponent />
+      <MemoizedNyanCat /> */}
+    </>
+  );
+});
 
 // NightThemeAnimations.displayName = 'NightThemeAnimations';
