@@ -6,7 +6,7 @@ import { CLOUD_CONFIGS } from '../../components/background/parallax-clouds/Cloud
 
 type TimeManagerContextType = {
   gradientColor: string;
-  cloudConfig: CloudConfig[] | undefined;
+  cloudConfig: CloudConfig[];
   hour: number;
   minute: number;
   astralBody: 'moon' | 'sun';
@@ -31,8 +31,8 @@ const TimeManagerProvider: React.FC<{ children: React.ReactNode }> = ({
   const [minute, setMinute] = useState<number>(0);
   const [astralBody, setAstralBody] = useState<'moon' | 'sun'>('sun');
   const [timeDate, setTimeDate] = useState<Date | undefined>(undefined);
-  const [cloudConfig, setCloudConfig] = useState<CloudConfig[] | undefined>(
-    undefined,
+  const [cloudConfig, setCloudConfig] = useState<CloudConfig[]>(
+    CLOUD_CONFIGS['Night']
   );
 
   useEffect(() => {
