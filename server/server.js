@@ -9,7 +9,7 @@ app.use(express.json());
 app.use('/api/emails', emailRoutes);
 
 // Start WebSocket server
-const wss = new WebSocketServer({ port: 8080 }); // Update this line
+const wss = new WebSocketServer({ port: 8081 }); // Update this line
 
 wss.on('connection', (ws) => {
   console.log('WebSocket client connected');
