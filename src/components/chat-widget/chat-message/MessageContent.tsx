@@ -1,6 +1,8 @@
 import { MessageModel } from '../../../utils/models';
-import { Box, Flex } from '@chakra-ui/react';
+import { Box, Flex, Text } from '@chakra-ui/react';
 import Username from './usernames/UserName';
+import { Icon } from '@chakra-ui/react';
+import { MoonIcon } from '@chakra-ui/icons';
 import './styles.css';
 
 export const MessageContent = ({ message }: { message: MessageModel }) => {
@@ -15,6 +17,29 @@ export const MessageContent = ({ message }: { message: MessageModel }) => {
     />
   ));
 
+
+  const BitsTextStyle = {
+    background: 'linear-gradient(to right, #54009E, #D3A6FF)',
+    WebkitBackgroundClip: 'text', // This makes the gradient affect the text itself
+    WebkitTextFillColor: 'transparent', // Makes the text transparent so background shows
+  };
+
+  const PulsateTextStyle = `
+  @keyframes pulsateText {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+`;
+
+  const insertTextPulsateAnimation = () => {
+    const style = document.createElement('style');
+    style.innerHTML = PulsateTextStyle;
+    document.head.appendChild(style);
+  };
+
+  insertTextPulsateAnimation();
+
   return (
     <>
       <Flex align="center" direction="row">
@@ -24,12 +49,13 @@ export const MessageContent = ({ message }: { message: MessageModel }) => {
           type={message.type}
         />
         {Badges}
+        {areThereBits &&
+          <Flex align='center' animation='pulsateText 3s infinite'>
+            <Icon ml='10px' as={MoonIcon} color='#54009E' />
+            <Text pl='5px' fontWeight='bold' style={BitsTextStyle}>x{message.bits}</Text>
+          </Flex>
+        }
       </Flex>
-      {areThereBits &&
-        <>
-          <Box>{message.bits}</Box>
-        </>
-      }
       <Flex
         wrap="wrap"
         style={{
