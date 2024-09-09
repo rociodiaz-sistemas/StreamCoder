@@ -69,7 +69,7 @@ const baseMessage: MessageModel = {
   suscriber: false,
   isReply: false,
   hasBits: false,
-  bits: 0,
+  bits: 1000,
   hasEmotes: false,
   emotes: [],
   type: 'common',
