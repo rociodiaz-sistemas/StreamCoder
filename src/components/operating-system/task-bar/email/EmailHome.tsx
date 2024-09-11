@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import {
   Box,
@@ -14,17 +14,24 @@ import Loupe from '../../../../assets/icons/loupe.svg';
 import EmailListItem from './EmailListItem';
 import { RootState } from '../../../../store';
 import { Email } from '../../../../store/types';
+import { useDispatch } from 'react-redux';
+import { fetchEmailsRequest } from '../../../../store/slices/emailSlice';
 
 const EmailHome: React.FC = () => {
+  const dispatch = useDispatch();
   const emails = useSelector((state: RootState) => state.emails.emails);
+
+  useEffect(() => {
+    dispatch(fetchEmailsRequest());
+  }, [dispatch]);
 
   // Helper functions to categorize emails
   const getUnreadEmails = (): Email[] =>
-    emails.filter((email: Email) => !email.isRead);
+    emails.filter((email: Email) => email.status === 'unread');
   const getReadEmails = (): Email[] =>
-    emails.filter((email: Email) => email.isRead && !email.isFavorite);
+    emails.filter((email: Email) => email.status === 'read');
   const getFavoriteEmails = (): Email[] =>
-    emails.filter((email: Email) => email.isFavorite);
+    emails.filter((email: Email) => email.is_favorite);
 
   return (
     <Flex direction="column" gap="5px">

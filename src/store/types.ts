@@ -21,9 +21,9 @@ export type GradientKey = TimeRangeKey; // Same keys for gradients
 export type GradientColor = string;
 
 export interface Email {
-  id: string;
+  id: number;
   sender: string;
   timestamp: string; // ISO string or format used for the timestamp
-  isRead: boolean;
-  isFavorite: boolean;
+  status: string;
+  is_favorite: boolean;
 }

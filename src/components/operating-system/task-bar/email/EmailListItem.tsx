@@ -30,9 +30,9 @@ const EmailListItem: React.FC<EmailListItemProps> = ({ name, date, time }) => {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Text>{name}</Text>
-        <Text>{date}</Text>
-        <Text>{time}</Text>
+        <Text flexBasis="50%">{name}</Text>
+        <Text flexBasis="30%">{date}</Text>
+        <Text flexBasis="30%">{time}</Text>
         <Flex gap="10px">
           <IconButton
             aria-label="delete"
