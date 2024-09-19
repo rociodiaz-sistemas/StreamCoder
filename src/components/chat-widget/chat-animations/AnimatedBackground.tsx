@@ -95,6 +95,7 @@ const AfternoonThemeAnimations = () => {
   return (
     <>
       <div>AfternoonThemeAnimations</div>
+      <FirefliesAnimation />
     </>
   );
 };

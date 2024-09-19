@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
   Box,
@@ -9,7 +9,7 @@ import {
   InputRightElement,
   Text,
 } from '@chakra-ui/react';
-import { ChevronDownIcon } from '@chakra-ui/icons';
+import { ChevronDownIcon, ChevronUpIcon } from '@chakra-ui/icons';
 import Loupe from '../../../../assets/icons/loupe.svg';
 import EmailListItem from './EmailListItem';
 import { RootState } from '../../../../store';
@@ -20,6 +20,16 @@ import { fetchEmailsRequest } from '../../../../store/slices/emailSlice';
 const EmailHome: React.FC = () => {
   const dispatch = useDispatch();
   const emails = useSelector((state: RootState) => state.emails.emails);
+
+  // State to manage expansion of each section
+  const [isUnreadExpanded, setUnreadExpanded] = useState(false);
+  const [isReadExpanded, setReadExpanded] = useState(false);
+  const [isFavoriteExpanded, setFavoriteExpanded] = useState(false);
+
+  // Toggle functions
+  const toggleUnread = () => setUnreadExpanded(!isUnreadExpanded);
+  const toggleRead = () => setReadExpanded(!isReadExpanded);
+  const toggleFavorite = () => setFavoriteExpanded(!isFavoriteExpanded);
 
   useEffect(() => {
     dispatch(fetchEmailsRequest());
@@ -35,6 +45,7 @@ const EmailHome: React.FC = () => {
 
   return (
     <Flex direction="column" gap="5px">
+      {/* Header Section */}
       <Flex
         id="header-email-home"
         direction="row"
@@ -73,62 +84,65 @@ const EmailHome: React.FC = () => {
         </Box>
       </Flex>
 
-      <Flex direction="row" gap="2px">
+      {/* Unread Emails Section */}
+      <Flex direction="row" gap="2px" alignItems="center">
         <IconButton
           aria-label="expand-unread"
           fontSize="15px"
-          icon={<ChevronDownIcon />}
+          icon={isUnreadExpanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
+          onClick={toggleUnread}
         />
         <Text>Unread ({getUnreadEmails().length})</Text>
       </Flex>
 
-      {/* List of unread emails */}
-      {getUnreadEmails().map((email) => (
-        <EmailListItem
-          key={email.id}
-          name={email.sender}
-          date={new Date(email.timestamp).toLocaleDateString()}
-          time={new Date(email.timestamp).toLocaleTimeString()}
-        />
-      ))}
+      {/* Conditionally Render Unread Emails */}
+      {isUnreadExpanded && (
+        <Flex maxHeight="300px" overflowY="auto" direction="column" gap="5px">
+          {getUnreadEmails().map((email) => (
+            <EmailListItem key={email.id} email={email} />
+          ))}
+        </Flex>
+      )}
 
-      <Flex direction="row" gap="2px">
+      {/* Read Emails Section */}
+      <Flex direction="row" gap="2px" alignItems="center">
         <IconButton
           aria-label="expand-read"
           fontSize="15px"
-          icon={<ChevronDownIcon />}
+          icon={isReadExpanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
+          onClick={toggleRead}
         />
         <Text>Read ({getReadEmails().length})</Text>
       </Flex>
 
-      {/* List of read emails */}
-      {getReadEmails().map((email) => (
-        <EmailListItem
-          key={email.id}
-          name={email.sender}
-          date={new Date(email.timestamp).toLocaleDateString()}
-          time={new Date(email.timestamp).toLocaleTimeString()}
-        />
-      ))}
+      {/* Conditionally Render Read Emails */}
+      {isReadExpanded && (
+        <Flex maxHeight="300px" overflowY="auto" direction="column" gap="5px">
+          {getReadEmails().map((email) => (
+            <EmailListItem key={email.id} email={email} />
+          ))}
+        </Flex>
+      )}
 
-      <Flex direction="row" gap="2px">
+      {/* Favorite Emails Section */}
+      <Flex direction="row" gap="2px" alignItems="center">
         <IconButton
-          aria-label="expand-favourites"
+          aria-label="expand-favorite"
           fontSize="15px"
-          icon={<ChevronDownIcon />}
+          icon={isFavoriteExpanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
+          onClick={toggleFavorite}
         />
-        <Text>Favourites ({getFavoriteEmails().length})</Text>
+        <Text>Favorites ({getFavoriteEmails().length})</Text>
       </Flex>
 
-      {/* List of favourite emails */}
-      {getFavoriteEmails().map((email) => (
-        <EmailListItem
-          key={email.id}
-          name={email.sender}
-          date={new Date(email.timestamp).toLocaleDateString()}
-          time={new Date(email.timestamp).toLocaleTimeString()}
-        />
-      ))}
+      {/* Conditionally Render Favorite Emails */}
+      {isFavoriteExpanded && (
+        <Flex maxHeight="300px" overflowY="auto" direction="column" gap="5px">
+          {getFavoriteEmails().map((email) => (
+            <EmailListItem key={email.id} email={email} />
+          ))}
+        </Flex>
+      )}
     </Flex>
   );
 };

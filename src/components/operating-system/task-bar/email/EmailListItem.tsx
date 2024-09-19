@@ -1,19 +1,27 @@
-import React, { useState } from 'react';
-import { Flex, Text, IconButton, Box } from '@chakra-ui/react';
-import RecycleBinIcon from '../../../../assets/icons/recycle-bin.svg';
-import RecycleBinHoveredIcon from '../../../../assets/icons/recycle-bin-filled.svg';
-import StarIcon from '../../../../assets/icons/favourite-star.svg';
-import StarIconFilled from '../../../../assets/icons/favourite-star-filled.svg';
+import React from 'react';
+import { Flex, Text, Box } from '@chakra-ui/react';
+import EmailActionButtons from './EmailActionButtons';
+import {
+  deleteEmail,
+  toggleEmailFavorite,
+} from '../../../../store/slices/emailSlice';
+import { useDispatch } from 'react-redux';
+import { Email } from '../../../../store/types';
 
 interface EmailListItemProps {
-  name: string;
-  date: string;
-  time: string;
+  email: Email;
 }
 
-const EmailListItem: React.FC<EmailListItemProps> = ({ name, date, time }) => {
-  const [deleteIconHovered, setDeleteIconHovered] = useState(false);
-  const [starIconHovered, setStarIconHovered] = useState(false);
+const EmailListItem: React.FC<EmailListItemProps> = ({ email }) => {
+  const dispatch = useDispatch();
+
+  const handleFavoriteToggle = () => {
+    dispatch(toggleEmailFavorite(email.id));
+  };
+
+  const handleDeleteEmail = () => {
+    dispatch(deleteEmail(email.id));
+  };
 
   return (
     <Box
@@ -22,6 +30,7 @@ const EmailListItem: React.FC<EmailListItemProps> = ({ name, date, time }) => {
       width="100%"
       borderRadius="8px"
       padding={2}
+      _hover={{ bgColor: 'gray.100', cursor: 'pointer' }}
     >
       <Flex
         direction="row"
@@ -30,51 +39,19 @@ const EmailListItem: React.FC<EmailListItemProps> = ({ name, date, time }) => {
         alignItems="center"
         justifyContent="space-between"
       >
-        <Text flexBasis="50%">{name}</Text>
-        <Text flexBasis="30%">{date}</Text>
-        <Text flexBasis="30%">{time}</Text>
-        <Flex gap="10px">
-          <IconButton
-            aria-label="delete"
-            icon={
-              deleteIconHovered ? (
-                <img
-                  style={{ width: '17px', height: '17px' }}
-                  src={RecycleBinHoveredIcon}
-                  alt="recycle-bin-icon-hovered"
-                />
-              ) : (
-                <img
-                  style={{ width: '17px', height: '17px' }}
-                  src={RecycleBinIcon}
-                  alt="recycle-bin-icon"
-                />
-              )
-            }
-            onMouseEnter={() => setDeleteIconHovered(true)}
-            onMouseLeave={() => setDeleteIconHovered(false)}
-          />
-          <IconButton
-            aria-label="favorite"
-            icon={
-              starIconHovered ? (
-                <img
-                  style={{ width: '17px', height: '17px' }}
-                  src={StarIconFilled}
-                  alt="star-icon-hovered"
-                />
-              ) : (
-                <img
-                  style={{ width: '17px', height: '17px' }}
-                  src={StarIcon}
-                  alt="star-icon"
-                />
-              )
-            }
-            onMouseEnter={() => setStarIconHovered(true)}
-            onMouseLeave={() => setStarIconHovered(false)}
-          />
-        </Flex>
+        <Text flexBasis="50%">{email.sender}</Text>
+        <Text flexBasis="30%">
+          {' '}
+          {new Date(email.timestamp).toLocaleDateString()}
+        </Text>
+        <Text flexBasis="30%">
+          {new Date(email.timestamp).toLocaleTimeString()}
+        </Text>
+        <EmailActionButtons
+          isFavorite={email.is_favorite}
+          onFavoriteToggle={handleFavoriteToggle}
+          onDelete={handleDeleteEmail}
+        />
       </Flex>
     </Box>
   );
