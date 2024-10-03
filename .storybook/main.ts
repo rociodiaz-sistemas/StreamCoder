@@ -10,8 +10,7 @@ const config: StorybookConfig = {
     '@chakra-ui/storybook-addon',
     '@storybook/addon-themes',
     '@storybook/addon-actions',
-    '@storybook/addon-mdx-gfm',
-    '@chromatic-com/storybook'
+    '@chromatic-com/storybook',
   ],
   framework: {
     name: '@storybook/react-vite',
